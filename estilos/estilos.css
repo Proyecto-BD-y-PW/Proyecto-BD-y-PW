@@ -1,0 +1,42 @@
+*{
+    
+    
+    margin: 0;
+    padding: 0;
+    
+    
+}
+
+
+
+body{
+    
+    background: gray;
+    
+    
+    
+    
+}
+.contenedor{
+    position: relative;
+    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    
+    overflow: hidden;
+}
+
+.contenedor1, .contenedor2{
+    
+    width: 400px;
+    
+    
+    
+}
+
+
+
