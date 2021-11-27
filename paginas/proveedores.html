@@ -34,7 +34,27 @@
         </div>
 
     </header>
+     <div class="sidebar">
 
+        <div class="profile-data">
+           
+        </div>
+
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Computadora</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitecura</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Procesador</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Venta</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Empleado</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Cliente</span></a>
+        
+    </div>
 
     
    <form action="enviar.php" method="post">
@@ -52,19 +72,31 @@
        <div class="botones">
            <input id="enviar" type="submit" value="Enviar" class="btn">
            <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           
+       </div>
+       <h2>Elige la operacion a realizar</h2>
+          
+      <div class="botones">
+           <div class="radios">
+               <input id="radio-1" type="radio" value="registrar" class="btn" name="radio">
+               <label for="radio-1" id="radio-1">Registrar</label>
+           </div>
+           <div class="radios">
+               <input id="radio-2" type="radio" value="eliminar" class="btn" name="radio">  
+               <label for="radio-2">Eliminar</label>
+           </div>
+           <div class="radios">
+               <input id="radio-3" type="radio" value="actualizar" class="btn" name="radio">  
+               <label for="radio-3">Actualizar</label>
+           </div>
+            <div class="radios">
+               <input id="radio-4" type="radio" value="consultar" class="btn" name="radio">  
+               <label for="radio-4">Consultar</label>
+           </div>
        </div>
 
    </form>
-   <footer class="footer">
-       <div class="social">
-           <a href="https://www.facebook.com" class="icon-facebook"></a>
-           <a href="https://www.twitter.com" class="icon-twitter"></a>
-           <a href="https://www.instagram.com" class="icon-instagram"></a>
-           <a href="https://www.gplus.com" class="icon-gplus"></a>
-           <a href="https://www.whatsapp.com" class="icon-whatsapp"></a>
-       </div>
-       <p class="parrafo">&copy; Ingenieria en Sistemas Computacionales UAA 2021 - Todos los derechos reservados</p>
-   </footer>
+
     
 </body>
 </html>
