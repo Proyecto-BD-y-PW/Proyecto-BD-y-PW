@@ -222,7 +222,7 @@ textarea{
 }
 
 input:not([type="date"]):not([type="button"]):not([type="submit"]){
-    width: 100%;
+    width: 50%;
 }
 
 .domicilio{
@@ -241,16 +241,17 @@ input:not([type="date"]):not([type="button"]):not([type="submit"]){
     outline: none;
     border-radius: 49px;
     cursor: pointer;
-    background-color: #5995fd;
-    color: #fff;
+    background-color: #04befe;
+    color: black;
     text-transform: uppercase;
     font-weight: 600;
     margin: 2.5rem 0;
     transition: .5s;
+    margin-right: 15px;
 }
 
 .btn:hover{
-    background-color: #4d84e2;
+    background-color: #5995fd;
 }
 
 .like{
@@ -659,4 +660,34 @@ input:not([type="date"]):not([type="button"]):not([type="submit"]){
 
 .imagen-b button:hover{
     cursor: pointer;
+}
+
+form{
+    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.formulario{
+    
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.botones{
+    
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+#borrar{
+    background: gray;
+    width: 30%;
 }

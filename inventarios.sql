@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2021 a las 01:07:50
+-- Tiempo de generación: 27-11-2021 a las 08:01:25
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.5
 
@@ -196,8 +196,17 @@ CREATE TABLE `proveedores` (
 CREATE TABLE `usuario` (
   `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `correo` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `contrasena` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `contrasena` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `privilegios` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`nombre`, `correo`, `contrasena`, `privilegios`) VALUES
+('cris', 'krii.rifa11@gmail.com', '$2y$10$Nnk5suyA3cDDrR6X8O10n.z5Fs.od2xqlVIQ7tOKwW48pQYOJcaJy', 'administrador'),
+('luis', 'krii.rifa11@gmail.com', '$2y$10$VjH38MG9czFm/Otxa/R/dupodbuA3Rn7Le.e6ronSZIirN85s76yq', 'usuario-cons');
 
 -- --------------------------------------------------------
 

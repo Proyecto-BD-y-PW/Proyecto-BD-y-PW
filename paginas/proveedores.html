@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventarios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos/normalize.css">
+    <link rel="stylesheet" href="../estilos/home.css">
+
+    <script src="https://kit.fontawesome.com/eefb3f6366.js" crossorigin="anonymous"></script>
+</head>
+<body>
+     <input type="checkbox" name="" id="check" checked>
+
+    <header class="site-header">
+        
+        <div class="site-elements">
+
+            <div class="header-left">
+                <label for="check"><i class="fas fa-bars" id="sidebar_btn"></i></label>
+                <a href="home.php?op=0"><h1>IGNITION<span> PC</span></h1></a>
+            </div>
+
+            <div class="header-right">
+               <a href="funciones/closeSession.php">
+                    <button>REGRESAR</button>
+                </a>
+                <a href="funciones/closeSession.php">
+                    <button>CERRAR SESIÓN</button>
+                </a>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    
+   <form action="enviar.php" method="post">
+       <div class="formulario">
+           <h2>REGISTRAR PROVEEDORES</h2>
+           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa">
+           <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa">
+           <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor">
+           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa">
+           <input class="entrada" type="text" id="producto" name="producto" placeholder="Ingresa el producto mas concurrente que compras con el proveedor">
+           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero     telefonico">
+           <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo">
+       </div>
+
+       <div class="botones">
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+       </div>
+
+   </form>
+   <footer class="footer">
+       <div class="social">
+           <a href="https://www.facebook.com" class="icon-facebook"></a>
+           <a href="https://www.twitter.com" class="icon-twitter"></a>
+           <a href="https://www.instagram.com" class="icon-instagram"></a>
+           <a href="https://www.gplus.com" class="icon-gplus"></a>
+           <a href="https://www.whatsapp.com" class="icon-whatsapp"></a>
+       </div>
+       <p class="parrafo">&copy; Ingenieria en Sistemas Computacionales UAA 2021 - Todos los derechos reservados</p>
+   </footer>
+    
+</body>
+</html>
