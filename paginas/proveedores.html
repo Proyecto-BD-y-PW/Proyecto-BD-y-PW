@@ -11,6 +11,8 @@
     <script src="https://kit.fontawesome.com/eefb3f6366.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    
+    <main class="contenedor">
      <input type="checkbox" name="" id="check" checked>
 
     <header class="site-header">
@@ -56,8 +58,8 @@
         
     </div>
 
-    
-   <form action="enviar.php" method="post">
+       
+   <form action="enviar.php" method="post" class="registrar-mode">
        <div class="formulario">
            <h2>REGISTRAR PROVEEDORES</h2>
            <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa">
@@ -74,7 +76,7 @@
            <input id="borrar" type="reset" value="BORRAR" class="btn">  
            
        </div>
-       <h2>Elige la operacion a realizar</h2>
+       <!--<h2>Elige la operacion a realizar</h2>
           
       <div class="botones">
            <div class="radios">
@@ -93,10 +95,62 @@
                <input id="radio-4" type="radio" value="consultar" class="btn" name="radio">  
                <label for="radio-4">Consultar</label>
            </div>
-       </div>
+       </div>-->
 
    </form>
-
     
+    <form action="enviar.php" method="post" class="eliminar-mode">
+       <div class="formulario">
+           <h2>ELIMINAR PROVEEDORES</h2>
+            <select name="" id="" class="entrada">
+                <option value="" selected disabled>Proovedores disponibles</option>
+                
+            </select>
+       </div>
+
+       <div class="botones">
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           
+       </div>
+      
+     
+   </form>
+    <form action="enviar.php" method="post" class="eliminar-mode">
+       <div class="formulario">
+           <h2>ACTUALIZAR PROVEEDORES</h2>
+            <select name="" id="" class="entrada">
+                <option value="" selected disabled>Proveedores disponibles</option>
+                
+            </select>
+       </div>
+
+       <div class="botones">
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           
+       </div>
+      
+     
+   </form>
+ <form action="enviar.php" method="post" class="eliminar-mode">
+       <div class="formulario">
+           <h2>CONSULTAR PROVEEDORES</h2>
+            <select name="" id="" class="entrada">
+                <option value="" selected disabled>Proveedores disponibles</option>
+                
+            </select>
+       </div>
+
+       <div class="botones">
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           
+       </div>
+      
+     
+   </form>
+ 
+    </main>
 </body>
 </html>

@@ -12,6 +12,13 @@ body{
     background-color: #4d84e2;
 }
 
+.contenedor{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #4d84e2;
+    overflow: hidden;
+}
 img{
     max-width: 100%;
     max-height: 100%;
@@ -252,7 +259,7 @@ input:not([type="date"]):not([type="button"]):not([type="submit"]){
 }
 
 form{
-    
+  /*  position: absolute;*/
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -303,4 +310,7 @@ input[type="radio"]{
     margin-right: 20px;
     
     border-radius: 35px;
+}
+select{
+    width: 50%;
 }
