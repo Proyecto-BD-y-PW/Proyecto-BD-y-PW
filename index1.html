@@ -52,7 +52,22 @@
                         <i class="fas fa-envelope"></i>
                         <input type="email" name="em" id="em" placeholder="Email" required>
                     </div>
-
+                    
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <select name="tipo-acceso" id="tipo-acceso" required>
+                            <option value="" disabled selected>Selecciona el tipo de acceso</option>
+                            <option value="administrador">Administrador</option>
+                            <option value="usuario-cap">Usuario de captura</option>
+                            <option value="usuario-cons">Usuario de consulta</option>
+                            
+                            
+                        </select>    
+                        
+                        
+                    </div>                    
+                    
+                    
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
                         <input type="password" name="pwd" id="pwd" placeholder="Password" required>

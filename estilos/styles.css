@@ -13,7 +13,7 @@
     box-sizing: border-box;
 }
 
-body, input{
+body, input,select{
     font-family: 'Poppins', sans-serif;
 
 }
@@ -106,7 +106,7 @@ form.sign-up-form{
     font-size: 1.1rem;
 }
 
-.input-field input{
+.input-field input,.input-field select{
     background: none;
     outline: none;
     border: none;
@@ -114,6 +114,12 @@ form.sign-up-form{
     font-weight: 600;
     font-size: 1.1rem;
     color: #333;
+}
+select{
+    max-width: 380px;
+    width: 100%;
+    
+    
 }
 
 .input-field input::placeholder{
