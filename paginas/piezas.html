@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventarios</title>
+    <title>Piezas</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -60,6 +60,7 @@
 
        
    <form action="enviar.php" method="post" class="registrar-mode">
+<<<<<<< HEAD
        
           <div class="formulario">
            <h2>REGISTRAR PROVEEDORES</h2>
@@ -70,6 +71,19 @@
            <input class="entrada" type="text" id="producto" name="producto" placeholder="Ingresa el producto mas concurrente que compras con el proveedor">
            <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero     telefonico">
            <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo">
+=======
+       <div class="formulario">
+           <h2>REGISTRAR PIEZAS</h2>
+           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la pieza" required>
+           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre de pieza" required>
+           <input class="entrada" type="text" id="precio" name="precio" placeholder="Ingresa el precio de compra" required>
+           <select name="tipo" id="tipo" class="entrada" required>
+                <option value="" selected disabled>Tipo de pieza</option>
+                <option value="Venta">Venta</option>
+                <option value="Ensamblado">Ensamblado</option>
+            </select>
+           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la pieza" required>
+>>>>>>> Alonso
        </div>
 
        <div class="botones">
@@ -83,9 +97,9 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR PROVEEDORES</h2>
-            <select name="" id="" class="entrada">
-                <option value="" selected disabled>Proovedores disponibles</option>
+           <h2>ELIMINAR PIEZAS</h2>
+            <select name="id" id="id" class="entrada">
+                <option value="" selected disabled>Piezas disponibles</option>
                 
             </select>
        </div>
@@ -100,9 +114,9 @@
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
-           <h2>ACTUALIZAR PROVEEDORES</h2>
-            <select name="" id="" class="entrada">
-                <option value="" selected disabled>Proveedores disponibles</option>
+           <h2>ACTUALIZAR PIEZAS</h2>
+            <select name="id" id="id" class="entrada">
+                <option value="" selected disabled>Piezas disponibles</option>
                 
             </select>
        </div>
@@ -117,9 +131,9 @@
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
-           <h2>CONSULTAR PROVEEDORES</h2>
-            <select name="" id="" class="entrada">
-                <option value="" selected disabled>Proveedores disponibles</option>
+           <h2>CONSULTAR PIEZAS</h2>
+            <select name="id" id="id" class="entrada">
+                <option value="" selected disabled>Piezas disponibles</option>
                 
             </select>
        </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compras</title>
+    <title>Productos</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -61,12 +61,19 @@
        
    <form action="enviar.php" method="post" class="registrar-mode">
        <div class="formulario">
-           <h2>REGISTRAR COMPRAS</h2>
-           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la compra" required>
-           <label for="" class="entrada">Ingresar Fecha y Hora de la compra: </label>
+           <h2>REGISTRAR PRODUCTOS</h2>
+           <input class="entrada" type="text" id="nserie" name="nserie" placeholder="Ingresa el Numero de serie del producto" required>
+        <!--Status en almacen no creo que pueda ser bueno ya que el No.Serie no se repite para ningun producto-->
+           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción del producto" required>
+           <label for="" class="entrada">Ingresar Fecha y Hora del producto llegado al almacen: </label>
            <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
            <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
-           <!--Recordar que el ID del alamecen lo lleva la compra solo que esta predetermindo al almacen qe va la compra-->
+           <input class="entrada" type="text" id="costo" name="costo" placeholder="Ingresa el costo del producto" required>
+           <!--El ID del almacen es predeterminado al macen de productos-->
+           <select name="modelo" id="modelo" class="entrada" required>
+                <option value="" selected disabled>Modelos disponibles</option>
+                <!--Sacar de la BD los modelos registrados-->
+            </select>
        </div>
 
        <div class="botones">
@@ -80,9 +87,9 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR COMPRAS</h2>
-            <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Compras disponibles</option>
+           <h2>ELIMINAR PRODUCTOS</h2>
+            <select name="serie" id="serie" class="entrada">
+                <option value="" selected disabled>Productos disponibles</option>
                 
             </select>
        </div>
@@ -97,9 +104,9 @@
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
-           <h2>ACTUALIZAR COMPRAS</h2>
-            <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Compras disponibles</option>
+           <h2>ACTUALIZAR PRODUCTOS</h2>
+            <select name="serie" id="serie" class="entrada">
+                <option value="" selected disabled>Productos disponibles</option>
                 
             </select>
        </div>
@@ -114,9 +121,9 @@
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
-           <h2>CONSULTAR COMPRAS</h2>
-            <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Compras disponibles</option>
+           <h2>CONSULTAR PRODUCTOS</h2>
+            <select name="serie" id="serie" class="entrada">
+                <option value="" selected disabled>Productos disponibles</option>
                 
             </select>
        </div>
@@ -136,18 +143,7 @@
              <img class="entrada" type="radio" id="radio-1" name="radio" this.onclick=null  src="../imagenes/next.png">
              <label for="radio-1"></label>
          </div>
-    </main>
-       
-       
-          
-            
-            
-       
-        
-        
-      
-        
-       
+    </main>  
     
     
     <script src="../javascript/opciones.js"></script>

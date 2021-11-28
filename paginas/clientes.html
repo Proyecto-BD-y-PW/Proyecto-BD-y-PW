@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventarios</title>
+    <title>Clientes</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -61,6 +61,7 @@
        
    <form action="enviar.php" method="post" class="registrar-mode">
        <div class="formulario">
+<<<<<<< HEAD
            <h2>REGISTRAR PROVEEDORES</h2>
            <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa" disabled>
            <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa">
@@ -69,6 +70,14 @@
            <input class="entrada" type="text" id="producto" name="producto" placeholder="Ingresa el producto mas concurrente que compras con el proveedor">
            <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero     telefonico">
            <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo">
+=======
+           <h2>REGISTRAR CLIENTES</h2>
+           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC del cliente" required>
+           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del cliente" required>
+           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico del cliente" required>
+           <input class="entrada" type="email" id="correo" name="correo" placeholder="Ingresa el correo" required>
+           
+>>>>>>> Alonso
        </div>
 
        <div class="botones">
@@ -82,9 +91,9 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR PROVEEDORES</h2>
+           <h2>ELIMINAR CLIENTES</h2>
             <select name="" id="" class="entrada">
-                <option value="" selected disabled>Proovedores disponibles</option>
+                <option value="" selected disabled>Cliente disponibles</option>
                 
             </select>
        </div>
@@ -99,9 +108,9 @@
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
-           <h2>ACTUALIZAR PROVEEDORES</h2>
+           <h2>ACTUALIZAR CLIENTES</h2>
             <select name="" id="" class="entrada">
-                <option value="" selected disabled>Proveedores disponibles</option>
+                <option value="" selected disabled>Clientes disponibles</option>
                 
             </select>
        </div>
@@ -116,9 +125,9 @@
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
-           <h2>CONSULTAR PROVEEDORES</h2>
+           <h2>CONSULTAR CLIENTES</h2>
             <select name="" id="" class="entrada">
-                <option value="" selected disabled>Proveedores disponibles</option>
+                <option value="" selected disabled>Clientes disponibles</option>
                 
             </select>
        </div>

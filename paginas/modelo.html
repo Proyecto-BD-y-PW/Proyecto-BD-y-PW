@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compras</title>
+    <title>Modelo</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -61,12 +61,16 @@
        
    <form action="enviar.php" method="post" class="registrar-mode">
        <div class="formulario">
-           <h2>REGISTRAR COMPRAS</h2>
-           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la compra" required>
-           <label for="" class="entrada">Ingresar Fecha y Hora de la compra: </label>
-           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
-           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
-           <!--Recordar que el ID del alamecen lo lleva la compra solo que esta predetermindo al almacen qe va la compra-->
+           <h2>REGISTRAR MODELO</h2>
+           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del modelo" required>
+           <select name="idarquitectura" id="idarquitectura" class="entrada" required>
+               <option value="" selected disabled>Arquitecturas disponibles</option>
+                
+           </select>
+           <select name="idprocesador" id="idprocesador" class="entrada" required>
+               <option value="" selected disabled>Procesadores disponibles</option>
+                
+           </select>
        </div>
 
        <div class="botones">
@@ -80,9 +84,9 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR COMPRAS</h2>
+           <h2>ELIMINAR MODELO</h2>
             <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Compras disponibles</option>
+                <option value="" selected disabled>Modelos disponibles</option>
                 
             </select>
        </div>
@@ -97,9 +101,9 @@
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
-           <h2>ACTUALIZAR COMPRAS</h2>
+           <h2>ACTUALIZAR MODELO</h2>
             <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Compras disponibles</option>
+                <option value="" selected disabled>Modelos disponibles</option>
                 
             </select>
        </div>
@@ -114,9 +118,9 @@
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
-           <h2>CONSULTAR COMPRAS</h2>
+           <h2>CONSULTAR MODELO</h2>
             <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Compras disponibles</option>
+                <option value="" selected disabled>Modelos disponibles</option>
                 
             </select>
        </div>
@@ -137,19 +141,7 @@
              <label for="radio-1"></label>
          </div>
     </main>
-       
-       
-          
-            
-            
-       
-        
-        
-      
-        
-       
-    
-    
+ 
     <script src="../javascript/opciones.js"></script>
 </body>
 </html>
