@@ -13,15 +13,16 @@ body{
 }
 
 .contenedor{
-    position: relative;
+    position:relative;
     width: 100%;
     min-height: 100vh;
     background-color: #4d84e2;
     overflow: hidden;
 }
 img{
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 10%;
+    max-height: 10%;
+    cursor: pointer;
 }
 
 h1{
@@ -30,6 +31,10 @@ h1{
 
 h2{
     font-size: 3.6rem;
+    width: 600px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 6px 8px 5px orange;
 }
 
 h3{
@@ -299,18 +304,95 @@ input[type="radio"]{
 }
 .radios{
     text-align: center;
-    background: gray;
+   
     width: 600px;
     display: flex;  
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    
+/*    margin-top: 5px;*/
     margin-right: 20px;
-    
+    margin: auto;
     border-radius: 35px;
 }
 select{
     width: 50%;
+}
+.secciones{
+    position: relative;
+    margin: auto;
+}
+.botones{
+    margin: auto;
+}
+
+.registrar-mode{
+   position: absolute;
+   top: -100%;
+}
+
+.eliminar-mode{
+    position: absolute;
+    top: -100%
+    
+}
+
+.actualizar-mode{
+   position: absolute;
+   top: -100%;
+}
+
+.consultar-mode{
+    position: absolute;
+    top: -100%;
+    
+}
+
+
+.registrar-mode-add{
+    position: absolute;
+    top: 20%;
+}
+
+.eliminar-mode-add{
+    position: absolute;
+   top: 20%;
+    
+}
+
+.actualizar-mode-add{
+   position: absolute;
+   top: 20%;
+}
+
+.consultar-mode-add{
+    position: absolute;
+    top: 20%;
+}
+.registrar-mode-remove{
+   position: absolute;
+   top: -100%;
+}
+
+.eliminar-mode-remove{
+    position: absolute;
+    top: -100%;
+    
+}
+
+.actualizar-mode-remove{
+   position: absolute;
+   top: -100%;
+}
+
+.consultar-mode-remove{
+    position: absolute;
+    top: -100%;
+    
+}
+#radio-1:hover{
+    transition: .3s all ease .5s;
+    transform: scale(1.5) rotateY(360deg);
+  ;
 }
