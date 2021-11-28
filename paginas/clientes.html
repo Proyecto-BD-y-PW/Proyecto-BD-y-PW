@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
+    <title>Inventarios</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -61,10 +61,13 @@
        
    <form action="enviar.php" method="post" class="registrar-mode">
        <div class="formulario">
-           <h2>REGISTRAR CLIENTE</h2>
-           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC del cliente">
-           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del cliente">
-           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico">
+           <h2>REGISTRAR PROVEEDORES</h2>
+           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa">
+           <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa">
+           <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor">
+           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa">
+           <input class="entrada" type="text" id="producto" name="producto" placeholder="Ingresa el producto mas concurrente que compras con el proveedor">
+           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero     telefonico">
            <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo">
        </div>
 
@@ -73,72 +76,17 @@
            <input id="borrar" type="reset" value="BORRAR" class="btn">  
            
        </div>
-       <!--<h2>Elige la operacion a realizar</h2>
-          
-      <div class="botones">
-           <div class="radios">
-               <input id="radio-1" type="radio" value="registrar" class="btn" name="radio">
-               <label for="radio-1" id="radio-1">Registrar</label>
-           </div>
-           <div class="radios">
-               <input id="radio-2" type="radio" value="eliminar" class="btn" name="radio">  
-               <label for="radio-2">Eliminar</label>
-           </div>
-           <div class="radios">
-               <input id="radio-3" type="radio" value="actualizar" class="btn" name="radio">  
-               <label for="radio-3">Actualizar</label>
-           </div>
-            <div class="radios">
-               <input id="radio-4" type="radio" value="consultar" class="btn" name="radio">  
-               <label for="radio-4">Consultar</label>
-           </div>
-       </div>-->
+   
 
    </form>
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR CLIENTE</h2>
+           <h2>ELIMINAR PROVEEDORES</h2>
             <select name="" id="" class="entrada">
-                <option value="" selected disabled>Clientes disponibles</option>
+                <option value="" selected disabled>Proovedores disponibles</option>
                 
             </select>
-       </div>
-
-       <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
-           
-       </div>
-      
-     
-    </form>
-    <form action="enviar.php" method="post" class="eliminar-mode">
-       <div class="formulario">
-           <h2>ACTUALIZAR CLIENTES</h2>
-            <select name="" id="" class="entrada">
-                <option value="" selected disabled>Clientes disponibles</option>
-                
-            </select>
-            
-       </div>
-
-       <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
-           
-       </div>
-      
-     
-    </form>
-    <form action="enviar.php" method="post" class="eliminar-mode">
-       <div class="formulario">
-           <h2>CONSULTAR CLIENTES</h2>
-            <select name="" id="" class="entrada">
-                <option value="" selected disabled>Clientes disponibles</option>
-                
-            </select>
-            
        </div>
 
        <div class="botones">
@@ -149,7 +97,61 @@
       
      
    </form>
- 
+    <form action="enviar.php" method="post" class="actualizar-mode">
+       <div class="formulario">
+           <h2>ACTUALIZAR PROVEEDORES</h2>
+            <select name="" id="" class="entrada">
+                <option value="" selected disabled>Proveedores disponibles</option>
+                
+            </select>
+       </div>
+
+       <div class="botones">
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           
+       </div>
+      
+     
+   </form>
+ <form action="enviar.php" method="post" class="consultar-mode">
+       <div class="formulario">
+           <h2>CONSULTAR PROVEEDORES</h2>
+            <select name="" id="" class="entrada">
+                <option value="" selected disabled>Proveedores disponibles</option>
+                
+            </select>
+       </div>
+
+       <div class="botones">
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           
+       </div>
+      
+     
+   </form>
+  <!---->
+    
+    
+     <div class="radios">
+             <img class="entrada" type="radio" id="radio-1" name="radio" this.onclick=null  src="../imagenes/next.png">
+             <label for="radio-1"></label>
+         </div>
     </main>
+       
+       
+          
+            
+            
+       
+        
+        
+      
+        
+       
+    
+    
+    <script src="../javascript/opciones.js"></script>
 </body>
 </html>
