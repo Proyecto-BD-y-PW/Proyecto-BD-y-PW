@@ -104,7 +104,7 @@
    <form action="enviar.php" method="post" class="registrar-mode" >
           <div class="formulario" >
            <h2>REGISTRAR PROVEEDORES</h2>
-<<<<<<< HEAD:paginas/proveedores.php
+
          
                <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa" <?php echo $acceso_reg; ?>>
                <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa" <?php echo $acceso_reg; ?>>
@@ -114,15 +114,8 @@
                <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico" <?php echo $acceso_reg; ?>>
                <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo" <?php echo $acceso_reg; ?>>
            
-=======
-           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa" required>
-           <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa" required>
-           <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor" required>
-           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa" required>
-           <input class="entrada" type="text" id="producto" name="producto" placeholder="Ingresa el producto mas concurrente que compras con el proveedor" required>
-           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico" required>
-           <input class="entrada" type="email" id="correo" name="correo" placeholder="Ingresa el correo" required>
->>>>>>> Alonso:paginas/proveedores.html
+
+        
        </div>
 
        <div class="botones">
@@ -137,11 +130,11 @@
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
            <h2>ELIMINAR PROVEEDORES</h2>
-<<<<<<< HEAD:paginas/proveedores.php
-            <select name="" id="" class="entrada" <?php echo $acceso_elim ;?>>
-=======
-            <select name="id" id="id" class="entrada">
->>>>>>> Alonso:paginas/proveedores.html
+
+            
+
+            <select name="id" id="id" class="entrada" <?php echo $acceso_elim ;?>>
+
                 <option value="" selected disabled>Proovedores disponibles</option>
                 
             </select>
@@ -158,11 +151,11 @@
        
        <div class="formulario">
            <h2>ACTUALIZAR PROVEEDORES</h2>
-<<<<<<< HEAD:paginas/proveedores.php
-            <select name="" id="" class="entrada" <?php echo $acceso_actua ;?>>
-=======
-            <select name="id" id="id" class="entrada">
->>>>>>> Alonso:paginas/proveedores.html
+
+            
+
+            <select name="id" id="id" class="entrada" <?php echo $acceso_actua ;?>>
+
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
             </select>
@@ -180,11 +173,9 @@
        
        <div class="formulario">
            <h2>CONSULTAR PROVEEDORES</h2>
-<<<<<<< HEAD:paginas/proveedores.php
-            <select name="" id="" class="entrada" <?php echo $acceso_cons ;?>>
-=======
-            <select name="id" id="id" class="entrada">
->>>>>>> Alonso:paginas/proveedores.html
+
+        <select name="id" id="id" class="entrada" <?php echo $acceso_cons ;?>>
+
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
             </select>
@@ -207,14 +198,7 @@
     </main>
        
        
-        
-            
-            
-       
-        
-        
       
-        
        
     
     
