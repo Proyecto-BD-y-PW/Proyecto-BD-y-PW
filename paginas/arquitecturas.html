@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piezas</title>
+    <title>Arquitecturas</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -61,16 +61,9 @@
        
    <form action="enviar.php" method="post" class="registrar-mode">
        <div class="formulario">
-           <h2>REGISTRAR PIEZAS</h2>
-           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la pieza" required>
-           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre de pieza" required>
-           <input class="entrada" type="text" id="precio" name="precio" placeholder="Ingresa el precio de compra" required>
-           <select name="tipo" id="tipo" class="entrada" required>
-                <option value="" selected disabled>Tipo de pieza</option>
-                <option value="Venta">Venta</option>
-                <option value="Ensamblado">Ensamblado</option>
-            </select>
-           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la pieza" required>
+           <h2>REGISTRAR ARQUITECTURAS</h2>
+            <!--El ID de la arquitectura es automatico-->
+           <input class="entrada" type="text" id="tipo" name="tipo" placeholder="Ingresa el Tipo de la arquitectura" required>
        </div>
 
        <div class="botones">
@@ -84,9 +77,9 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR PIEZAS</h2>
+           <h2>ELIMINAR ARQUITECTURAS</h2>
             <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Piezas disponibles</option>
+                <option value="" selected disabled>Arquitecturas disponibles</option>
                 
             </select>
        </div>
@@ -101,9 +94,9 @@
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
-           <h2>ACTUALIZAR PIEZAS</h2>
+           <h2>ACTUALIZAR ARQUITECTURAS</h2>
             <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Piezas disponibles</option>
+                <option value="" selected disabled>Arquitecturas disponibles</option>
                 
             </select>
        </div>
@@ -118,9 +111,9 @@
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
-           <h2>CONSULTAR PIEZAS</h2>
+           <h2>CONSULTAR ARQUITECTURAS</h2>
             <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Piezas disponibles</option>
+                <option value="" selected disabled>Arquitecturas disponibles</option>
                 
             </select>
        </div>
@@ -140,19 +133,7 @@
              <img class="entrada" type="radio" id="radio-1" name="radio" this.onclick=null  src="../imagenes/next.png">
              <label for="radio-1"></label>
          </div>
-    </main>
-       
-       
-          
-            
-            
-       
-        
-        
-      
-        
-       
-    
+    </main> 
     
     <script src="../javascript/opciones.js"></script>
 </body>

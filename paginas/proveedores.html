@@ -62,13 +62,13 @@
    <form action="enviar.php" method="post" class="registrar-mode">
        <div class="formulario">
            <h2>REGISTRAR PROVEEDORES</h2>
-           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa">
-           <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa">
-           <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor">
-           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa">
-           <input class="entrada" type="text" id="producto" name="producto" placeholder="Ingresa el producto mas concurrente que compras con el proveedor">
-           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero     telefonico">
-           <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo">
+           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa" required>
+           <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa" required>
+           <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor" required>
+           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa" required>
+           <input class="entrada" type="text" id="producto" name="producto" placeholder="Ingresa el producto mas concurrente que compras con el proveedor" required>
+           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico" required>
+           <input class="entrada" type="email" id="correo" name="correo" placeholder="Ingresa el correo" required>
        </div>
 
        <div class="botones">
@@ -83,7 +83,7 @@
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
            <h2>ELIMINAR PROVEEDORES</h2>
-            <select name="" id="" class="entrada">
+            <select name="id" id="id" class="entrada">
                 <option value="" selected disabled>Proovedores disponibles</option>
                 
             </select>
@@ -100,7 +100,7 @@
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR PROVEEDORES</h2>
-            <select name="" id="" class="entrada">
+            <select name="id" id="id" class="entrada">
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
             </select>
@@ -117,7 +117,7 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR PROVEEDORES</h2>
-            <select name="" id="" class="entrada">
+            <select name="id" id="id" class="entrada">
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
             </select>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventarios</title>
+    <title>Compras</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -61,14 +61,12 @@
        
    <form action="enviar.php" method="post" class="registrar-mode">
        <div class="formulario">
-           <h2>REGISTRAR PROVEEDORES</h2>
-           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa">
-           <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa">
-           <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor">
-           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa">
-           <input class="entrada" type="text" id="producto" name="producto" placeholder="Ingresa el producto mas concurrente que compras con el proveedor">
-           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero     telefonico">
-           <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo">
+           <h2>REGISTRAR COMPRAS</h2>
+           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la compra" required>
+           <label for="" class="entrada">Ingresar Fecha y Hora de la compra: </label>
+           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
+           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
+           <!--Recordar que el ID del alamecen lo lleva la compra solo que esta predetermindo al almacen qe va la compra-->
        </div>
 
        <div class="botones">
@@ -82,9 +80,9 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR PROVEEDORES</h2>
-            <select name="" id="" class="entrada">
-                <option value="" selected disabled>Proovedores disponibles</option>
+           <h2>ELIMINAR COMPRAS</h2>
+            <select name="id" id="id" class="entrada">
+                <option value="" selected disabled>Compras disponibles</option>
                 
             </select>
        </div>
@@ -99,9 +97,9 @@
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
-           <h2>ACTUALIZAR PROVEEDORES</h2>
-            <select name="" id="" class="entrada">
-                <option value="" selected disabled>Proveedores disponibles</option>
+           <h2>ACTUALIZAR COMPRAS</h2>
+            <select name="id" id="id" class="entrada">
+                <option value="" selected disabled>Compras disponibles</option>
                 
             </select>
        </div>
@@ -116,9 +114,9 @@
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
-           <h2>CONSULTAR PROVEEDORES</h2>
-            <select name="" id="" class="entrada">
-                <option value="" selected disabled>Proveedores disponibles</option>
+           <h2>CONSULTAR COMPRAS</h2>
+            <select name="id" id="id" class="entrada">
+                <option value="" selected disabled>Compras disponibles</option>
                 
             </select>
        </div>

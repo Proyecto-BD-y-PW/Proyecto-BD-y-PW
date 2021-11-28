@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piezas</title>
+    <title>Ventas</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -61,16 +61,21 @@
        
    <form action="enviar.php" method="post" class="registrar-mode">
        <div class="formulario">
-           <h2>REGISTRAR PIEZAS</h2>
-           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la pieza" required>
-           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre de pieza" required>
-           <input class="entrada" type="text" id="precio" name="precio" placeholder="Ingresa el precio de compra" required>
-           <select name="tipo" id="tipo" class="entrada" required>
-                <option value="" selected disabled>Tipo de pieza</option>
-                <option value="Venta">Venta</option>
-                <option value="Ensamblado">Ensamblado</option>
-            </select>
-           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la pieza" required>
+           <h2>REGISTRAR VENTAS</h2>
+           <!--Recordar que el ID de la ventas es automatica-->
+           <!--Cantidad y total calculados de ventas-->
+           <select name="id" id="id" class="entrada" required>
+                <option value="" selected disabled>Elegir el RFC del cliente</option>
+                
+           </select>
+           <select name="idempleado" id="idempleado" class="entrada" required>
+                <option value="" selected disabled>Elegir ID del empleado</option>
+                
+           </select>
+           <label for="" class="entrada">Ingresar Fecha y Hora de la venta: </label>
+           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
+           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
+            
        </div>
 
        <div class="botones">
@@ -84,9 +89,9 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR PIEZAS</h2>
+           <h2>ELIMINAR VENTAS</h2>
             <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Piezas disponibles</option>
+                <option value="" selected disabled>Ventas disponibles</option>
                 
             </select>
        </div>
@@ -101,9 +106,9 @@
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
-           <h2>ACTUALIZAR PIEZAS</h2>
+           <h2>ACTUALIZAR VENTAS</h2>
             <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Piezas disponibles</option>
+                <option value="" selected disabled>Ventas disponibles</option>
                 
             </select>
        </div>
@@ -118,9 +123,9 @@
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
-           <h2>CONSULTAR PIEZAS</h2>
+           <h2>CONSULTAR VENTAS</h2>
             <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Piezas disponibles</option>
+                <option value="" selected disabled>Ventas disponibles</option>
                 
             </select>
        </div>
@@ -142,17 +147,7 @@
          </div>
     </main>
        
-       
-          
-            
-            
-       
-        
-        
-      
-        
-       
-    
+ 
     
     <script src="../javascript/opciones.js"></script>
 </body>
