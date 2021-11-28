@@ -20,6 +20,8 @@ body{
     overflow: hidden;
 }
 img{
+    position: absolute;
+    z-index: 2;
     max-width: 10%;
     max-height: 10%;
     cursor: pointer;
@@ -99,6 +101,8 @@ h4{
 }
 
 .sidebar{
+    position: absolute;
+    z-index: 2;
     background-color: #4d84e2;
     padding-top: 1rem;
     position: fixed;
@@ -394,5 +398,10 @@ select{
 #radio-1:hover{
     transition: .3s all ease .5s;
     transform: scale(1.5) rotateY(360deg);
-  ;
+  
+}
+fieldset{
+    text-decoration: none;
+     margin: auto;   
+    text-decoration-style: none;
 }

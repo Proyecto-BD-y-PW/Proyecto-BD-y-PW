@@ -1,5 +1,5 @@
 <?php
-    
+    include("../mysql/conexion.php");
     $servidor="localhost";
     $db="inventarios";
 
@@ -45,42 +45,13 @@
                 mysqli_query($conexion,$op);
                 mysqli_close($conexion);
                 
-                $servidor="localhost";
-                $usuario=$row['nombre'];
-                $pass=$row['contrasena'];
-                $db="inventarios";
             
-                $conexion=mysqli_connect($servidor,'root','',$db);
-                if(!$conexion){
-                        echo "Fallo la conexión hacia la base de datos";
-                        echo "Error erno".mysqli_connect_errno().PHP_EOL;
-                        echo "Error de depuracion".mysqli_connect_error().PHP_EOL;
-                    
-        
-                    }else{
-                    echo "conexion exitosa";
-                }
+                $conn=logIn($nombre,$contra);
+                
                 die();
         }else if(password_verify($password,$row['contrasena']) && $num>0){
             
-            $servidor="localhost";
-                $usuario=$row['nombre'];
-                $pass=$row['contrasena'];
-                $db="inventarios";
-            
-                $conexion=mysqli_connect($servidor,'root','',$db);
-                if(!$conexion){
-                        echo "Fallo la conexión hacia la base de datos";
-                        echo "Error erno".mysqli_connect_errno().PHP_EOL;
-                        echo "Error de depuracion".mysqli_connect_error().PHP_EOL;
-                    
-        
-                    }else{
-                    echo "conexion exitosa";
-                }
-            
-            
-            mysqli_close($conexion);
+            $conn=logIn($row['nombre'],$row['contrasena']);                
             die();
         }
      
@@ -90,42 +61,19 @@
         $error="Lo siento, tu usuario aun no esta registrado";
     }
 
+   echo "<script>
+       var reply=confirm('$error');
+       if(reply){
+            window.location='../index.html';
+        
+       }else{
+            window.location='../index.html';
+        
+       
+       }
+   </script>";
    
-    
-
-    
-
+    sleep(1);
+   
 ?>
 
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title><?php echo $error?></title>
-    <link href="https://file.myfontastic.com/zmGVYTk8c485ktmePB4HkF/icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="/estilos/normalize.css">
-    <link rel="stylesheet" href="/estilos/estilos.css">
-    
-</head>
-<body>
-    <main class="contenedor">
-    <form action="../index.html" method="post">
-        
-          <div class="input-field">
-            <i class="icon-x"></i>
-            <h2><?php echo $error?></h2>
-             <i class="icon-x"></i>
-            </div>
-        
-        <input type="submit" value="Regresar" name="btn" class="btn solid">
-    </form>
-        
-        
-    </main>
-    
-    
-</body>
-</html>

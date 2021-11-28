@@ -1,3 +1,45 @@
+
+<?php
+    
+    session_start();
+    $usuario=$_SESSION['user'];
+    $pass=$_SESSION['password'];
+    if($usuario=="" && $pass==""){
+        
+       echo "<script>
+       var reply=confirm('No se ha iniciado sesion');
+        if(reply){
+            window.location='../index.html';
+        
+        }
+       </script>";
+        die();
+    }
+    
+    $privilegios=$_SESSION['privilegios'];
+    $acceso_reg="";
+    $acceso_elim="";
+    $acceso_actua="";
+    $acceso_cons="";
+
+    if(strcmp($privilegios,"administrador")==0){
+        
+    }else if(strcmp($privilegios,"usuario-cap")==0){
+        $acceso_elim="disabled";
+        $acceso_cons="";
+        
+    }else{
+        $acceso_reg="disabled";
+        $acceso_elim="disabled";
+        $acceso_actua="disabled";
+        
+        
+    }
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +67,10 @@
             </div>
 
             <div class="header-right">
-               <a href="funciones/closeSession.php">
+               <a href="../funciones/closeSession.php">
                     <button>REGRESAR</button>
                 </a>
-                <a href="funciones/closeSession.php">
+                <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
                 </a>
             </div>
@@ -59,77 +101,79 @@
     </div>
 
        
-   <form action="enviar.php" method="post" class="registrar-mode">
-       <div class="formulario">
+   <form action="enviar.php" method="post" class="registrar-mode" >
+          <div class="formulario" >
            <h2>REGISTRAR PROVEEDORES</h2>
-           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa">
-           <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa">
-           <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor">
-           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa">
-           <input class="entrada" type="text" id="producto" name="producto" placeholder="Ingresa el producto mas concurrente que compras con el proveedor">
-           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero     telefonico">
-           <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo">
+         
+               <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa" <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa" <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor" <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa" <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="producto" name="producto" placeholder="Ingresa el producto mas concurrente que compras con el proveedor" <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico" <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo" <?php echo $acceso_reg; ?>>
+           
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_reg; ?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg; ?>>  
            
        </div>
-   
+
 
    </form>
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
            <h2>ELIMINAR PROVEEDORES</h2>
-            <select name="" id="" class="entrada">
+            <select name="" id="" class="entrada" <?php echo $acceso_elim ;?>>
                 <option value="" selected disabled>Proovedores disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_elim ;?>>  
            
        </div>
       
-     
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
+       
        <div class="formulario">
            <h2>ACTUALIZAR PROVEEDORES</h2>
-            <select name="" id="" class="entrada">
+            <select name="" id="" class="entrada" <?php echo $acceso_actua ;?>>
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_actua ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_actua ;?>>  
            
        </div>
       
-     
+    
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
+       
        <div class="formulario">
            <h2>CONSULTAR PROVEEDORES</h2>
-            <select name="" id="" class="entrada">
+            <select name="" id="" class="entrada" <?php echo $acceso_cons ;?>>
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_cons ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
            
        </div>
-      
-     
+    
    </form>
   <!---->
     
@@ -141,7 +185,7 @@
     </main>
        
        
-          
+        
             
             
        
