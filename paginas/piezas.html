@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piezas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos/normalize.css">
+    <link rel="stylesheet" href="../estilos/home.css">
+
+    <script src="https://kit.fontawesome.com/eefb3f6366.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <main class="contenedor">
+     <input type="checkbox" name="" id="check" checked>
+
+    <header class="site-header">
+        
+        <div class="site-elements">
+
+            <div class="header-left">
+                <label for="check"><i class="fas fa-bars" id="sidebar_btn"></i></label>
+                <a href="home.php?op=0"><h1>IGNITION<span> PC</span></h1></a>
+            </div>
+
+            <div class="header-right">
+               <a href="funciones/closeSession.php">
+                    <button>REGRESAR</button>
+                </a>
+                <a href="funciones/closeSession.php">
+                    <button>CERRAR SESIÓN</button>
+                </a>
+            </div>
+
+        </div>
+
+    </header>
+     <div class="sidebar">
+
+        <div class="profile-data">
+           
+        </div>
+
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Computadora</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitecura</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Procesador</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Venta</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Empleado</span></a>
+        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Cliente</span></a>
+        
+    </div>
+
+       
+   <form action="enviar.php" method="post" class="registrar-mode">
+       <div class="formulario">
+           <h2>REGISTRAR PIEZAS</h2>
+           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la pieza">
+           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre de la pieza">
+           <input class="entrada" type="text" id="precio" name="precio" placeholder="Ingresa el precio">
+           
+           <select name="" id="">
+               
+           </select>
+           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa">
+           <select name="" id="">
+               
+           </select>
+       </div>
+
+       <div class="botones">
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           
+       </div>
+       <!--<h2>Elige la operacion a realizar</h2>
+          
+      <div class="botones">
+           <div class="radios">
+               <input id="radio-1" type="radio" value="registrar" class="btn" name="radio">
+               <label for="radio-1" id="radio-1">Registrar</label>
+           </div>
+           <div class="radios">
+               <input id="radio-2" type="radio" value="eliminar" class="btn" name="radio">  
+               <label for="radio-2">Eliminar</label>
+           </div>
+           <div class="radios">
+               <input id="radio-3" type="radio" value="actualizar" class="btn" name="radio">  
+               <label for="radio-3">Actualizar</label>
+           </div>
+            <div class="radios">
+               <input id="radio-4" type="radio" value="consultar" class="btn" name="radio">  
+               <label for="radio-4">Consultar</label>
+           </div>
+       </div>-->
+
+   </form>
+    
+    <form action="enviar.php" method="post" class="eliminar-mode">
+       <div class="formulario">
+           <h2>ELIMINAR PIEZAS</h2>
+            <select name="" id="" class="entrada">
+                <option value="" selected disabled>Proovedores disponibles</option>
+                
+            </select>
+       </div>
+
+       <div class="botones">
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           
+       </div>
+      
+     
+   </form>
+    <form action="enviar.php" method="post" class="eliminar-mode">
+       <div class="formulario">
+           <h2>ACTUALIZAR PIEZAS</h2>
+            <select name="" id="" class="entrada">
+                <option value="" selected disabled>Proveedores disponibles</option>
+                
+            </select>
+       </div>
+
+       <div class="botones">
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           
+       </div>
+      
+     
+   </form>
+ <form action="enviar.php" method="post" class="eliminar-mode">
+       <div class="formulario">
+           <h2>CONSULTAR PIEZAS</h2>
+            <select name="" id="" class="entrada">
+                <option value="" selected disabled>Proveedores disponibles</option>
+                
+            </select>
+       </div>
+
+       <div class="botones">
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           
+       </div>
+      
+     
+   </form>
+ 
+    </main>
+</body>
+</html>
