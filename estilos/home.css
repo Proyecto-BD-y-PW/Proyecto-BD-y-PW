@@ -405,3 +405,7 @@ fieldset{
      margin: auto;   
     text-decoration-style: none;
 }
+
+#fecha{
+    width: 50%;
+}

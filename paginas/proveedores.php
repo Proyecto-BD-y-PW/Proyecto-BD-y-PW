@@ -105,13 +105,13 @@
            <h2>REGISTRAR PROVEEDORES</h2>
 
          
-               <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa" <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa" required <?php echo $acceso_reg; ?>>
 
-               <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo" <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo" required <?php echo $acceso_reg; ?>>
            
 
         
@@ -130,9 +130,7 @@
        <div class="formulario">
            <h2>ELIMINAR PROVEEDORES</h2>
 
-            
-
-            <select name="id" id="id" class="entrada" <?php echo $acceso_elim ;?>>
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
@@ -151,9 +149,7 @@
        <div class="formulario">
            <h2>ACTUALIZAR PROVEEDORES</h2>
 
-            
-
-            <select name="id" id="id" class="entrada" <?php echo $acceso_actua ;?>>
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
 
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
@@ -173,10 +169,17 @@
        <div class="formulario">
            <h2>CONSULTAR PROVEEDORES</h2>
 
-        <select name="id" id="id" class="entrada" <?php echo $acceso_cons ;?>>
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_cons ;?>>
 
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
+            </select>
+            
+            <select name="tipo-cons" id="consulta" class="entrada" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Consultar todos los registros</option>
             </select>
        </div>
 
