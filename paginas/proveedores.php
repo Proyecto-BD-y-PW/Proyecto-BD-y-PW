@@ -110,7 +110,7 @@
                <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa" <?php echo $acceso_reg; ?>>
                <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor" <?php echo $acceso_reg; ?>>
                <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="producto" name="producto" placeholder="Ingresa el producto mas concurrente que compras con el proveedor" <?php echo $acceso_reg; ?>>
+
                <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico" <?php echo $acceso_reg; ?>>
                <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo" <?php echo $acceso_reg; ?>>
            
@@ -135,10 +135,10 @@
 
             <select name="id" id="id" class="entrada" <?php echo $acceso_elim ;?>>
 
-                <option value="" selected disabled>Proovedores disponibles</option>
+                <option value="" selected disabled>Proveedores disponibles</option>
                 
             </select>
-       </div>
+       </div>s
 
        <div class="botones">
            <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>

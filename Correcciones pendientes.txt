@@ -1,0 +1,44 @@
+proveedores.php
+Revisar como se actualizarán los datos de proveedor en actualizar información del proveedor
+Consultar a la bdd para mostrar todos los proveedores en consultar proveedores
+
+compras.html
+Al registrar compras, cambiar el id de la compra por un autoincrementable
+Ajustar barra de la fecha al registrar compras
+Consultar a la bdd para mostrar todas las compras en consultar compras
+
+piezas.html
+Crear otro html para registrar piezas (esto se hace debido a que por el id, nos mostrará el nombre y el precio)
+Crear otro html para actualizar piezas (para poder hacer los cambios)
+Consultar a la bdd para mostrar todas las piezas en consultar piezas 
+Definir el precio solamente 
+
+DEJAR AL FINAL (CREAR HTML PARA ALMACEN)
+
+productos.html
+Cambiar la barra de la fecha 
+Revisar consulta de modelos disponibles al registrar producto
+Crear otro html para actualizar productos
+Consultar a la bdd para mostrar todos los productos 
+
+modelo.html 
+se eliminó procesadores de la lista y aplicar mismos cambios que los demas html
+
+arquitecturas.html
+Aplicar mismos cambios que los demas html
+
+venta_producto.html
+se eliminó debido a que dariamos de alta este apartado por medio de codigo 
+
+ventas.html
+aplicar mismos cambios que los demas html
+
+DEJAR AL FINAL
+Agregar html de Pieza_Venta
+Agregar html de Pieza_Armado 
+Agregar html de catalogo_piezas
+Agregar html de empleados
+
+clientes.html
+aplicar mismos cambios que los demas html
+
