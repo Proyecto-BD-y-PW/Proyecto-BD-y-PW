@@ -38,14 +38,12 @@
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventarios</title>
+    <title>Clientes</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -67,10 +65,10 @@
             </div>
 
             <div class="header-right">
-               <a href="../funciones/closeSession.php">
+               <a href="funciones/closeSession.php">
                     <button>REGRESAR</button>
                 </a>
-                <a href="../funciones/closeSession.php">
+                <a href="funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
                 </a>
             </div>
@@ -83,8 +81,7 @@
         <div class="profile-data">
            
         </div>
-
-     <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
+        <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
         <a href="compras.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
         <a href="almacen.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
@@ -96,96 +93,78 @@
         <a href="ventas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Venta</span></a>
         <a href="empleados.php?op=1"><i class="fas fa-shopping-cart"></i><span>Empleado</span></a>
         <a href="clientes.php?op=1"><i class="fas fa-shopping-cart"></i><span>Cliente</span></a>
-        
     </div>
 
        
-   <form action="enviar.php" method="post" class="registrar-mode" >
-          <div class="formulario" >
-           <h2>REGISTRAR PROVEEDORES</h2>
-
-         
-               <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa" <?php echo $acceso_reg; ?>>
-
-               <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo" <?php echo $acceso_reg; ?>>
+   <form action="enviar.php" method="post" class="registrar-mode">
+       <div class="formulario">
+       <h2>REGISTRAR CLIENTES</h2>
+           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC del cliente" required>
+           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del cliente" required>
+           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa el numero telefonico del cliente" required>
+           <input class="entrada" type="email" id="correo" name="correo" placeholder="Ingresa el correo electrónico del cliente" required>
            
-
-        
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_reg; ?>>
-           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg; ?>>  
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
            
        </div>
-
+   
 
    </form>
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR PROVEEDORES</h2>
-
-            
-
-            <select name="id" id="id" class="entrada" <?php echo $acceso_elim ;?>>
-
-                <option value="" selected disabled>Proveedores disponibles</option>
+           <h2>ELIMINAR CLIENTES</h2>
+            <select name="" id="" class="entrada">
+                <option value="" selected disabled>Cliente disponibles</option>
                 
             </select>
-       </div>s
+       </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
-           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_elim ;?>>  
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
            
        </div>
       
+     
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
-       
        <div class="formulario">
-           <h2>ACTUALIZAR PROVEEDORES</h2>
-
-            
-
-            <select name="id" id="id" class="entrada" <?php echo $acceso_actua ;?>>
-
-                <option value="" selected disabled>Proveedores disponibles</option>
+           <h2>ACTUALIZAR CLIENTES</h2>
+            <select name="" id="" class="entrada">
+                <option value="" selected disabled>Clientes disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_actua ;?>>
-           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_actua ;?>>  
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
            
        </div>
       
-    
+     
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
-       
        <div class="formulario">
-           <h2>CONSULTAR PROVEEDORES</h2>
-
-        <select name="id" id="id" class="entrada" <?php echo $acceso_cons ;?>>
-
-                <option value="" selected disabled>Proveedores disponibles</option>
+           <h2>CONSULTAR CLIENTES</h2>
+            <select name="" id="" class="entrada">
+                <option value="" selected disabled>Clientes disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_cons ;?>>
-           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
            
        </div>
-    
+      
+     
    </form>
   <!---->
     
@@ -197,8 +176,7 @@
     </main>
        
        
-      
-       
+   
     
     
     <script src="../javascript/opciones.js"></script>

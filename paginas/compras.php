@@ -1,9 +1,49 @@
+
+<?php
+    
+    session_start();
+    $usuario=$_SESSION['user'];
+    $pass=$_SESSION['password'];
+    if($usuario=="" && $pass==""){
+        
+       echo "<script>
+       var reply=confirm('No se ha iniciado sesion');
+        if(reply){
+            window.location='../index.html';
+        
+        }
+       </script>";
+        die();
+    }
+    
+    $privilegios=$_SESSION['privilegios'];
+    $acceso_reg="";
+    $acceso_elim="";
+    $acceso_actua="";
+    $acceso_cons="";
+
+    if(strcmp($privilegios,"administrador")==0){
+        
+    }else if(strcmp($privilegios,"usuario-cap")==0){
+        $acceso_elim="disabled";
+        $acceso_cons="";
+        
+    }else{
+        $acceso_reg="disabled";
+        $acceso_elim="disabled";
+        $acceso_actua="disabled";
+        
+        
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piezas</title>
+    <title>Compras</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -42,35 +82,30 @@
            
         </div>
 
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Computadora</span></a>
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitecura</span></a>
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Procesador</span></a>
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Venta</span></a>
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Empleado</span></a>
-        <a href="home.php?op=1"><i class="fas fa-shopping-cart"></i><span>Cliente</span></a>
+      <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
+        <a href="compras.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
+        <a href="almacen.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
+        <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
+        <a href="pieza_venta.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
+        <a href="pieza_armado.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
+        <a href="productos.php?op=1"><i class="fas fa-shopping-cart"></i><span>Productos</span></a>
+        <a href="modelo.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
+        <a href="arquitecturas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitecura</span></a>
+        <a href="ventas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Venta</span></a>
+        <a href="empleados.php?op=1"><i class="fas fa-shopping-cart"></i><span>Empleado</span></a>
+        <a href="clientes.php?op=1"><i class="fas fa-shopping-cart"></i><span>Cliente</span></a>
         
     </div>
 
        
    <form action="enviar.php" method="post" class="registrar-mode">
-       
-        
        <div class="formulario">
-           <h2>REGISTRAR PIEZAS</h2>
-           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la pieza" required>
-           <select name="tipo" id="tipo" class="entrada" required>
-                <option value="" selected disabled>Tipo de pieza</option>
-                <option value="Venta">Venta</option>
-                <option value="Ensamblado">Ensamblado</option>
-            </select>
-           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la pieza" required>
+           <h2>REGISTRAR COMPRAS</h2>
+           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la compra" required>
+           <label for="" class="entrada">Ingresar Fecha y Hora de la compra: </label>
+           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
+           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
+           <!--Recordar que el ID del alamecen lo lleva la compra solo que esta predetermindo al almacen qe va la compra-->
        </div>
 
        <div class="botones">
@@ -78,13 +113,15 @@
            <input id="borrar" type="reset" value="BORRAR" class="btn">  
            
        </div>
+   
+
    </form>
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR PIEZAS</h2>
+           <h2>ELIMINAR COMPRAS</h2>
             <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Piezas disponibles</option>
+                <option value="" selected disabled>Compras disponibles</option>
                 
             </select>
        </div>
@@ -99,9 +136,9 @@
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
-           <h2>ACTUALIZAR PIEZAS</h2>
+           <h2>ACTUALIZAR COMPRAS</h2>
             <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Piezas disponibles</option>
+                <option value="" selected disabled>Compras disponibles</option>
                 
             </select>
        </div>
@@ -116,9 +153,9 @@
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
-           <h2>CONSULTAR PIEZAS</h2>
+           <h2>CONSULTAR COMPRAS</h2>
             <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Piezas disponibles</option>
+                <option value="" selected disabled>Compras disponibles</option>
                 
             </select>
        </div>
@@ -131,6 +168,7 @@
       
      
    </form>
+  <!---->
     
     
      <div class="radios">
@@ -140,8 +178,16 @@
     </main>
        
        
+          
+            
+            
+       
         
         
+      
+        
+       
+    
     
     <script src="../javascript/opciones.js"></script>
 </body>

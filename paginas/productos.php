@@ -38,14 +38,12 @@
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventarios</title>
+    <title>Productos</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -67,10 +65,10 @@
             </div>
 
             <div class="header-right">
-               <a href="../funciones/closeSession.php">
+               <a href="funciones/closeSession.php">
                     <button>REGRESAR</button>
                 </a>
-                <a href="../funciones/closeSession.php">
+                <a href="funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
                 </a>
             </div>
@@ -84,7 +82,7 @@
            
         </div>
 
-     <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
+<a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
         <a href="compras.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
         <a href="almacen.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
@@ -100,92 +98,82 @@
     </div>
 
        
-   <form action="enviar.php" method="post" class="registrar-mode" >
-          <div class="formulario" >
-           <h2>REGISTRAR PROVEEDORES</h2>
-
-         
-               <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC de la empresa" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="empresa" name="empresa" placeholder="Ingresa el nombre de la empresa" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del proveedor" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la empresa" <?php echo $acceso_reg; ?>>
-
-               <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico" <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo" <?php echo $acceso_reg; ?>>
-           
-
-        
+   <form action="enviar.php" method="post" class="registrar-mode">
+       <div class="formulario">
+           <h2>REGISTRAR PRODUCTOS</h2>
+           <input class="entrada" type="text" id="nserie" name="nserie" placeholder="Ingresa el Numero de serie del producto" required>
+        <!--Status en almacen no creo que pueda ser bueno ya que el No.Serie no se repite para ningun producto-->
+           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción del producto" required>
+           <label for="" class="entrada">Ingresar Fecha y Hora del producto llegado al almacen: </label>
+           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
+           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
+           <input class="entrada" type="text" id="costo" name="costo" placeholder="Ingresa el costo del producto" required>
+           <!--El ID del almacen es predeterminado al macen de productos-->
+           <select name="modelo" id="modelo" class="entrada" required>
+                <option value="" selected disabled>Modelos disponibles</option>
+                <!--Sacar de la BD los modelos registrados-->
+            </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_reg; ?>>
-           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg; ?>>  
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
            
        </div>
-
+   
 
    </form>
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR PROVEEDORES</h2>
-
-            
-
-            <select name="id" id="id" class="entrada" <?php echo $acceso_elim ;?>>
-
-                <option value="" selected disabled>Proveedores disponibles</option>
+           <h2>ELIMINAR PRODUCTOS</h2>
+            <select name="serie" id="serie" class="entrada">
+                <option value="" selected disabled>Productos disponibles</option>
                 
             </select>
-       </div>s
+       </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
-           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_elim ;?>>  
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
            
        </div>
       
+     
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
-       
        <div class="formulario">
-           <h2>ACTUALIZAR PROVEEDORES</h2>
-
-            
-
-            <select name="id" id="id" class="entrada" <?php echo $acceso_actua ;?>>
-
-                <option value="" selected disabled>Proveedores disponibles</option>
+           <h2>ACTUALIZAR PRODUCTOS</h2>
+            <select name="serie" id="serie" class="entrada">
+                <option value="" selected disabled>Productos disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_actua ;?>>
-           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_actua ;?>>  
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
            
        </div>
       
-    
+     
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
-       
        <div class="formulario">
-           <h2>CONSULTAR PROVEEDORES</h2>
-
-        <select name="id" id="id" class="entrada" <?php echo $acceso_cons ;?>>
-
-                <option value="" selected disabled>Proveedores disponibles</option>
+           <h2>CONSULTAR PRODUCTOS</h2>
+            <select name="serie" id="serie" class="entrada">
+                <option value="" selected disabled>Productos disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_cons ;?>>
-           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
+           <input id="enviar" type="submit" value="Enviar" class="btn">
+           <input id="borrar" type="reset" value="BORRAR" class="btn">  
            
        </div>
-    
+      
+     
    </form>
   <!---->
     
@@ -194,11 +182,7 @@
              <img class="entrada" type="radio" id="radio-1" name="radio" this.onclick=null  src="../imagenes/next.png">
              <label for="radio-1"></label>
          </div>
-    </main>
-       
-       
-      
-       
+    </main>  
     
     
     <script src="../javascript/opciones.js"></script>
