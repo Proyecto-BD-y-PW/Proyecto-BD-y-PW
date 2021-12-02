@@ -65,10 +65,10 @@
             </div>
 
             <div class="header-right">
-               <a href="funciones/closeSession.php">
+               <a href="../funciones/closeSession.php">
                     <button>REGRESAR</button>
                 </a>
-                <a href="funciones/closeSession.php">
+                <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
                 </a>
             </div>
@@ -101,8 +101,8 @@
    <form action="enviar.php" method="post" class="registrar-mode">
        <div class="formulario">
            <h2>REGISTRAR MODELO</h2>
-           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del modelo" required>
-           <select name="idarquitectura" id="idarquitectura" class="entrada" required>
+           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del modelo" required <?php echo $acceso_reg; ?>>
+           <select name="idarquitectura" id="idarquitectura" class="entrada" required <?php echo $acceso_reg; ?>>
                <option value="" selected disabled>Arquitecturas disponibles</option>
                 
            </select>
@@ -120,7 +120,7 @@
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
            <h2>ELIMINAR MODELO</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_elim; ?>>
                 <option value="" selected disabled>Modelos disponibles</option>
                 
             </select>
@@ -137,7 +137,7 @@
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR MODELO</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_actua; ?>>
                 <option value="" selected disabled>Modelos disponibles</option>
                 
             </select>
@@ -154,10 +154,17 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR MODELO</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="disponibles" id="disponibles" class="entrada" required <?php echo $acceso_cons; ?>>
                 <option value="" selected disabled>Modelos disponibles</option>
                 
             </select>
+           <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons; ?>>
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo"  >Consultar todos los registros</option>
+                
+            </select>
+           
        </div>
 
        <div class="botones">
@@ -178,5 +185,6 @@
     </main>
  
     <script src="../javascript/opciones.js"></script>
+
 </body>
 </html>

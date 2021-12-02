@@ -65,10 +65,10 @@
             </div>
 
             <div class="header-right">
-               <a href="funciones/closeSession.php">
+               <a href="../funciones/closeSession.php">
                     <button>REGRESAR</button>
                 </a>
-                <a href="funciones/closeSession.php">
+                <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
                 </a>
             </div>
@@ -102,7 +102,7 @@
        <div class="formulario">
            <h2>REGISTRAR ARQUITECTURAS</h2>
             <!--El ID de la arquitectura es automatico-->
-           <input class="entrada" type="text" id="tipo" name="tipo" placeholder="Ingresa el Tipo de la arquitectura" required>
+           <input class="entrada" type="text" id="tipo" name="tipo" placeholder="Ingresa el Tipo de la arquitectura" required <?php echo $acceso_reg; ?>>
        </div>
 
        <div class="botones">
@@ -117,7 +117,7 @@
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
            <h2>ELIMINAR ARQUITECTURAS</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_elim; ?>>
                 <option value="" selected disabled>Arquitecturas disponibles</option>
                 
             </select>
@@ -134,7 +134,7 @@
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR ARQUITECTURAS</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_actua; ?>>
                 <option value="" selected disabled>Arquitecturas disponibles</option>
                 
             </select>
@@ -151,9 +151,16 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR ARQUITECTURAS</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="disponibles" id="disponibles" class="entrada" required <?php echo $acceso_cons; ?>>
                 <option value="" selected disabled>Arquitecturas disponibles</option>
                 
+            </select>
+            <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons;?>>
+                <option value="" selected disabled>Seleccione tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" id="todo">Consultar todos los registros</option>
+                
+            
             </select>
        </div>
 
@@ -175,5 +182,6 @@
     </main> 
     
     <script src="../javascript/opciones.js"></script>
+   
 </body>
 </html>

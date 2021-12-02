@@ -137,7 +137,7 @@
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
             </select>
-       </div>s
+       </div>
 
        <div class="botones">
            <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
@@ -178,6 +178,7 @@
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
             </select>
+           
        </div>
 
        <div class="botones">

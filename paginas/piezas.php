@@ -109,6 +109,7 @@
                 <option value="Venta">Venta</option>
                 <option value="Ensamblado">Ensamblado</option>
             </select>
+           
            <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la pieza" required>
        </div>
 
@@ -160,6 +161,8 @@
                 <option value="" selected disabled>Piezas disponibles</option>
                 
             </select>
+          
+           
        </div>
 
        <div class="botones">
