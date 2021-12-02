@@ -167,6 +167,13 @@
                 <option value="" selected disabled>Ventas disponibles</option>
                 
             </select>
+            
+            <select name="tipo-cons" id="consulta" class="entrada" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Consultar todos los registros</option>
+            </select>
        </div>
 
        <div class="botones">

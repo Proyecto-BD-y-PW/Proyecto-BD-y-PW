@@ -1,4 +1,3 @@
-
 <?php
     
     session_start();
@@ -43,7 +42,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
+    <title>Empleados</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -98,11 +97,11 @@
        
    <form action="enviar.php" method="post" class="registrar-mode">
        <div class="formulario">
-       <h2>REGISTRAR CLIENTES</h2>
-           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC del cliente" required <?php echo $acceso_reg; ?>>
-           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del cliente" required <?php echo $acceso_reg; ?>>
-           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa el numero telefonico del cliente" required <?php echo $acceso_reg; ?>>
-           <input class="entrada" type="email" id="correo" name="correo" placeholder="Ingresa el correo electrónico del cliente" required <?php echo $acceso_reg; ?>>
+       <h2>REGISTRAR EMPLEADOS</h2>
+          <!--El ID del empleado lo genera el SMDB-->
+           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del empledo" required <?php echo $acceso_reg; ?>>
+           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa el numero telefonico del empleado" required <?php echo $acceso_reg; ?>>
+           <input class="entrada" type="email" id="correo" name="correo" placeholder="Ingresa el correo electrónico del empleado" required <?php echo $acceso_reg; ?>>
            
        </div>
 
@@ -117,12 +116,14 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR CLIENTES</h2>
-            <select name="" id="" class="entrada" required <?php echo $acceso_elim ;?>>
-                <option value="" selected disabled>Clientes disponibles</option>
+           <h2>ELIMINAR EMPLEADO</h2>
+
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_elim ;?>>
+
+                <option value="" selected disabled>Empleados disponibles</option>
                 
             </select>
-       </div>
+       </div>s
 
        <div class="botones">
            <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
@@ -130,13 +131,15 @@
            
        </div>
       
-     
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
+       
        <div class="formulario">
-           <h2>ACTUALIZAR CLIENTES</h2>
-            <select name="" id="" class="entrada" required <?php echo $acceso_actua ;?>>
-                <option value="" selected disabled>Clientes disponibles</option>
+           <h2>ACTUALIZAR EMPLEADO</h2>
+
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
+
+                <option value="" selected disabled>Empleados disponibles</option>
                 
             </select>
        </div>
@@ -147,13 +150,16 @@
            
        </div>
       
-     
+    
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
+       
        <div class="formulario">
-           <h2>CONSULTAR CLIENTES</h2>
+           <h2>CONSULTAR EMPLEADOS</h2>
+
             <select name="id" id="id" class="entrada" required <?php echo $acceso_cons ;?>>
-                <option value="" selected disabled>Clientes disponibles</option>
+
+                <option value="" selected disabled>Empleados disponibles</option>
                 
             </select>
             
@@ -170,8 +176,7 @@
            <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
            
        </div>
-      
-     
+    
    </form>
   <!---->
     
@@ -181,11 +186,7 @@
              <label for="radio-1"></label>
          </div>
     </main>
-       
-       
    
-    
-    
     <script src="../javascript/opciones.js"></script>
 </body>
 </html>
