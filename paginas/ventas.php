@@ -103,23 +103,23 @@
            <h2>REGISTRAR VENTAS</h2>
            <!--Recordar que el ID de la ventas es automatica-->
            <!--Cantidad y total calculados de ventas-->
-           <select name="id" id="id" class="entrada" required>
+           <select name="id" id="id" class="entrada" required <?php echo $acceso_reg; ?>>
                 <option value="" selected disabled>Elegir el RFC del cliente</option>
                 
            </select>
-           <select name="idempleado" id="idempleado" class="entrada" required>
+           <select name="idempleado" id="idempleado" class="entrada" required <?php echo $acceso_reg; ?>>
                 <option value="" selected disabled>Elegir ID del empleado</option>
                 
            </select>
            <label for="" class="entrada">Ingresar Fecha y Hora de la venta: </label>
-           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
-           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
+           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required <?php echo $acceso_reg; ?>>
+           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required <?php echo $acceso_reg; ?>>
             
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_reg; ?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg; ?>>  
            
        </div>
    
@@ -129,15 +129,15 @@
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
            <h2>ELIMINAR VENTAS</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_elim ;?>>
                 <option value="" selected disabled>Ventas disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_elim ;?>>  
            
        </div>
       
@@ -146,15 +146,15 @@
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR VENTAS</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
                 <option value="" selected disabled>Ventas disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_actua ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_actua ;?>>  
            
        </div>
       
@@ -163,15 +163,15 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR VENTAS</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_cons ;?>>
                 <option value="" selected disabled>Ventas disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_cons ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
            
        </div>
       
