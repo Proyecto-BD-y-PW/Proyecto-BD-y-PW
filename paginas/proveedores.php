@@ -169,7 +169,7 @@
        <div class="formulario">
            <h2>CONSULTAR PROVEEDORES</h2>
 
-            <select name="id" id="id" class="entrada" required <?php echo $acceso_cons ;?>>
+            <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons ;?>>
 
                 <option value="" selected disabled>Proveedores disponibles</option>
                 

@@ -105,6 +105,11 @@
            <label for="" class="entrada">Ingresar Fecha y Hora de la compra: </label>
            <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required <?php echo $acceso_reg; ?>>
            <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required <?php echo $acceso_reg; ?>>
+           <select name="" id="">
+               <option value="" selected disabled>Selecciona un proveedor</option>
+                   
+               
+           </select>
            <!--Recordar que el ID del alamecen lo lleva la compra solo que esta predetermindo al almacen qe va la compra-->
        </div>
 
@@ -154,7 +159,7 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR COMPRAS</h2>
-            <select name="id" id="id" class="entrada" required <?php echo $acceso_cons ;?>>
+            <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons ;?>>
                 <option value="" selected disabled>Compras disponibles</option>
                 
             </select>
