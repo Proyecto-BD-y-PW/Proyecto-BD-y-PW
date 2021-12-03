@@ -64,10 +64,10 @@
             </div>
 
             <div class="header-right">
-               <a href="funciones/closeSession.php">
+               <a href="../funciones/closeSession.php">
                     <button>REGRESAR</button>
                 </a>
-                <a href="funciones/closeSession.php">
+                <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
                 </a>
             </div>
@@ -86,6 +86,7 @@
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
         <a href="pieza_venta.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
         <a href="pieza_armado.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
+        <a href="catalogo_piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Catálogo de Piezas</span></a>
         <a href="productos.php?op=1"><i class="fas fa-shopping-cart"></i><span>Productos</span></a>
         <a href="modelo.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
         <a href="arquitecturas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitecura</span></a>
@@ -123,7 +124,7 @@
                 <option value="" selected disabled>Empleados disponibles</option>
                 
             </select>
-       </div>s
+       </div>
 
        <div class="botones">
            <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
