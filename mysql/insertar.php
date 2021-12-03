@@ -13,6 +13,7 @@
             window.location='../index.html';
         
         }
+        window.location='../index.html';
        </script>";
         die();
     }
@@ -43,7 +44,7 @@
     }else if(strcmp($pagina,"producto")==0){
         
     }else if(strcmp($pagina,"proveedor")==0){
-        
+        /*ya esta por parte de juca*/
     }else if(strcmp($pagina,"venta")==0){
         
         
