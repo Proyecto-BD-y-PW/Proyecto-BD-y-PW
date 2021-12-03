@@ -66,10 +66,10 @@
             </div>
 
             <div class="header-right">
-               <a href="funciones/closeSession.php">
+               <a href="../funciones/closeSession.php">
                     <button>REGRESAR</button>
                 </a>
-                <a href="funciones/closeSession.php">
+                <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
                 </a>
             </div>
@@ -84,11 +84,13 @@
         </div>
 
       <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
+        <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
         <a href="compras.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
         <a href="almacen.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
         <a href="pieza_venta.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
         <a href="pieza_armado.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
+        <a href="catalogo_piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Catálogo de Piezas</span></a>
         <a href="productos.php?op=1"><i class="fas fa-shopping-cart"></i><span>Productos</span></a>
         <a href="modelo.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
         <a href="arquitecturas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitecura</span></a>
@@ -104,23 +106,23 @@
            <h2>REGISTRAR VENTAS</h2>
            <!--Recordar que el ID de la ventas es automatica-->
            <!--Cantidad y total calculados de ventas-->
-           <select name="id" id="id" class="entrada" required>
+           <select name="id" id="id" class="entrada" required <?php echo $acceso_reg; ?>>
                 <option value="" selected disabled>Elegir el RFC del cliente</option>
                 
            </select>
-           <select name="idempleado" id="idempleado" class="entrada" required>
+           <select name="idempleado" id="idempleado" class="entrada" required <?php echo $acceso_reg; ?>>
                 <option value="" selected disabled>Elegir ID del empleado</option>
                 
            </select>
            <label for="" class="entrada">Ingresar Fecha y Hora de la venta: </label>
-           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
-           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
+           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required <?php echo $acceso_reg; ?>>
+           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required <?php echo $acceso_reg; ?>>
             
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_reg; ?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg; ?>>  
            
        </div>
    
@@ -129,9 +131,12 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
+
             <h2>ELIMINAR VENTAS</h2>
 
             <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
+
+
 
                 <option value="" selected disabled>Ventas disponibles</option>
                 
@@ -145,8 +150,8 @@
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_elim ;?>>  
            
        </div>
       
@@ -155,15 +160,15 @@
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR VENTAS</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
                 <option value="" selected disabled>Ventas disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_actua ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_actua ;?>>  
            
        </div>
       
@@ -172,15 +177,22 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR VENTAS</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_cons ;?>>
                 <option value="" selected disabled>Ventas disponibles</option>
                 
+            </select>
+            
+            <select name="tipo-cons" id="consulta" class="entrada" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Consultar todos los registros</option>
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_cons ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
            
        </div>
       

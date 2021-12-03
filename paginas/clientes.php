@@ -66,10 +66,10 @@
             </div>
 
             <div class="header-right">
-               <a href="funciones/closeSession.php">
+               <a href="../funciones/closeSession.php">
                     <button>REGRESAR</button>
                 </a>
-                <a href="funciones/closeSession.php">
+                <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
                 </a>
             </div>
@@ -88,6 +88,7 @@
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
         <a href="pieza_venta.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
         <a href="pieza_armado.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
+        <a href="catalogo_piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Catálogo de Piezas</span></a>
         <a href="productos.php?op=1"><i class="fas fa-shopping-cart"></i><span>Productos</span></a>
         <a href="modelo.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
         <a href="arquitecturas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitecura</span></a>
@@ -100,16 +101,16 @@
    <form action="../mysql/insertar.php" method="post" class="registrar-mode">
        <div class="formulario">
        <h2>REGISTRAR CLIENTES</h2>
-           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC del cliente" required>
-           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del cliente" required>
-           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa el numero telefonico del cliente" required>
-           <input class="entrada" type="email" id="correo" name="correo" placeholder="Ingresa el correo electrónico del cliente" required>
+           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC del cliente" required <?php echo $acceso_reg; ?>>
+           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del cliente" required <?php echo $acceso_reg; ?>>
+           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa el numero telefonico del cliente" required <?php echo $acceso_reg; ?>>
+           <input class="entrada" type="email" id="correo" name="correo" placeholder="Ingresa el correo electrónico del cliente" required <?php echo $acceso_reg; ?>>
            
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_reg; ?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg; ?>>  
            
        </div>
    
@@ -120,7 +121,11 @@
        <div class="formulario">
            <h2>ELIMINAR CLIENTES</h2>
 
+
             <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
+
+
+            <!--<select name="" id="" class="entrada" required <?php echo $acceso_elim ;?>>-->
 
                 <option value="" selected disabled>Clientes disponibles</option>
                 
@@ -134,8 +139,8 @@
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_elim ;?>>  
            
        </div>
       
@@ -144,15 +149,15 @@
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR CLIENTES</h2>
-            <select name="" id="" class="entrada">
+            <select name="" id="" class="entrada" required <?php echo $acceso_actua ;?>>
                 <option value="" selected disabled>Clientes disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_actua ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_actua ;?>>  
            
        </div>
       
@@ -161,15 +166,22 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR CLIENTES</h2>
-            <select name="" id="" class="entrada">
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_cons ;?>>
                 <option value="" selected disabled>Clientes disponibles</option>
                 
+            </select>
+            
+            <select name="tipo-cons" id="consulta" class="entrada" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Consultar todos los registros</option>
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_cons ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
            
        </div>
       
@@ -183,9 +195,6 @@
              <label for="radio-1"></label>
          </div>
     </main>
-       
-       
-   
     
     
     <script src="../javascript/opciones.js"></script>

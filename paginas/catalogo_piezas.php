@@ -4,7 +4,6 @@
     session_start();
     $usuario=$_SESSION['user'];
     $pass=$_SESSION['password'];
-    $_SESSION['pagina']="compra";
     if($usuario=="" && $pass==""){
         
        echo "<script>
@@ -39,12 +38,13 @@
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compras</title>
+    <title>Catálogo De Piezas</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -83,14 +83,14 @@
            
         </div>
 
-      <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
+     <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
         <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
         <a href="compras.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
         <a href="almacen.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
         <a href="pieza_venta.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
         <a href="pieza_armado.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
-        <a href="catalogo_piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Catalogo de Piezas</span></a>
+        <a href="catalogo_piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Catálogo de Piezas</span></a>
         <a href="productos.php?op=1"><i class="fas fa-shopping-cart"></i><span>Productos</span></a>
         <a href="modelo.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
         <a href="arquitecturas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitecura</span></a>
@@ -101,19 +101,15 @@
     </div>
 
        
-   <form action="../mysql/insertar.php" method="post" class="registrar-mode">
-       <div class="formulario">
-           <h2>REGISTRAR COMPRAS</h2>
-           <!--El id es autoincrementable-->
-           <label for="" class="entrada">Ingresar Fecha y Hora de la compra: </label>
-           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required <?php echo $acceso_reg; ?>>
-           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required <?php echo $acceso_reg; ?>>
-           <select name="" id="">
-               <option value="" selected disabled>Selecciona un proveedor</option>
-                   
+   <form action="../mysql/inserciones/enviarProveedores.php" method="post" class="registrar-mode" >
+          <div class="formulario" >
+           <h2>REGISTRAR PIEZAS EN EL CATÁLOGO</h2>
+
+         
+               <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre de la pieza" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="modelo" name="modelo" placeholder="Ingresa el modelo de la pieza" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="precio_compra" name="precio_compra" placeholder="Ingresa el precio de compra de la pieza" required <?php echo $acceso_reg; ?>>
                
-           </select>
-           <!--Recordar que el ID del alamecen lo lleva la compra solo que esta predetermindo al almacen qe va la compra-->
        </div>
 
        <div class="botones">
@@ -121,24 +117,18 @@
            <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg; ?>>  
            
        </div>
-   
+
 
    </form>
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-            <h2>ELIMINAR COMPRAS</h2>
+           <h2>ELIMINAR PIEZAS EN EL CATÁLOGO</h2>
 
-            <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_elim ;?>>
 
-                <option value="" selected disabled>Compras disponibles</option>
+                <option value="" selected disabled>Piezas en el catálogo disponibles</option>
                 
-            </select>
-            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
-
-                <option value="" selected disabled>Selecciona tipo de eliminacion</option>
-                <option value="unico" id="unico">Solo un registro</option>
-                <option value="todo" >Eliminar todos los registros</option>
             </select>
        </div>
 
@@ -148,13 +138,15 @@
            
        </div>
       
-     
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
+       
        <div class="formulario">
-           <h2>ACTUALIZAR COMPRAS</h2>
+           <h2>ACTUALIZAR PIEZAS EN EL CATÁLOGO</h2>
+
             <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
-                <option value="" selected disabled>Compras disponibles</option>
+
+                <option value="" selected disabled>Piezas en el catálogo disponibles</option>
                 
             </select>
        </div>
@@ -165,18 +157,20 @@
            
        </div>
       
-     
+    
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
+       
        <div class="formulario">
-           <h2>CONSULTAR COMPRAS</h2>
-            <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons ;?>>
-                <option value="" selected disabled>Compras disponibles</option>
+           <h2>CONSULTAR PIEZAS EN EL CATÁLOGO</h2>
+
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Piezas en el catálogo disponibles</option>
                 
             </select>
             
-            
-            <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
+            <select name="tipo-cons" id="consulta" class="entrada" required <?php echo $acceso_cons ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de consulta</option>
                 <option value="unico" id="unico">Solo un registro</option>
@@ -189,8 +183,7 @@
            <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
            
        </div>
-      
-     
+    
    </form>
   <!---->
     
@@ -201,7 +194,6 @@
          </div>
     </main>
        
- 
     
     <script src="../javascript/opciones.js"></script>
 </body>
