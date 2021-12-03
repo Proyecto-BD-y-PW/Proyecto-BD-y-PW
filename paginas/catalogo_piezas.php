@@ -38,12 +38,13 @@
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
+    <title>Catálogo De Piezas</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -81,6 +82,8 @@
         <div class="profile-data">
            
         </div>
+
+     <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
         <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
         <a href="compras.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
         <a href="almacen.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
@@ -94,17 +97,19 @@
         <a href="ventas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Venta</span></a>
         <a href="empleados.php?op=1"><i class="fas fa-shopping-cart"></i><span>Empleado</span></a>
         <a href="clientes.php?op=1"><i class="fas fa-shopping-cart"></i><span>Cliente</span></a>
+        
     </div>
 
        
-   <form action="enviar.php" method="post" class="registrar-mode">
-       <div class="formulario">
-       <h2>REGISTRAR CLIENTES</h2>
-           <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC del cliente" required <?php echo $acceso_reg; ?>>
-           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del cliente" required <?php echo $acceso_reg; ?>>
-           <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa el numero telefonico del cliente" required <?php echo $acceso_reg; ?>>
-           <input class="entrada" type="email" id="correo" name="correo" placeholder="Ingresa el correo electrónico del cliente" required <?php echo $acceso_reg; ?>>
-           
+   <form action="../mysql/inserciones/enviarProveedores.php" method="post" class="registrar-mode" >
+          <div class="formulario" >
+           <h2>REGISTRAR PIEZAS EN EL CATÁLOGO</h2>
+
+         
+               <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre de la pieza" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="modelo" name="modelo" placeholder="Ingresa el modelo de la pieza" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="precio_compra" name="precio_compra" placeholder="Ingresa el precio de compra de la pieza" required <?php echo $acceso_reg; ?>>
+               
        </div>
 
        <div class="botones">
@@ -112,15 +117,17 @@
            <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg; ?>>  
            
        </div>
-   
+
 
    </form>
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR CLIENTES</h2>
-            <select name="" id="" class="entrada" required <?php echo $acceso_elim ;?>>
-                <option value="" selected disabled>Clientes disponibles</option>
+           <h2>ELIMINAR PIEZAS EN EL CATÁLOGO</h2>
+
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_elim ;?>>
+
+                <option value="" selected disabled>Piezas en el catálogo disponibles</option>
                 
             </select>
        </div>
@@ -131,13 +138,15 @@
            
        </div>
       
-     
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
+       
        <div class="formulario">
-           <h2>ACTUALIZAR CLIENTES</h2>
-            <select name="" id="" class="entrada" required <?php echo $acceso_actua ;?>>
-                <option value="" selected disabled>Clientes disponibles</option>
+           <h2>ACTUALIZAR PIEZAS EN EL CATÁLOGO</h2>
+
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
+
+                <option value="" selected disabled>Piezas en el catálogo disponibles</option>
                 
             </select>
        </div>
@@ -148,13 +157,16 @@
            
        </div>
       
-     
+    
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
+       
        <div class="formulario">
-           <h2>CONSULTAR CLIENTES</h2>
+           <h2>CONSULTAR PIEZAS EN EL CATÁLOGO</h2>
+
             <select name="id" id="id" class="entrada" required <?php echo $acceso_cons ;?>>
-                <option value="" selected disabled>Clientes disponibles</option>
+
+                <option value="" selected disabled>Piezas en el catálogo disponibles</option>
                 
             </select>
             
@@ -171,8 +183,7 @@
            <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
            
        </div>
-      
-     
+    
    </form>
   <!---->
     
@@ -182,7 +193,7 @@
              <label for="radio-1"></label>
          </div>
     </main>
-    
+       
     
     <script src="../javascript/opciones.js"></script>
 </body>
