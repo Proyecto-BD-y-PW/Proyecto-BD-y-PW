@@ -130,7 +130,7 @@
                 <option value="" selected disabled>Piezas en el catálogo disponibles</option>
                 
             </select>
-       </div>s
+       </div>
 
        <div class="botones">
            <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
