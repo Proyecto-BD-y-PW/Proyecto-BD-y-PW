@@ -1,10 +1,9 @@
-
 <?php
     
     session_start();
     $usuario=$_SESSION['user'];
     $pass=$_SESSION['password'];
-    $_SESSION['pagina']="venta";
+    $_SESSION['pagina']="pieza_venta";
     if($usuario=="" && $pass==""){
         
        echo "<script>
@@ -39,12 +38,14 @@
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ventas</title>
+    <title>Inventarios</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -66,10 +67,10 @@
             </div>
 
             <div class="header-right">
-               <a href="funciones/closeSession.php">
+               <a href="../funciones/closeSession.php">
                     <button>REGRESAR</button>
                 </a>
-                <a href="funciones/closeSession.php">
+                <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
                 </a>
             </div>
@@ -83,7 +84,7 @@
            
         </div>
 
-      <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
+     <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
         <a href="compras.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
         <a href="almacen.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
@@ -99,41 +100,36 @@
     </div>
 
        
-   <form action="../mysql/insertar.php" method="post" class="registrar-mode">
-       <div class="formulario">
-           <h2>REGISTRAR VENTAS</h2>
-           <!--Recordar que el ID de la ventas es automatica-->
-           <!--Cantidad y total calculados de ventas-->
-           <select name="id" id="id" class="entrada" required>
-                <option value="" selected disabled>Elegir el RFC del cliente</option>
-                
-           </select>
-           <select name="idempleado" id="idempleado" class="entrada" required>
-                <option value="" selected disabled>Elegir ID del empleado</option>
-                
-           </select>
-           <label for="" class="entrada">Ingresar Fecha y Hora de la venta: </label>
-           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
-           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
-            
+   <form action="../mysql/insertar.php" method="post" class="registrar-mode" >
+          <div class="formulario" >
+           <h2>REGISTRAR PIEZAS DE VENTA</h2>
+
+             <select name="id-arquitectura" id="id-pieza" class="entrada" required <?php echo $acceso_reg; ?>>
+                   <option value="" selected disabled>Piezas disponibles</option>
+              </select>
+               <input class="entrada" type="number" id="descripción" name="descripcion" placeholder="Ingresa el precio al publico" required <?php echo $acceso_reg; ?>>
+
+             
+
+        
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_reg; ?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg; ?>>  
            
        </div>
-   
+
 
    </form>
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-            <h2>ELIMINAR VENTAS</h2>
+            <h2>ELIMINAR PIEZAS DE VENTA</h2>
 
             <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
-                <option value="" selected disabled>Ventas disponibles</option>
+                <option value="" selected disabled>Piezas de venta disponibles</option>
                 
             </select>
             <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
@@ -145,46 +141,58 @@
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_elim ;?>>  
            
        </div>
       
-     
    </form>
     <form action="enviar.php" method="post" class="actualizar-mode">
+       
        <div class="formulario">
-           <h2>ACTUALIZAR VENTAS</h2>
-            <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Ventas disponibles</option>
+           <h2>ACTUALIZAR PIEZAS DE VENTA</h2>
+
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
+
+                <option value="" selected disabled>Piezas de venta disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_actua ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_actua ;?>>  
            
        </div>
       
-     
+    
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
+       
        <div class="formulario">
-           <h2>CONSULTAR VENTAS</h2>
-            <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Ventas disponibles</option>
+           <h2>CONSULTAR PIEZAS DE VENTA</h2>
+
+            <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Piezas de venta disponibles</option>
                 
             </select>
+ 
+            <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Consultar todos los registros</option>
+            </select>
+
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_cons ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
            
        </div>
-      
-     
+    
    </form>
   <!---->
     
@@ -195,7 +203,10 @@
          </div>
     </main>
        
- 
+       
+      
+       
+    
     
     <script src="../javascript/opciones.js"></script>
 </body>

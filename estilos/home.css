@@ -401,6 +401,7 @@ select,input[type="date"],input[type="time"]{
   
 }
 
+
 input[type="text"]:disabled{
     
     background: #ccc;
@@ -408,8 +409,12 @@ input[type="text"]:disabled{
     
     
 }
-
+#fecha{
+    width: 50%;
+ 
+}
 .remove{
     visibility: hidden; 
     display: none;
+
 }

@@ -4,6 +4,7 @@
     session_start();
     $usuario=$_SESSION['user'];
     $pass=$_SESSION['password'];
+    $_SESSION['pagina']="arquitectura";
     if($usuario=="" && $pass==""){
         
        echo "<script>
@@ -98,7 +99,7 @@
     </div>
 
        
-   <form action="enviar.php" method="post" class="registrar-mode">
+   <form action="../mysql/insertar.php" method="post" class="registrar-mode">
        <div class="formulario">
            <h2>REGISTRAR ARQUITECTURAS</h2>
             <!--El ID de la arquitectura es automatico-->
@@ -117,9 +118,17 @@
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
            <h2>ELIMINAR ARQUITECTURAS</h2>
-            <select name="id" id="id" class="entrada" required <?php echo $acceso_elim; ?>>
+
+            <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
+
                 <option value="" selected disabled>Arquitecturas disponibles</option>
                 
+            </select>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de eliminacion</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Eliminar todos los registros</option>
             </select>
        </div>
 

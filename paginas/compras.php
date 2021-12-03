@@ -4,6 +4,7 @@
     session_start();
     $usuario=$_SESSION['user'];
     $pass=$_SESSION['password'];
+    $_SESSION['pagina']="compra";
     if($usuario=="" && $pass==""){
         
        echo "<script>
@@ -98,19 +99,24 @@
     </div>
 
        
-   <form action="enviar.php" method="post" class="registrar-mode">
+   <form action="../mysql/insertar.php" method="post" class="registrar-mode">
        <div class="formulario">
            <h2>REGISTRAR COMPRAS</h2>
-           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la compra" required>
+           <!--El id es autoincrementable-->
            <label for="" class="entrada">Ingresar Fecha y Hora de la compra: </label>
-           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
-           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
+           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required <?php echo $acceso_reg; ?>>
+           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required <?php echo $acceso_reg; ?>>
+           <select name="" id="">
+               <option value="" selected disabled>Selecciona un proveedor</option>
+                   
+               
+           </select>
            <!--Recordar que el ID del alamecen lo lleva la compra solo que esta predetermindo al almacen qe va la compra-->
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_reg; ?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg; ?>>  
            
        </div>
    
@@ -119,16 +125,24 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR COMPRAS</h2>
-            <select name="id" id="id" class="entrada">
+            <h2>ELIMINAR COMPRAS</h2>
+
+            <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
+
                 <option value="" selected disabled>Compras disponibles</option>
                 
+            </select>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de eliminacion</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Eliminar todos los registros</option>
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_elim ;?>>  
            
        </div>
       
@@ -137,15 +151,15 @@
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR COMPRAS</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
                 <option value="" selected disabled>Compras disponibles</option>
                 
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_actua ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_actua ;?>>  
            
        </div>
       
@@ -154,15 +168,23 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR COMPRAS</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons ;?>>
                 <option value="" selected disabled>Compras disponibles</option>
                 
+            </select>
+            
+            
+            <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Consultar todos los registros</option>
             </select>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_cons ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
            
        </div>
       

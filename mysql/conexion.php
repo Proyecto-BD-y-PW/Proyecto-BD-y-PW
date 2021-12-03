@@ -21,6 +21,7 @@
             $_SESSION['password']=$password;
             $_SESSION['privilegios']=$row['privilegios'];
             $_SESSION['conexion']=$conexion;
+            mysqli_close($conexion);
             header("location:../paginas/proveedores.php");
         }
     }
