@@ -27,11 +27,13 @@
         $op="INSERT INTO modelo(nombre,estatus,id_arquitectura) VALUES ('$nombre',1,'$id_arquitectura')";
         mysqli_query($conexion,$op);
         header('location:../paginas/modelo.php');
+        
     }else if(strcmp($pagina,"arquitectura")==0){
         $tipo=$_POST['tipo'];
         $op="INSERT INTO arquitectura(tipo,estatus) VALUES ('$tipo',1)";
         mysqli_query($conexion,$op);
-        header('location:../paginas/arquitecturas.php');        
+        header('location:../paginas/arquitecturas.php'); 
+        
     }else if(strcmp($pagina,"cliente")==0){
         $rfc=$_POST['rfc'];
         $nombre=$_POST['nombre'];
@@ -41,15 +43,44 @@
         mysqli_query($conexion,$op);
         
         header('location:../paginas/clientes.php');
+        
     }else if(strcmp($pagina,"compra")==0){
+        $fecha=$_POST['fecha'];
+        $hora=$_POST['hora'];
+        $tiempo=date('Y-m-d H:i:s', strtotime("$fecha $hora"));
+        $rfc=$_POST['rfc_proveedor'];
+        
+        /*Para sacar la cantdad de productos y el precio de la compra*/
+        $op='SELECT p.id, p.nombre, p.modelo, cp.precio,c.id"id_compra"  FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo';
+        $resultado=mysqli_query($conexion,$op)
+        $num_reg=mysqli_num_rows($resultado);
         
         
+        /*PROBAR SU FUNCIONALIDAD*/
+        
+        
+        
+        if($num_reg > 0){
+            $precio=0;
+            //Mientras mysqli_fetch_array traiga algo, lo agregamos a una variable temporal
+            while($row = mysqli_fetch_array( $resultado ) ){
+              $precio=$precio+$row['precio'];
+            }
+        }
+        
+        /*libera la memoria*/
+        mysqli_free_result( $resultado )
+        
+        $op="INSERT INTO compras(fecha,cantidad,precio,estatus,RFC) VALUES ('$tiempo','$num_reg','$precio','1','$rfc')";
+        mysqli_query($conexion,$op);
         
         header('location:../paginas/compras.php');
+        
     }else if(strcmp($pagina,"pieza")==0){
         
         
         header('location:../paginas/piezas.php');
+        
     }else if(strcmp($pagina,"producto")==0){
         $noserie=$_POST['nserie'];
         $descripcion=$_POST['descripcion'];
@@ -76,14 +107,10 @@
         $email=$_POST['correo'];
 
         
-        $op="INSERT INTO proveedores (RFC,empresa,nombre_proveedor,descripcion,telefono,email)VALUES ('$RFC','$empresa','$nombre','$descripcion','$telefono','$email')";
+        $op="INSERT INTO proveedores (RFC,empresa,nombre_proveedor,descripcion,telefono,email,estatus)VALUES ('$RFC','$empresa','$nombre','$descripcion','$telefono','$email','1')";
         mysqli_query($conexion,$op);
         header('location:../paginas/proveedores.php');
 
-
-        $op="INSERT INTO proveedores (RFC,empresa,nombre_proveedor,descripcion,telefono,email)VALUES ('$RFC','$empresa','$nombre','$descripcion','$telefono','$email')";
-        mysqli_query($conexion,$op);
-        header('location:../paginas/proveedores.php');
 
     }else if(strcmp($pagina,"venta")==0){
         
