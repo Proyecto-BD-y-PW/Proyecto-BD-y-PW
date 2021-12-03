@@ -83,7 +83,7 @@
            
         </div>
 
-      <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
+      
         <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
         <a href="compras.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
         <a href="almacen.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
@@ -117,7 +117,7 @@
            <label for="" class="entrada">Ingresar Fecha y Hora de la venta: </label>
            <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required <?php echo $acceso_reg; ?>>
            <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required <?php echo $acceso_reg; ?>>
-            
+         
        </div>
 
        <div class="botones">
@@ -176,13 +176,12 @@
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
-           <h2>CONSULTAR VENTAS</h2>
-            <select name="id" id="id" class="entrada" required <?php echo $acceso_cons ;?>>
+               <h2>CONSULTAR VENTAS</h2>
+            <select name="serie" id="disponibles" class="entrada">
                 <option value="" selected disabled>Ventas disponibles</option>
                 
             </select>
-            
-            <select name="tipo-cons" id="consulta" class="entrada" required <?php echo $acceso_cons ;?>>
+             <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de consulta</option>
                 <option value="unico" id="unico">Solo un registro</option>

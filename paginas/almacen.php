@@ -106,7 +106,7 @@
 
          
                
-               <input class="entrada" type="text" id="nproveedor" name="nproveedor" placeholder="Ingresa el nombre del almacen" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="text" id="nproveedor" name="n-almacen" placeholder="Ingresa el nombre del almacen" required <?php echo $acceso_reg; ?>>
                <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción del almacen" required <?php echo $acceso_reg; ?>>
 
 

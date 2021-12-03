@@ -85,7 +85,7 @@
            
         </div>
 
-     <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
+     
         <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
         <a href="compras.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
         <a href="almacen.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
