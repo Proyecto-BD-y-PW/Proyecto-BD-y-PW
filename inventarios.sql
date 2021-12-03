@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2021 a las 01:38:07
+-- Tiempo de generación: 03-12-2021 a las 02:43:44
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.5
 
@@ -91,6 +91,7 @@ CREATE TABLE `compras` (
   `fecha` datetime NOT NULL DEFAULT current_timestamp(),
   `cantidad` int(11) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
+  `estatus` tinyint(1) NOT NULL,
   `RFC` char(5) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -103,7 +104,9 @@ CREATE TABLE `compras` (
 CREATE TABLE `empleado` (
   `id` int(11) NOT NULL,
   `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `estatus` tinyint(1) NOT NULL
+  `estatus` tinyint(1) NOT NULL,
+  `telefono` int(11) NOT NULL,
+  `correo` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
