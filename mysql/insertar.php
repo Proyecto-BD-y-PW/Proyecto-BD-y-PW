@@ -44,6 +44,17 @@
         
     }else if(strcmp($pagina,"proveedor")==0){
         
+        $RFC=$_POST['rfc'];
+        $empresa=$_POST['empresa'];
+        $nombre=$_POST['nproveedor'];
+        $descripcion=$_POST['descripcion'];
+        $telefono=$_POST['telefono'];
+        $email=$_POST['correo'];
+        
+        $op="INSERT INTO proveedores (RFC,empresa,nombre_proveedor,descripcion,telefono,email)VALUES ('$RFC','$empresa','$nombre','$descripcion','$telefono','$email')";
+        mysqli_query($conexion,$op);
+        header('location:../paginas/proveedores.php');
+        
     }else if(strcmp($pagina,"venta")==0){
         
         
