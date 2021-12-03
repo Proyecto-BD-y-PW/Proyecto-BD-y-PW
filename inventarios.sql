@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2021 a las 02:43:44
+-- Tiempo de generación: 03-12-2021 a las 02:52:41
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.5
 
@@ -245,6 +245,7 @@ CREATE TABLE `venta` (
   `fecha` datetime NOT NULL,
   `cantidad` int(11) NOT NULL,
   `total` decimal(10,2) NOT NULL,
+  `estatus` tinyint(1) NOT NULL,
   `id_empleado` int(11) NOT NULL,
   `RFC_cliente` char(5) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
