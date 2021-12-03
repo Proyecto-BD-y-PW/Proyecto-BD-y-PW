@@ -1,4 +1,10 @@
 const radio1_btn = document.getElementById("radio-1");
+const select1_btn = document.getElementById("eliminaciones");
+const select2_btn = document.getElementById("elim-dis");
+const select3_btn = document.getElementById("consultas");
+
+const select4_btn = document.getElementById("disponibles");
+
 
 /*const registrar_mode = document.querySelector(".registrar-mode");*/
 /*const registrar_mode = document.getElementsByClassName("registrar-mode");
@@ -26,6 +32,31 @@ radio2_btn.addEventListener('click', () => {
     });
 
 */
+select1_btn.addEventListener('change',function(){
+    
+    var opcion_seleccionada=this.options[select1_btn.selectedIndex];
+    if(opcion_seleccionada.value==='unico'){
+        select2_btn.classList.remove("remove");
+        select2_btn.setAttribute("required","");
+    
+    }else{
+        select2_btn.classList.add("remove");
+        select2_btn.removeAttribute("required","");
+    }
+     
+});
+select3_btn.addEventListener('change',function(){
+    
+    var opcion_seleccionada=this.options[select3_btn.selectedIndex];
+    if(opcion_seleccionada.value=='unico'){
+        select4_btn.classList.remove("remove");
+        select4_btn.setAttribute("required","");
+        
+    }else{
+        select4_btn.classList.add("remove");
+        select4_btn.removeAttribute("required","");
+    }
+});
 
 radio1_btn.addEventListener('click', function()  {
     

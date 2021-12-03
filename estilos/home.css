@@ -320,7 +320,7 @@ input[type="radio"]{
     margin: auto;
     border-radius: 35px;
 }
-select{
+select,input[type="date"],input[type="time"]{
     width: 50%;
 }
 .secciones{
@@ -400,12 +400,21 @@ select{
     transform: scale(1.5) rotateY(360deg);
   
 }
-fieldset{
-    text-decoration: none;
-     margin: auto;   
-    text-decoration-style: none;
-}
 
+
+input[type="text"]:disabled{
+    
+    background: #ccc;
+    
+    
+    
+}
 #fecha{
     width: 50%;
+ 
+}
+.remove{
+    visibility: hidden; 
+    display: none;
+
 }

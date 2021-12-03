@@ -4,6 +4,7 @@
     session_start();
     $usuario=$_SESSION['user'];
     $pass=$_SESSION['password'];
+    $_SESSION['pagina']="producto";
     if($usuario=="" && $pass==""){
         
        echo "<script>
@@ -98,7 +99,7 @@
     </div>
 
        
-   <form action="enviar.php" method="post" class="registrar-mode">
+   <form action="../mysql/insertar.php" method="post" class="registrar-mode">
        <div class="formulario">
            <h2>REGISTRAR PRODUCTOS</h2>
            <input class="entrada" type="text" id="nserie" name="nserie" placeholder="Ingresa el Numero de serie del producto" required>
@@ -126,10 +127,18 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR PRODUCTOS</h2>
-            <select name="serie" id="serie" class="entrada">
+            <h2>ELIMINAR PRODUCTOS</h2>
+
+            <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
+
                 <option value="" selected disabled>Productos disponibles</option>
                 
+            </select>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de eliminacion</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Eliminar todos los registros</option>
             </select>
        </div>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2021 a las 08:01:25
+-- Tiempo de generación: 03-12-2021 a las 01:38:07
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.5
 
@@ -30,7 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `almacen` (
   `id` int(11) NOT NULL,
   `descripcion` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
-  `capital` decimal(10,2) NOT NULL
+  `capital` decimal(10,2) NOT NULL,
+  `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -41,7 +42,29 @@ CREATE TABLE `almacen` (
 
 CREATE TABLE `arquitectura` (
   `id` int(11) NOT NULL,
-  `tipo` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+  `tipo` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `estatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `arquitectura`
+--
+
+INSERT INTO `arquitectura` (`id`, `tipo`, `estatus`) VALUES
+(1, 'sparc', 1),
+(2, 'x86', 1),
+(3, 'x64', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `catalogo_pieza`
+--
+
+CREATE TABLE `catalogo_pieza` (
+  `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `modelo` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `precio` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -79,7 +102,8 @@ CREATE TABLE `compras` (
 
 CREATE TABLE `empleado` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+  `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `estatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -90,9 +114,16 @@ CREATE TABLE `empleado` (
 
 CREATE TABLE `modelo` (
   `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `id_arquitectura` int(11) NOT NULL,
-  `id_procesador` int(11) NOT NULL
+  `estatus` tinyint(1) NOT NULL,
+  `id_arquitectura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `modelo`
+--
+
+INSERT INTO `modelo` (`nombre`, `estatus`, `id_arquitectura`) VALUES
+('super', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -102,13 +133,13 @@ CREATE TABLE `modelo` (
 
 CREATE TABLE `pieza` (
   `id` char(5) COLLATE utf8_unicode_ci NOT NULL,
-  `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `en_almacen` tinyint(1) NOT NULL,
-  `precio` decimal(10,2) NOT NULL,
-  `tipo` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `tipo` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `descripcion` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `id_compras` int(11) NOT NULL,
-  `id_almacen` int(11) NOT NULL
+  `id_almacen` int(11) NOT NULL,
+  `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `modelo` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -118,7 +149,8 @@ CREATE TABLE `pieza` (
 --
 
 CREATE TABLE `pieza_armado` (
-  `id` char(5) COLLATE utf8_unicode_ci NOT NULL
+  `id` char(5) COLLATE utf8_unicode_ci NOT NULL,
+  `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -128,7 +160,8 @@ CREATE TABLE `pieza_armado` (
 --
 
 CREATE TABLE `pieza_modelo` (
-  `id_pieza` char(5) COLLATE utf8_unicode_ci NOT NULL,
+  `nombre_pieza` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `modelo_pieza` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `nombre_modelo` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -141,18 +174,6 @@ CREATE TABLE `pieza_modelo` (
 CREATE TABLE `pieza_venta` (
   `id` char(5) COLLATE utf8_unicode_ci NOT NULL,
   `precio_publico` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `procesador`
---
-
-CREATE TABLE `procesador` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `nucleos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -184,7 +205,8 @@ CREATE TABLE `proveedores` (
   `descripcion` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `producto` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `telefono` int(11) NOT NULL,
-  `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+  `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `estatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -205,8 +227,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`nombre`, `correo`, `contrasena`, `privilegios`) VALUES
-('cris', 'krii.rifa11@gmail.com', '$2y$10$Nnk5suyA3cDDrR6X8O10n.z5Fs.od2xqlVIQ7tOKwW48pQYOJcaJy', 'administrador'),
-('luis', 'krii.rifa11@gmail.com', '$2y$10$VjH38MG9czFm/Otxa/R/dupodbuA3Rn7Le.e6ronSZIirN85s76yq', 'usuario-cons');
+('cris', 'krii.rifa11@gmail.com', '$2y$10$bPGC5gbOWjZN4lOWS56g1.NyDnCSia4aocJcMjt8Hl0cJH24UD.ly', 'administrador'),
+('juca', 'krii.rifa11@gmail.com', '$2y$10$v64isCBLH3Wb2gZzgmEYoezJ5WO8yv.TJ4vKQIw/CD8lg3tf3fRqu', 'administrador'),
+('luis', 'krii.rifa11@gmail.com', '$2y$10$yVtvIRSNuTEkvp3A3n.03uzGjdLfPPDOSWYslUr3cp4wACYxMS6tG', 'usuario-cons');
 
 -- --------------------------------------------------------
 
@@ -262,6 +285,12 @@ ALTER TABLE `arquitectura`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `catalogo_pieza`
+--
+ALTER TABLE `catalogo_pieza`
+  ADD PRIMARY KEY (`nombre`,`modelo`);
+
+--
 -- Indices de la tabla `cliente`
 --
 ALTER TABLE `cliente`
@@ -285,8 +314,7 @@ ALTER TABLE `empleado`
 --
 ALTER TABLE `modelo`
   ADD PRIMARY KEY (`nombre`),
-  ADD KEY `modelo_fk1` (`id_arquitectura`),
-  ADD KEY `modelo_fk2` (`id_procesador`);
+  ADD KEY `modelo_fk1` (`id_arquitectura`);
 
 --
 -- Indices de la tabla `pieza`
@@ -294,7 +322,8 @@ ALTER TABLE `modelo`
 ALTER TABLE `pieza`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pieza_fk1` (`id_compras`),
-  ADD KEY `pieza_fk2` (`id_almacen`);
+  ADD KEY `pieza_fk2` (`id_almacen`),
+  ADD KEY `pieza_fk3` (`nombre`,`modelo`);
 
 --
 -- Indices de la tabla `pieza_armado`
@@ -306,19 +335,13 @@ ALTER TABLE `pieza_armado`
 -- Indices de la tabla `pieza_modelo`
 --
 ALTER TABLE `pieza_modelo`
-  ADD PRIMARY KEY (`id_pieza`,`nombre_modelo`),
+  ADD PRIMARY KEY (`nombre_pieza`,`modelo_pieza`,`nombre_modelo`),
   ADD KEY `pieza_modelo_fk2` (`nombre_modelo`);
 
 --
 -- Indices de la tabla `pieza_venta`
 --
 ALTER TABLE `pieza_venta`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `procesador`
---
-ALTER TABLE `procesador`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -368,21 +391,27 @@ ALTER TABLE `venta_producto`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `almacen`
+--
+ALTER TABLE `almacen`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `arquitectura`
 --
 ALTER TABLE `arquitectura`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `compras`
+--
+ALTER TABLE `compras`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `procesador`
---
-ALTER TABLE `procesador`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -405,15 +434,15 @@ ALTER TABLE `compras`
 -- Filtros para la tabla `modelo`
 --
 ALTER TABLE `modelo`
-  ADD CONSTRAINT `modelo_fk1` FOREIGN KEY (`id_arquitectura`) REFERENCES `arquitectura` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `modelo_fk2` FOREIGN KEY (`id_procesador`) REFERENCES `procesador` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `modelo_fk1` FOREIGN KEY (`id_arquitectura`) REFERENCES `arquitectura` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pieza`
 --
 ALTER TABLE `pieza`
   ADD CONSTRAINT `pieza_fk1` FOREIGN KEY (`id_compras`) REFERENCES `compras` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pieza_fk2` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pieza_fk2` FOREIGN KEY (`id_almacen`) REFERENCES `almacen` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pieza_fk3` FOREIGN KEY (`nombre`,`modelo`) REFERENCES `catalogo_pieza` (`nombre`, `modelo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pieza_armado`
@@ -425,7 +454,7 @@ ALTER TABLE `pieza_armado`
 -- Filtros para la tabla `pieza_modelo`
 --
 ALTER TABLE `pieza_modelo`
-  ADD CONSTRAINT `pieza_modelo_fk1` FOREIGN KEY (`id_pieza`) REFERENCES `pieza` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pieza_modelo_fk1` FOREIGN KEY (`nombre_pieza`,`modelo_pieza`) REFERENCES `catalogo_pieza` (`nombre`, `modelo`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pieza_modelo_fk2` FOREIGN KEY (`nombre_modelo`) REFERENCES `modelo` (`nombre`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

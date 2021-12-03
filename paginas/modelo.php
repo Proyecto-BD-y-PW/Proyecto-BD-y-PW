@@ -4,6 +4,8 @@
     session_start();
     $usuario=$_SESSION['user'];
     $pass=$_SESSION['password'];
+    $conexion=$_SESSION['conexion'];
+    $_SESSION['pagina']="modelo";
     if($usuario=="" && $pass==""){
         
        echo "<script>
@@ -65,10 +67,10 @@
             </div>
 
             <div class="header-right">
-               <a href="funciones/closeSession.php">
+               <a href="../funciones/closeSession.php">
                     <button>REGRESAR</button>
                 </a>
-                <a href="funciones/closeSession.php">
+                <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
                 </a>
             </div>
@@ -98,13 +100,26 @@
     </div>
 
        
-   <form action="enviar.php" method="post" class="registrar-mode">
+   <form action="../mysql/insertar.php" method="post" class="registrar-mode">
        <div class="formulario">
            <h2>REGISTRAR MODELO</h2>
-           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del modelo" required>
-           <select name="idarquitectura" id="idarquitectura" class="entrada" required>
+           <input class="entrada" type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del modelo" required <?php echo $acceso_reg; ?>>
+           <select name="id-arquitectura" id="idarquitectura" class="entrada" required <?php echo $acceso_reg; ?>>
                <option value="" selected disabled>Arquitecturas disponibles</option>
-                
+                <?php 
+                    $op="SELECT * FROM arquitectura";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >".$row['tipo']."</option>";
+                        
+                        
+                    }
+                mysqli_close($conexion);
+                ?>
            </select>
        </div>
 
@@ -120,10 +135,19 @@
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
            <h2>ELIMINAR MODELO</h2>
-            <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Modelos disponibles</option>
+
+            <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
+
+                <option value="" selected disabled>Modelo disponibles</option>
                 
             </select>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de eliminacion</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Eliminar todos los registros</option>
+            </select>
+    
        </div>
 
        <div class="botones">
@@ -137,7 +161,7 @@
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR MODELO</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="id" class="entrada" required <?php echo $acceso_actua; ?>>
                 <option value="" selected disabled>Modelos disponibles</option>
                 
             </select>
@@ -154,10 +178,17 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR MODELO</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="disponibles" id="disponibles" class="entrada" required <?php echo $acceso_cons; ?>>
                 <option value="" selected disabled>Modelos disponibles</option>
                 
             </select>
+           <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons; ?>>
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo"  >Consultar todos los registros</option>
+                
+            </select>
+           
        </div>
 
        <div class="botones">
@@ -178,5 +209,6 @@
     </main>
  
     <script src="../javascript/opciones.js"></script>
+
 </body>
 </html>

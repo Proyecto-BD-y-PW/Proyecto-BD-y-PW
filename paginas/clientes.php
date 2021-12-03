@@ -4,6 +4,7 @@
     session_start();
     $usuario=$_SESSION['user'];
     $pass=$_SESSION['password'];
+    $_SESSION['pagina']="cliente";
     if($usuario=="" && $pass==""){
         
        echo "<script>
@@ -97,7 +98,7 @@
     </div>
 
        
-   <form action="enviar.php" method="post" class="registrar-mode">
+   <form action="../mysql/insertar.php" method="post" class="registrar-mode">
        <div class="formulario">
        <h2>REGISTRAR CLIENTES</h2>
            <input class="entrada" type="text" id="rfc" name="rfc" placeholder="Ingresa el RFC del cliente" required <?php echo $acceso_reg; ?>>
@@ -119,9 +120,21 @@
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
            <h2>ELIMINAR CLIENTES</h2>
-            <select name="" id="" class="entrada" required <?php echo $acceso_elim ;?>>
+
+
+            <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
+
+
+            <!--<select name="" id="" class="entrada" required <?php echo $acceso_elim ;?>>-->
+
                 <option value="" selected disabled>Clientes disponibles</option>
                 
+            </select>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de eliminacion</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Eliminar todos los registros</option>
             </select>
        </div>
 

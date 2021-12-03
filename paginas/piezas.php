@@ -4,6 +4,7 @@
     session_start();
     $usuario=$_SESSION['user'];
     $pass=$_SESSION['password'];
+    $_SESSION['pagina']="pieza";
     if($usuario=="" && $pass==""){
         
        echo "<script>
@@ -98,17 +99,21 @@
     </div>
 
        
-   <form action="enviar.php" method="post" class="registrar-mode">
+   <form action="../mysql/insertar.php" method="post" class="registrar-mode">
        
         
        <div class="formulario">
            <h2>REGISTRAR PIEZAS</h2>
            <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la pieza" required>
            <select name="tipo" id="tipo" class="entrada" required>
-                <option value="" selected disabled>Tipo de pieza</option>
-                <option value="Venta">Venta</option>
-                <option value="Ensamblado">Ensamblado</option>
+                <option value="" selected disabled>Almacen donde se guardara</option>
             </select>
+              <select name="tipo" id="tipo" class="entrada" required>
+                <option value="" selected disabled>Seleccion el nombre y el modelo</option>
+            </select>
+            <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
+           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
+           
            <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la pieza" required>
        </div>
 
@@ -121,10 +126,20 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR PIEZAS</h2>
-            <select name="id" id="id" class="entrada">
+          <h2>ELIMINAR PIEZAS</h2>
+
+             <h2>ELIMINAR PIEZAS</h2>
+
+            <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
+
                 <option value="" selected disabled>Piezas disponibles</option>
                 
+            </select>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de eliminacion</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Eliminar todos los registros</option>
             </select>
        </div>
 
@@ -156,10 +171,17 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR PIEZAS</h2>
-            <select name="id" id="id" class="entrada">
+            <select name="id" id="disponibles" class="entrada" required>
                 <option value="" selected disabled>Piezas disponibles</option>
                 
             </select>
+          <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="" id="">Solo un registro</option>
+                <option value="" >Consultar todos los registros</option>
+            </select>
+           
        </div>
 
        <div class="botones">
