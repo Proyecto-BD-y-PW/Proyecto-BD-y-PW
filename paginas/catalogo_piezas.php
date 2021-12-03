@@ -4,6 +4,7 @@
     session_start();
     $usuario=$_SESSION['user'];
     $pass=$_SESSION['password'];
+    $_SESSION['pagina']="catalogo_pieza";
     if($usuario=="" && $pass==""){
         
        echo "<script>
@@ -83,8 +84,7 @@
            
         </div>
 
-     <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
-        <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
+         <a href="proveedores.php?op=1"><i class="fas fa-shopping-cart"></i><span>Proveedores</span></a>
         <a href="compras.php?op=1"><i class="fas fa-shopping-cart"></i><span>Compras</span></a>
         <a href="almacen.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
@@ -123,12 +123,18 @@
     
     <form action="enviar.php" method="post" class="eliminar-mode">
        <div class="formulario">
-           <h2>ELIMINAR PIEZAS EN EL CATÁLOGO</h2>
+                 <h2>ELIMINAR NOMBRES DE PIEZAS</h2>
 
-            <select name="id" id="id" class="entrada" required <?php echo $acceso_elim ;?>>
+            <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
-                <option value="" selected disabled>Piezas en el catálogo disponibles</option>
+                <option value="" selected disabled>Nombres de piezas disponibles</option>
                 
+            </select>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de eliminacion</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Eliminar todos los registros</option>
             </select>
        </div>
 
@@ -162,15 +168,12 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        
        <div class="formulario">
-           <h2>CONSULTAR PIEZAS EN EL CATÁLOGO</h2>
-
-            <select name="id" id="id" class="entrada" required <?php echo $acceso_cons ;?>>
-
-                <option value="" selected disabled>Piezas en el catálogo disponibles</option>
+             <h2>CONSULTAR CATALOGO DE PIEZAS</h2>
+            <select name="serie" id="disponibles" class="entrada">
+                <option value="" selected disabled>Piezas registradas</option>
                 
             </select>
-            
-            <select name="tipo-cons" id="consulta" class="entrada" required <?php echo $acceso_cons ;?>>
+             <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de consulta</option>
                 <option value="unico" id="unico">Solo un registro</option>

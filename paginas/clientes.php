@@ -130,7 +130,7 @@
                 <option value="" selected disabled>Clientes disponibles</option>
                 
             </select>
-            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de eliminacion</option>
                 <option value="unico" id="unico">Solo un registro</option>
@@ -166,12 +166,14 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR CLIENTES</h2>
-            <select name="id" id="id" class="entrada" required <?php echo $acceso_cons ;?>>
+
+            <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons ;?>>
+
                 <option value="" selected disabled>Clientes disponibles</option>
                 
             </select>
-            
-            <select name="tipo-cons" id="consulta" class="entrada" required <?php echo $acceso_cons ;?>>
+ 
+            <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de consulta</option>
                 <option value="unico" id="unico">Solo un registro</option>

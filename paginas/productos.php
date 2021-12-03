@@ -110,9 +110,41 @@
            <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
            <input class="entrada" type="text" id="costo" name="costo" placeholder="Ingresa el costo del producto" required>
            <!--El ID del almacen es predeterminado al macen de productos-->
-           <select name="modelo" id="modelo" class="entrada" required>
+             <select name="idalmacen" id="idalmacen" class="entrada" required>
+                <option value="" selected disabled>Almacenes disponibles</option>
+                 
+               <?php 
+                    $op="SELECT * FROM almacen";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."Almacen ".$row['id']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
+            </select>
+             <select name="modelo" id="modelo" class="entrada" required>
                 <option value="" selected disabled>Modelos disponibles</option>
-                <!--Sacar de la BD los modelos registrados-->
+                <?php 
+                    $op="SELECT * FROM modelo";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['nombre'];
+                        echo "<option value='".$i."' >"."Modelo: ".$row['nombre']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
+               
             </select>
        </div>
 
@@ -134,7 +166,7 @@
                 <option value="" selected disabled>Productos disponibles</option>
                 
             </select>
-            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de eliminacion</option>
                 <option value="unico" id="unico">Solo un registro</option>
@@ -170,9 +202,15 @@
  <form action="enviar.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR PRODUCTOS</h2>
-            <select name="serie" id="serie" class="entrada">
+            <select name="serie" id="disponibles" class="entrada">
                 <option value="" selected disabled>Productos disponibles</option>
                 
+            </select>
+             <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Consultar todos los registros</option>
             </select>
        </div>
 
