@@ -79,6 +79,16 @@
     }else if(strcmp($pagina,"pieza")==0){
         
         
+        $tipo=$_POST['tipo'];
+        $id_compras=$_POST['id_compras'];
+        $id_almacen=$_POST['id_almacen'];
+        $nombre=$_POST['nombre'];
+        $modelo=$_POST['modelo'];
+        $descripcion=$_POST['descripcion']
+        
+        $op="INSERT INTO producto(en_almcen,tipo,descripcion,id_compras,id_almacen,nombre,modelo) VALUES (,'1','$tipo','$descripcion','$id_compras','$id_almacen','$nombre','$modelo')";
+        mysqli_query($conexion,$op);
+        
         header('location:../paginas/piezas.php');
         
     }else if(strcmp($pagina,"producto")==0){
@@ -143,6 +153,8 @@
         header('location:../paginas/catalogo_piezas.php');
         
     }else if(strcmp($pagina,"pieza_armado")==0){
+        
+        
         
         header('location:../paginas/pieza_armado.php');
         
