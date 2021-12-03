@@ -114,9 +114,7 @@
 
                <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico" required <?php echo $acceso_reg; ?>>
                <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo" required <?php echo $acceso_reg; ?>>
-           
-
-        
+    
        </div>
 
        <div class="botones">
@@ -137,7 +135,7 @@
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
             </select>
-       </div>s
+       </div>
 
        <div class="botones">
            <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
