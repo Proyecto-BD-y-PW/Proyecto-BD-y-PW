@@ -50,28 +50,8 @@
         $tiempo=date('Y-m-d H:i:s', strtotime("$fecha $hora"));
         $rfc=$_POST['rfc_proveedor'];
         
-        /*Para sacar la cantdad de productos y el precio de la compra*/
-        $op='SELECT p.id, p.nombre, p.modelo, cp.precio,c.id"id_compra"  FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo';
-        $resultado=mysqli_query($conexion,$op)
-        $num_reg=mysqli_num_rows($resultado);
         
-        
-        /*PROBAR SU FUNCIONALIDAD*/
-        
-        
-        
-        if($num_reg > 0){
-            $precio=0;
-            //Mientras mysqli_fetch_array traiga algo, lo agregamos a una variable temporal
-            while($row = mysqli_fetch_array( $resultado ) ){
-              $precio=$precio+$row['precio'];
-            }
-        }
-        
-        /*libera la memoria*/
-        mysqli_free_result( $resultado )
-        
-        $op="INSERT INTO compras(fecha,cantidad,precio,estatus,RFC) VALUES ('$tiempo','$num_reg','$precio','1','$rfc')";
+        $op="INSERT INTO compras(fecha,cantidad,precio,estatus,RFC) VALUES ('$tiempo','0','0','1','$rfc')";
         mysqli_query($conexion,$op);
         
         header('location:../paginas/compras.php');
@@ -86,7 +66,42 @@
         $modelo=$_POST['modelo'];
         $descripcion=$_POST['descripcion']
         
+        
         $op="INSERT INTO producto(en_almcen,tipo,descripcion,id_compras,id_almacen,nombre,modelo) VALUES (,'1','$tipo','$descripcion','$id_compras','$id_almacen','$nombre','$modelo')";
+        mysqli_query($conexion,$op);
+        
+        /*Para sacar la cantidad de productos y el precio de la compra y si esta pieza esta en elmacen*/
+        $op='SELECT p.id, p.nombre, p.modelo, cp.precio,c.id"id_compra", p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo';
+        $resultado=mysqli_query($conexion,$op);
+        $num_reg=mysqli_num_rows($resultado);
+        
+        /*PROBAR SU FUNCIONALIDAD*/
+        if($num_reg > 0){
+            $precio=0;
+            
+            //Mientras mysqli_fetch_array traiga algo, lo agregamos a una variable temporal
+            while($row = mysqli_fetch_array( $resultado ) ){
+              if($row['id_compra']==$id_compras && $row['en_almacen']==true){
+                  $precio=$precio+$row['precio'];
+              }  
+            }
+        }
+        
+        $op="UPDATE compras SET precio='$precio' WHERE id='$id_compras'";
+        mysqli_query($conexion,$op);
+        
+        /*libera la memoria*/
+        mysqli_free_result( $resultado );
+        
+        $op="SELECT * FROM compras WHERE id='$id_compras'";
+        $resultado=mysqli_query($conexion,$op);
+        $row = mysqli_fetch_array( $resultado );
+        $cantidad=$row['cantidad']+1;
+        
+        /*libera la memoria*/
+        mysqli_free_result( $resultado );
+        
+        $op="UPDATE compras SET cantidad='$cantidad' WHERE id='$id_compras'";
         mysqli_query($conexion,$op);
         
         header('location:../paginas/piezas.php');
