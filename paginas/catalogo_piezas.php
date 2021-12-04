@@ -101,7 +101,7 @@
     </div>
 
        
-   <form action="../mysql/inserciones/enviarProveedores.php" method="post" class="registrar-mode" >
+   <form action="../mysql/insertar.php" method="post" class="registrar-mode" >
           <div class="formulario" >
            <h2>REGISTRAR PIEZAS EN EL CATÁLOGO</h2>
 

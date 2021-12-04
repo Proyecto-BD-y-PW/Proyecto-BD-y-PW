@@ -138,7 +138,7 @@
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['nombre'];
-                        echo "<option value='".$i."' >"."Modelo: ".$row['nombre']."</option>";
+                            echo "<option value='".$i."' >"."Modelo: ".$row['nombre']."</option>";
                         
                         
                     }

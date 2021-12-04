@@ -105,7 +105,7 @@
         $telefono=$_POST['telefono'];
         $email=$_POST['correo'];
 
-        $op="INSERT INTO proveedores (RFC,empresa,nombre_proveedor,descripcion,telefono,email)VALUES ('$RFC','$empresa','$nombre','$descripcion','$telefono','$email')";
+        $op="INSERT INTO proveedores (RFC,empresa,nombre_proveedor,descripcion,telefono,email,estatus)VALUES ('$RFC','$empresa','$nombre','$descripcion','$telefono','$email','1')";
         mysqli_query($conexion,$op);
         header('location:../paginas/proveedores.php');
     }else if(strcmp($pagina,"venta")==0){
@@ -208,7 +208,11 @@
         $hora=$_POST['hora'];
         $tiempo=date('Y-m-d H:i:s', strtotime("$fecha $hora"));
        
-        $op="INSERT INTO venta_armado(id,fecha) VALUES ('$id','$tiempo')";
+        $op="INSERT INTO pieza_armado(id,fecha) VALUES ('$id','$tiempo')";
+        mysqli_query($conexion,$op);
+        $op="UPDATE pieza SET tipo='armado' WHERE id='$id'";
+        mysqli_query($conexion,$op);
+         $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
         mysqli_query($conexion,$op);
         
         
@@ -216,8 +220,10 @@
         
     }else if(strcmp($pagina,"pieza_venta")==0){
         $id=$_POST['id-pieza'];
-        $precio=$_POST['precio_publico'];
-        $op="INSERT INTO venta_pieza(id,precio_publico) VALUES ('$id','$precio')";
+        $precio=$_POST['precio'];
+        $op="INSERT INTO pieza_venta(id,precio_publico) VALUES ('$id','$precio')";
+        mysqli_query($conexion,$op);
+        $op="UPDATE pieza SET tipo='venta' WHERE id='$id'";
         mysqli_query($conexion,$op);
         
         

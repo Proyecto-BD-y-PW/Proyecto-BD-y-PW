@@ -114,15 +114,18 @@
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['id'];
-                        echo "<option value='".$i."' >".$row['nombre'].$row['modelo']."</option>";
-                        
+                        if($row['tipo']==""){
+                            echo "<option value='".$i."' >".$row['nombre'].$row['modelo']."</option>";
+                        }else{
+                            
+                        }
                         
                     }
                 mysqli_close($conexion);
                 ?>
               </select>
-               <input class="entrada" type="date" id="descripción" name="fecha" placeholder="Ingresa la fecha" required <?php echo $acceso_reg; ?>>
-               <input class="entrada" type="time" id="descripción" name="hora" placeholder="Ingresa la hora" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora" required <?php echo $acceso_reg; ?>>
 
              
 

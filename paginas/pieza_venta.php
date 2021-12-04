@@ -114,8 +114,11 @@
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['id'];
-                        echo "<option value='".$i."' >".$row['nombre'].$row['modelo']."</option>";
-                        
+                        if($row['tipo']==""){
+                            echo "<option value='".$i."' >".$row['nombre']." ".$row['modelo']." ID:".$row['id']."</option>";
+                        }else{
+                            
+                        }
                         
                     }
                 mysqli_close($conexion);

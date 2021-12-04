@@ -132,8 +132,9 @@
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['id'];
-                        echo "<option value='".$i."' >"."compra: ".$row['id']."</option>";
-                        
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."compra: ".$row['id']."</option>";
+                        }
                         
                     }
                 mysqli_close($conexion);
