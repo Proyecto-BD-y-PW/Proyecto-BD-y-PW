@@ -107,7 +107,7 @@
            <label for="" class="entrada">Ingresar Fecha y Hora de la compra: </label>
            <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required <?php echo $acceso_reg; ?>>
            <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required <?php echo $acceso_reg; ?>>
-           <select name="" id="">
+           <select name="rfc_proveedor" id="rfc">
                <option value="" selected disabled>Selecciona un proveedor</option>
                    <?php 
                     $op="SELECT * FROM proveedores";

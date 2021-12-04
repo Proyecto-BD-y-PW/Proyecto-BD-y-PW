@@ -119,9 +119,7 @@
 
                <input class="entrada" type="text" id="telefono" name="telefono" placeholder="Ingresa tu numero telefonico" required <?php echo $acceso_reg; ?>>
                <input class="entrada" type="text" id="correo" name="correo" placeholder="Ingresa el correo" required <?php echo $acceso_reg; ?>>
-           
-
-        
+    
        </div>
 
        <div class="botones">
@@ -142,12 +140,14 @@
                 <option value="" selected disabled>Proveedores disponibles</option>
                 
             </select>
+
             <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de eliminacion</option>
                 <option value="unico" id="unico">Solo un registro</option>
                 <option value="todo" >Eliminar todos los registros</option>
             </select>
+
        </div>
 
        <div class="botones">

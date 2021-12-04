@@ -27,11 +27,13 @@
         $op="INSERT INTO modelo(nombre,estatus,id_arquitectura) VALUES ('$nombre',1,'$id_arquitectura')";
         mysqli_query($conexion,$op);
         header('location:../paginas/modelo.php');
+        
     }else if(strcmp($pagina,"arquitectura")==0){
         $tipo=$_POST['tipo'];
         $op="INSERT INTO arquitectura(tipo,estatus) VALUES ('$tipo',1)";
         mysqli_query($conexion,$op);
-        header('location:../paginas/arquitecturas.php');        
+        header('location:../paginas/arquitecturas.php'); 
+        
     }else if(strcmp($pagina,"cliente")==0){
         $rfc=$_POST['rfc'];
         $nombre=$_POST['nombre'];
@@ -41,11 +43,19 @@
         mysqli_query($conexion,$op);
         
         header('location:../paginas/clientes.php');
+        
     }else if(strcmp($pagina,"compra")==0){
+        $fecha=$_POST['fecha'];
+        $hora=$_POST['hora'];
+        $tiempo=date('Y-m-d H:i:s', strtotime("$fecha $hora"));
+        $rfc=$_POST['rfc_proveedor'];
         
         
+        $op="INSERT INTO compras(fecha,cantidad,precio,estatus,RFC) VALUES ('$tiempo','0','0','1','$rfc')";
+        mysqli_query($conexion,$op);
         
         header('location:../paginas/compras.php');
+        
     }else if(strcmp($pagina,"pieza")==0){
         $id=$_POST['id'];
         $id_almacen=$_POST['idalmacen'];
@@ -81,7 +91,47 @@
         
         
         
+        
+        
+     /*   $op="INSERT INTO producto(en_almcen,tipo,descripcion,id_compras,id_almacen,nombre,modelo) VALUES (,'1','$tipo','$descripcion','$id_compras','$id_almacen','$nombre','$modelo')";
+        mysqli_query($conexion,$op);*/
+        
+        /*Para sacar la cantidad de productos y el precio de la compra y si esta pieza esta en elmacen*/
+        $op='SELECT p.id, p.nombre, p.modelo, cp.precio,c.id"id_compra", p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo';
+        $resultado=mysqli_query($conexion,$op);
+        $num_reg=mysqli_num_rows($resultado);
+        
+        /*PROBAR SU FUNCIONALIDAD*/
+        if($num_reg > 0){
+            $precio=0;
+            
+            //Mientras mysqli_fetch_array traiga algo, lo agregamos a una variable temporal
+            while($row = mysqli_fetch_array( $resultado ) ){
+              if($row['id_compra']==$id_compras && $row['en_almacen']==true){
+                  $precio=$precio+$row['precio'];
+              }  
+            }
+        }
+        
+        $op="UPDATE compras SET precio='$precio' WHERE id='$id_compras'";
+        mysqli_query($conexion,$op);
+        
+        /*libera la memoria*/
+        mysqli_free_result( $resultado );
+        
+        $op="SELECT * FROM compras WHERE id='$id_compras'";
+        $resultado=mysqli_query($conexion,$op);
+        $row = mysqli_fetch_array( $resultado );
+        $cantidad=$row['cantidad']+1;
+        
+        /*libera la memoria*/
+        mysqli_free_result( $resultado );
+        
+        $op="UPDATE compras SET cantidad='$cantidad' WHERE id='$id_compras'";
+        mysqli_query($conexion,$op);
+        
         header('location:../paginas/piezas.php');
+        
     }else if(strcmp($pagina,"producto")==0){
         $noserie=$_POST['nserie'];
         $descripcion=$_POST['descripcion'];
@@ -95,9 +145,11 @@
         $op="INSERT INTO producto(no_serie,en_almacen,descripcion,fecha,costo,id_almacen,nombre_modelo) VALUES ('$noserie','1','$descripcion','$tiempo','$costo','$id_almacen','$nombre_modelo')";
         mysqli_query($conexion,$op);
         
+
         header('location:../paginas/productos.php');
     }else if(strcmp($pagina,"proveedor")==0){
         /*ya esta por parte de juca*/
+
         $RFC=$_POST['rfc'];
         $empresa=$_POST['empresa'];
         $nombre=$_POST['nproveedor'];
@@ -105,9 +157,12 @@
         $telefono=$_POST['telefono'];
         $email=$_POST['correo'];
 
+
         $op="INSERT INTO proveedores (RFC,empresa,nombre_proveedor,descripcion,telefono,email,estatus)VALUES ('$RFC','$empresa','$nombre','$descripcion','$telefono','$email','1')";
         mysqli_query($conexion,$op);
         header('location:../paginas/proveedores.php');
+
+
     }else if(strcmp($pagina,"venta")==0){
         $rfc=$_POST['rfc'];
         $idempleado=$_POST['idempleado'];
@@ -214,6 +269,8 @@
         mysqli_query($conexion,$op);
          $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
         mysqli_query($conexion,$op);
+        
+        
         
         
         header('location:../paginas/pieza_armado.php');
