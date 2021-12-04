@@ -224,7 +224,20 @@
 
 
                 <option value="" selected disabled>Ventas disponibles</option>
-                
+                 <?php 
+                    $op="SELECT * FROM venta";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."Id: ".$row['id']."  fecha: ".$row['fecha']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
             <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 

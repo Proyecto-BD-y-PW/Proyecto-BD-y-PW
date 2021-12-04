@@ -116,7 +116,7 @@
                   
                     
                     while($row=mysqli_fetch_array($resultado)){
-                        $i=$row['nombre'];
+                        $i=$row['RFC'];
                         if($row['estatus']){
                             echo "<option value='".$i."' >"."Proveedor: ".$row['empresa']." RFC: ".$row['RFC']."</option>";
                         }
@@ -145,7 +145,20 @@
             <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Compras disponibles</option>
-                
+                 <?php 
+                    $op="SELECT * FROM compras";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."Id: ".$row['id']."  fecha: ".$row['fecha']." Proveedor: ".$row['RFC']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
             <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
