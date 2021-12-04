@@ -104,10 +104,25 @@
           <div class="formulario" >
            <h2>REGISTRAR PIEZAS DE ARMADO</h2>
 
-             <select name="id-arquitectura" id="id-pieza" class="entrada" required <?php echo $acceso_reg; ?>>
+             <select name="id-pieza" id="id-pieza" class="entrada" required <?php echo $acceso_reg; ?>>
                    <option value="" selected disabled>Piezas disponibles en almacen</option>
+                    <?php 
+                    $op="SELECT * FROM pieza";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >".$row['nombre'].$row['modelo']."</option>";
+                        
+                        
+                    }
+                mysqli_close($conexion);
+                ?>
               </select>
-               <input class="entrada" type="number" id="descripción" name="descripcion" placeholder="Ingresa el precio al publico" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="date" id="descripción" name="fecha" placeholder="Ingresa la fecha" required <?php echo $acceso_reg; ?>>
+               <input class="entrada" type="time" id="descripción" name="hora" placeholder="Ingresa la hora" required <?php echo $acceso_reg; ?>>
 
              
 
@@ -132,7 +147,7 @@
                 <option value="" selected disabled>Piezas de armado disponibles</option>
                 
             </select>
-            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de eliminacion</option>
                 <option value="unico" id="unico">Solo un registro</option>

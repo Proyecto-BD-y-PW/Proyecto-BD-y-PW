@@ -105,16 +105,65 @@
        <div class="formulario">
            <h2>REGISTRAR PIEZAS</h2>
            <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la pieza" required>
-           <select name="tipo" id="tipo" class="entrada" required>
+           <select name="idalmacen" id="tipo" class="entrada" required>
                 <option value="" selected disabled>Almacen donde se guardara</option>
+                 <?php 
+                    $op="SELECT * FROM almacen";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >".$row['nombre']." ".$row['id']."</option>";
+                        
+                        
+                    }
+                mysqli_close($conexion);
+                ?>
             </select>
-              <select name="tipo" id="tipo" class="entrada" required>
-                <option value="" selected disabled>Seleccion el nombre y el modelo</option>
+            <select name="idcompras" id="tipo" class="entrada" required>
+                <option value="" selected disabled>Compra a la que pertenece</option>
+                 <?php 
+                    $op="SELECT * FROM compras";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."compra: ".$row['id']."</option>";
+                        
+                        
+                    }
+                mysqli_close($conexion);
+                ?>
             </select>
-            <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
-           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
-           
+            
+            <select name="nombremodelo" id="tipo" class="entrada" required>
+                <option value="" selected disabled>Seleccion el nombre y modelo</option>
+                 <?php 
+                    $op="SELECT * FROM catalogo_pieza";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    $separador="*";
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['nombre'];
+                        $j=$row['modelo'];
+                        
+                        echo "<option value='".$i.$separador.$j."' >".$row['nombre']." ".$row['modelo']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
+            </select>
+            
+           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
+           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>           
            <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la pieza" required>
+           
        </div>
 
        <div class="botones">
@@ -135,7 +184,7 @@
                 <option value="" selected disabled>Piezas disponibles</option>
                 
             </select>
-            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de eliminacion</option>
                 <option value="unico" id="unico">Solo un registro</option>

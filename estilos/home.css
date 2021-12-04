@@ -10,6 +10,7 @@ html{
 body{
     font-size: 2rem;
     background-color: #4d84e2;
+    overflow-y: auto;
 }
 
 .contenedor{
@@ -17,7 +18,7 @@ body{
     width: 100%;
     min-height: 100vh;
     background-color: #4d84e2;
-    overflow: hidden;
+    overflow-y: auto;
 }
 img{
     position: absolute;
@@ -417,4 +418,42 @@ input[type="text"]:disabled{
     visibility: hidden; 
     display: none;
 
+}
+
+.piezas{
+    /*height: 150px;
+    width: 100%;*/
+    overflow-y: auto;
+    
+  /*  display: flex;
+    flex-direction: column;*/
+}
+.productos{
+    margin-top: 15px;
+    height: 150px;
+    width: 100%;
+    overflow-y: auto;
+    background: yellow;
+}
+.checks{
+    font-family: "Arial";
+      width: 200px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    
+}
+#checkboxs{
+     width: 30px;
+       margin-top: 15px;
+}
+input[type="checkbox"]{
+  /*  width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;*/
+   
+    
 }
