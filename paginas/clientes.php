@@ -67,7 +67,7 @@
 
             <div class="header-right">
                <a href="../funciones/closeSession.php">
-                    <button>REGRESAR</button>
+                    <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
@@ -136,7 +136,7 @@
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['RFC'];
-                        echo "<option value='".$i."' >"."RFC: ".$row['RFC']."  nombre: ".$row['nombre']."</option>";
+                        echo "<option value='".$i."' >"."*RFC: ".$row['RFC']."  *NOMBRE: ".$row['nombre']."</option>";
                         
                         
                     }

@@ -68,7 +68,7 @@
 
             <div class="header-right">
                <a href="../funciones/closeSession.php">
-                    <button>REGRESAR</button>
+                    <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
@@ -133,11 +133,11 @@
                     $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
                     $resultado=mysqli_query($conexion,$op);
                   
-                    
+                    $separador="*";
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['nombre'];
                         $j=$row['modelo'];
-                        echo "<option value='".$i.$j."' >"."Nombre: ".$row['nombre']."  modelo: ".$row['modelo']."</option>";
+                        echo "<option value='".$i.$separador.$j."' >"."*NOMBRE: ".$row['nombre']."  *MODELO: ".$row['modelo']."</option>";
                         
                         
                     }

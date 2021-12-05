@@ -67,7 +67,7 @@
 
             <div class="header-right">
                <a href="../funciones/closeSession.php">
-                    <button>REGRESAR</button>
+                    <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
@@ -132,7 +132,7 @@
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['id'];
                         if($row['estatus']){
-                            echo "<option value='".$i."' >"."Id: ".$row['id']."  tipo: ".$row['tipo']."</option>";
+                            echo "<option value='".$i."' >"."*ID: ".$row['id']."  *TIPO: ".$row['tipo']."</option>";
                         }
                         
                     }

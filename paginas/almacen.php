@@ -68,7 +68,7 @@
 
             <div class="header-right">
                <a href="../funciones/closeSession.php">
-                    <button>REGRESAR</button>
+                    <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
@@ -103,7 +103,7 @@
        
    <form action="../mysql/insertar.php" method="post" class="registrar-mode" >
           <div class="formulario" >
-           <h2>REGISTRAR ALMACEN</h2>
+        <h2>REGISTRAR ALMACEN</h2>
 
          
                
@@ -138,7 +138,7 @@
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['id'];
-                        echo "<option value='".$i."' >"."Id: ".$row['id']."  nombre: ".$row['nombre']."</option>";
+                        echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']."</option>";
                         
                         
                     }
