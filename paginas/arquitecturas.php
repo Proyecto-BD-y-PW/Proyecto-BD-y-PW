@@ -155,12 +155,25 @@
       
      
    </form>
-    <form action="enviar.php" method="post" class="actualizar-mode">
+    <form action="../cambiosPaginas/cam_arquitectura.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR ARQUITECTURAS</h2>
             <select name="id" id="id" class="entrada" required <?php echo $acceso_actua; ?>>
                 <option value="" selected disabled>Arquitecturas disponibles</option>
-                
+                <?php 
+                    $op="SELECT * FROM arquitectura";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."ID: ".$row['id']."  Arquitectura: ".$row['tipo']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
        </div>
 

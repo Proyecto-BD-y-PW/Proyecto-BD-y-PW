@@ -136,7 +136,7 @@
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['RFC'];
-                        echo "<option value='".$i."' >"."RFC: ".$row['RFC']."  nombre: ".$row['nombre']."</option>";
+                        echo "<option value='".$i."' >"."RFC: ".$row['RFC']."  Nombre: ".$row['nombre']."</option>";
                         
                         
                     }
@@ -159,12 +159,25 @@
       
      
    </form>
-    <form action="enviar.php" method="post" class="actualizar-mode">
+    <form action="../cambiosPaginas/cam_clientes.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR CLIENTES</h2>
-            <select name="" id="" class="entrada" required <?php echo $acceso_actua ;?>>
+            <select name="rfc" id="" class="entrada" required <?php echo $acceso_actua ;?>>
                 <option value="" selected disabled>Clientes disponibles</option>
-                
+                <?php 
+                    $op="SELECT * FROM cliente";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['RFC'];
+                        echo "<option value='".$i."' >"."RFC: ".$row['RFC']."  Nombre: ".$row['nombre']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
        </div>
 
