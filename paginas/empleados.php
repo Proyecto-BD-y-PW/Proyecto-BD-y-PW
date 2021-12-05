@@ -66,7 +66,7 @@
 
             <div class="header-right">
                <a href="../funciones/closeSession.php">
-                    <button>REGRESAR</button>
+                    <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
@@ -123,7 +123,21 @@
             <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Empleados disponibles</option>
-                
+                 <?php 
+                    $op="SELECT * FROM empleado";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']."</option>";
+                        }
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
             <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 

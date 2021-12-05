@@ -37,9 +37,7 @@
         $op="DELETE FROM $pagina";
         mysqli_query($conexion,$op);
     }else if(strcmp($tipo_elim,"almacen")==0){
-        
-        
-        
+
     }else if(strcmp($tipo_elim,"arquitectura")==0){
         
     }else if(strcmp($tipo_elim,"catalogo_pieza")==0){

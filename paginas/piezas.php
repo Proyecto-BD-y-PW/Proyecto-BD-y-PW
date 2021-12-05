@@ -67,7 +67,7 @@
 
             <div class="header-right">
                <a href="funciones/closeSession.php">
-                    <button>REGRESAR</button>
+                    <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
@@ -89,6 +89,7 @@
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
         <a href="pieza_venta.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
         <a href="pieza_armado.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
+        <a href="catalogo_piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Catálogo de Piezas</span></a>
         <a href="productos.php?op=1"><i class="fas fa-shopping-cart"></i><span>Productos</span></a>
         <a href="modelo.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
         <a href="arquitecturas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitecura</span></a>
@@ -105,16 +106,64 @@
        <div class="formulario">
            <h2>REGISTRAR PIEZAS</h2>
            <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la pieza" required>
-           <select name="tipo" id="tipo" class="entrada" required>
+           <select name="idalmacen" id="tipo" class="entrada" required>
                 <option value="" selected disabled>Almacen donde se guardara</option>
+                 <?php 
+                    $op="SELECT * FROM almacen";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."*NOMBRE: ".$row['nombre']." *ID:".$row['id']."</option>";
+                        
+                        
+                    }
+                mysqli_close($conexion);
+                ?>
             </select>
-              <select name="tipo" id="tipo" class="entrada" required>
-                <option value="" selected disabled>Seleccion el nombre y el modelo</option>
+            <select name="idcompras" id="tipo" class="entrada" required>
+                <option value="" selected disabled>Compra a la que pertenece</option>
+                 <?php 
+                    $op="SELECT c.estatus,c.id,p.RFC,p.empresa FROM compras c JOIN proveedores p ON c.RFC=p.RFC";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."*COMPRA: ".$row['id']." *PROVEEDOR: ".$row['empresa']." *RFC: ".$row['RFC']."</option>";
+                        }
+                        
+                    }
+                mysqli_close($conexion);
+                ?>
             </select>
-            <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
-           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
+            
+            <select name="nombremodelo" id="tipo" class="entrada" required>
+                <option value="" selected disabled>Seleccion el nombre y modelo</option>
+                 <?php 
+                    $op="SELECT * FROM catalogo_pieza";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    $separador="*";
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['nombre'];
+                        $j=$row['modelo'];
+                        
+                        echo "<option value='".$i.$separador.$j."' >".$row['nombre']." ".$row['modelo']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
+            </select>
+            
+             <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la pieza" required>
            
-           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la pieza" required>
        </div>
 
        <div class="botones">
@@ -128,17 +177,47 @@
        <div class="formulario">
           <h2>ELIMINAR PIEZAS</h2>
 
-             <h2>ELIMINAR PIEZAS</h2>
-
-            <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
+             <select name="id-elim" id="elim-id" class="remove" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Piezas disponibles</option>
-                
+                 <?php 
+                    $op="SELECT * FROM pieza";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']." *MODELO: ".$row['modelo']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
-            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+             <select name="fecha" id="elim-fecha" class="remove" required <?php echo $acceso_elim ;?>>
+
+                <option value="" selected disabled>Fechas registradas</option>
+                 <?php 
+                    $op="SELECT distinct c.fecha FROM pieza p JOIN compras c ON p.id_compras=c.id";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['fecha'];
+                        echo "<option value='".$i."' >"."*FECHA: ".$row['fecha']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
+            </select>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de eliminacion</option>
-                <option value="unico" id="unico">Solo un registro</option>
+                <option value="unico-id" id="unico">Solo un registro por su id</option>
+                <option value="unico-fecha" id="unico">Registros con una fecha en especifico</option>
                 <option value="todo" >Eliminar todos los registros</option>
             </select>
        </div>
@@ -204,6 +283,6 @@
         
         
     
-    <script src="../javascript/opciones.js"></script>
+    <script src="../javascript/ventas.js"></script>
 </body>
 </html>

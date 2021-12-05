@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2021 a las 02:52:41
+-- Tiempo de generación: 04-12-2021 a las 03:07:47
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.5
 
@@ -33,6 +33,14 @@ CREATE TABLE `almacen` (
   `capital` decimal(10,2) NOT NULL,
   `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `almacen`
+--
+
+INSERT INTO `almacen` (`id`, `descripcion`, `capital`, `nombre`) VALUES
+(1, 'fabrica', '5000000.00', 'fdiaz'),
+(2, 'fabrica', '6000000.00', 'tecparts');
 
 -- --------------------------------------------------------
 
@@ -67,6 +75,14 @@ CREATE TABLE `catalogo_pieza` (
   `precio` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `catalogo_pieza`
+--
+
+INSERT INTO `catalogo_pieza` (`nombre`, `modelo`, `precio`) VALUES
+('procesador', 'amd', '1200.00'),
+('procesador', 'intel', '1200.00');
+
 -- --------------------------------------------------------
 
 --
@@ -76,9 +92,16 @@ CREATE TABLE `catalogo_pieza` (
 CREATE TABLE `cliente` (
   `RFC` char(5) COLLATE utf8_unicode_ci NOT NULL,
   `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `telefono` int(11) NOT NULL,
+  `telefono` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`RFC`, `nombre`, `telefono`, `email`) VALUES
+('RAM52', 'Heriberto', '4491245214', 'Heri@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -95,6 +118,14 @@ CREATE TABLE `compras` (
   `RFC` char(5) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `compras`
+--
+
+INSERT INTO `compras` (`id`, `fecha`, `cantidad`, `precio`, `estatus`, `RFC`) VALUES
+(3, '2021-09-09 17:52:16', 1, '500.00', 1, 'CRMIS'),
+(4, '2021-09-19 19:33:14', 1, '1000.00', 1, 'JCABI');
+
 -- --------------------------------------------------------
 
 --
@@ -105,9 +136,16 @@ CREATE TABLE `empleado` (
   `id` int(11) NOT NULL,
   `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `estatus` tinyint(1) NOT NULL,
-  `telefono` int(11) NOT NULL,
+  `telefono` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `correo` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `empleado`
+--
+
+INSERT INTO `empleado` (`id`, `nombre`, `estatus`, `telefono`, `correo`) VALUES
+(1, 'Hector', 1, '4963335541', 'hector11@outlook.com');
 
 -- --------------------------------------------------------
 
@@ -126,6 +164,9 @@ CREATE TABLE `modelo` (
 --
 
 INSERT INTO `modelo` (`nombre`, `estatus`, `id_arquitectura`) VALUES
+('hardcore', 1, 1),
+('patito', 1, 3),
+('standar', 1, 2),
 ('super', 1, 1);
 
 -- --------------------------------------------------------
@@ -144,6 +185,14 @@ CREATE TABLE `pieza` (
   `nombre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `modelo` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `pieza`
+--
+
+INSERT INTO `pieza` (`id`, `en_almacen`, `tipo`, `descripcion`, `id_compras`, `id_almacen`, `nombre`, `modelo`) VALUES
+('proc0', 0, 'venta', 'hola', 3, 1, 'procesador', 'intel'),
+('proc1', 1, 'venta', 'hola', 3, 1, 'procesador', 'amd');
 
 -- --------------------------------------------------------
 
@@ -179,6 +228,14 @@ CREATE TABLE `pieza_venta` (
   `precio_publico` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `pieza_venta`
+--
+
+INSERT INTO `pieza_venta` (`id`, `precio_publico`) VALUES
+('proc0', '1000.00'),
+('proc1', '1000.00');
+
 -- --------------------------------------------------------
 
 --
@@ -195,6 +252,14 @@ CREATE TABLE `producto` (
   `nombre_modelo` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`no_serie`, `en_almacen`, `descripcion`, `fecha`, `costo`, `id_almacen`, `nombre_modelo`) VALUES
+('diskt', 0, 'laptop', '2021-06-27 00:00:00', '700.00', 2, 'hardcore'),
+('displ', 1, 'compu', '2021-08-27 00:00:00', '500.00', 1, 'hardcore');
+
 -- --------------------------------------------------------
 
 --
@@ -206,11 +271,18 @@ CREATE TABLE `proveedores` (
   `empresa` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `nombre_proveedor` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `descripcion` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
-  `producto` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `telefono` int(11) NOT NULL,
+  `telefono` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `estatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `proveedores`
+--
+
+INSERT INTO `proveedores` (`RFC`, `empresa`, `nombre_proveedor`, `descripcion`, `telefono`, `email`, `estatus`) VALUES
+('CRMIS', 'CompuTec', 'Luis Enrique', 'Empresa responsable', '2147483647', 'computec@gmail.com', 1),
+('JCABI', 'Sitec', 'Juan Carlos', 'Empresa Comprometida', '2147483647', 'sitecprove@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -250,6 +322,13 @@ CREATE TABLE `venta` (
   `RFC_cliente` char(5) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `venta`
+--
+
+INSERT INTO `venta` (`id`, `fecha`, `cantidad`, `total`, `estatus`, `id_empleado`, `RFC_cliente`) VALUES
+(1, '2021-12-12 19:24:00', 0, '0.00', 1, 1, 'RAM52');
+
 -- --------------------------------------------------------
 
 --
@@ -271,6 +350,13 @@ CREATE TABLE `venta_producto` (
   `no_serie` char(5) COLLATE utf8_unicode_ci NOT NULL,
   `id_venta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `venta_producto`
+--
+
+INSERT INTO `venta_producto` (`no_serie`, `id_venta`) VALUES
+('diskt', 1);
 
 --
 -- Índices para tablas volcadas
@@ -398,7 +484,7 @@ ALTER TABLE `venta_producto`
 -- AUTO_INCREMENT de la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `arquitectura`
@@ -410,19 +496,19 @@ ALTER TABLE `arquitectura`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas

@@ -67,7 +67,7 @@
 
             <div class="header-right">
                <a href="../funciones/closeSession.php">
-                    <button>REGRESAR</button>
+                    <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
@@ -107,9 +107,23 @@
            <label for="" class="entrada">Ingresar Fecha y Hora de la compra: </label>
            <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required <?php echo $acceso_reg; ?>>
            <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required <?php echo $acceso_reg; ?>>
-           <select name="" id="">
+           <select name="rfc_proveedor" id="rfc">
                <option value="" selected disabled>Selecciona un proveedor</option>
-                   
+                   <?php 
+                    $op="SELECT * FROM proveedores";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['RFC'];
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."*PROVEEDOR: ".$row['empresa']." *RFC: ".$row['RFC']."</option>";
+                        }
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
                
            </select>
            <!--Recordar que el ID del alamecen lo lleva la compra solo que esta predetermindo al almacen qe va la compra-->
@@ -128,15 +142,49 @@
        <div class="formulario">
             <h2>ELIMINAR COMPRAS</h2>
 
-            <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
+            <select name="id-elim" id="elim-id" class="remove" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Compras disponibles</option>
-                
+                 <?php 
+                    $op="SELECT * FROM compras";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."*ID: ".$row['id']."  *FECHA: ".$row['fecha']." *PROVEEDOR: ".$row['RFC']."</option>";
+                        }
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
-            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+             <select name="fecha" id="elim-fecha" class="remove" required <?php echo $acceso_elim ;?>>
+
+                <option value="" selected disabled>Fechas registradas</option>
+                 <?php 
+                    $op="SELECT * FROM compras";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['fecha'];
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."*FECHA: ".$row['fecha']."</option>";
+                        }
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
+            </select>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de eliminacion</option>
-                <option value="unico" id="unico">Solo un registro</option>
+                <option value="unico-id" id="unico">Solo un registro por su id</option>
+                <option value="unico-fecha" id="unico">Registros con una fecha en especifico</option>
                 <option value="todo" >Eliminar todos los registros</option>
             </select>
        </div>
@@ -202,6 +250,6 @@
        
  
     
-    <script src="../javascript/opciones.js"></script>
+    <script src="../javascript/ventas.js"></script>
 </body>
 </html>

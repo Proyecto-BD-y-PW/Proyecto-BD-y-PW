@@ -68,7 +68,7 @@
 
             <div class="header-right">
                <a href="../funciones/closeSession.php">
-                    <button>REGRESAR</button>
+                    <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
@@ -90,6 +90,7 @@
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
         <a href="pieza_venta.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
         <a href="pieza_armado.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
+        <a href="catalogo_piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Catálogo de Piezas</span></a>
         <a href="productos.php?op=1"><i class="fas fa-shopping-cart"></i><span>Productos</span></a>
         <a href="modelo.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
         <a href="arquitecturas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitecura</span></a>
@@ -114,7 +115,7 @@
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['id'];
-                        echo "<option value='".$i."' >".$row['tipo']."</option>";
+                        echo "<option value='".$i."' >"."*ID: ".$row['id']." *TIPO: ".$row['tipo']."</option>";
                         
                         
                     }
@@ -139,9 +140,23 @@
             <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Modelo disponibles</option>
-                
+                 <?php 
+                    $op="SELECT * FROM modelo m JOIN arquitectura a ON m.id_arquitectura=a.id";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['nombre'];
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."*NOMBRE: ".$row['nombre']."  *ARQUITECTURA: ".$row['tipo']."</option>";
+                        }
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
-            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de eliminacion</option>
                 <option value="unico" id="unico">Solo un registro</option>

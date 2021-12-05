@@ -106,21 +106,106 @@
            <h2>REGISTRAR VENTAS</h2>
            <!--Recordar que el ID de la ventas es automatica-->
            <!--Cantidad y total calculados de ventas-->
-           <select name="id" id="id" class="entrada" required <?php echo $acceso_reg; ?>>
+           <select name="rfc" id="id" class="entrada" required <?php echo $acceso_reg; ?>>
                 <option value="" selected disabled>Elegir el RFC del cliente</option>
-                
+                <?php 
+                    $op="SELECT * FROM cliente";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['RFC'];
+                        echo "<option value='".$i."' >"."RFC: ".$row['RFC']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
            </select>
            <select name="idempleado" id="idempleado" class="entrada" required <?php echo $acceso_reg; ?>>
                 <option value="" selected disabled>Elegir ID del empleado</option>
-                
+                <?php 
+                    $op="SELECT * FROM empleado";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."Empleado: ".$row['nombre']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
            </select>
            <label for="" class="entrada">Ingresar Fecha y Hora de la venta: </label>
            <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required <?php echo $acceso_reg; ?>>
            <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required <?php echo $acceso_reg; ?>>
-         
+          
+            <label for="" class="entrada">Piezas disponibles: </label>
+          
+             <div class="piezas" >
+                <ol>
+                 <?php 
+                    $op="SELECT pv.id ,p.nombre, p.modelo,p.en_almacen FROM pieza_venta pv JOIN pieza p ON pv.id=p.id";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $id=$row['id'];
+                        $nombre=$row['nombre'];
+                        $modelo=$row['modelo'];
+                        if($row['en_almacen']>0){
+                            echo "<li>
+                                <div class='checks'>
+                                    <input type='checkbox' name='$id' id='checkboxs'><label for='checkboxs'>$id $nombre $modelo</label>  
+                                </div>
+                            </li>";
+                        
+                        }
+                    }
+                        mysqli_close($conexion);
+                ?>
+               
+                   
+               </ol>
+                
+            </div>
+            <label for="" class="entrada">Computadoras disponibles: </label>
+          
+            <div class="piezas" >
+                <ol>
+                 <?php 
+                    $op="SELECT * FROM producto";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $id=$row['no_serie'];
+                        $modelo=$row['nombre_modelo'];
+                        if($row['en_almacen']>0){
+                            echo "<li>
+                                <div class='checks'>
+                                    <input type='checkbox' name='$id' id='checkboxs'><label for='checkboxs'>$modelo</label>  
+                                </div>
+                            </li>";
+                        
+                        }
+                    }
+                        mysqli_close($conexion);
+                ?>
+               
+                   
+               </ol>
+                
+            </div>
        </div>
 
-       <div class="botones">
+       <div class="botones" >
            <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_reg; ?>>
            <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg; ?>>  
            
@@ -139,9 +224,22 @@
 
 
                 <option value="" selected disabled>Ventas disponibles</option>
-                
+                 <?php 
+                    $op="SELECT * FROM venta";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."Id: ".$row['id']."  fecha: ".$row['fecha']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
-            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de eliminacion</option>
                 <option value="unico" id="unico">Solo un registro</option>

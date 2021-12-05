@@ -68,7 +68,7 @@
 
             <div class="header-right">
                <a href="../funciones/closeSession.php">
-                    <button>REGRESAR</button>
+                    <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
@@ -90,6 +90,7 @@
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
         <a href="pieza_venta.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
         <a href="pieza_armado.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
+          <a href="catalogo_piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Catalogo de Piezas</span></a>
         <a href="productos.php?op=1"><i class="fas fa-shopping-cart"></i><span>Productos</span></a>
         <a href="modelo.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
         <a href="arquitecturas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitecura</span></a>
@@ -102,7 +103,7 @@
        
    <form action="../mysql/insertar.php" method="post" class="registrar-mode" >
           <div class="formulario" >
-           <h2>REGISTRAR ALMACEN</h2>
+        <h2>REGISTRAR ALMACEN</h2>
 
          
                
@@ -129,9 +130,22 @@
             <select name="id-elim" id="elim-dis" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Almacenes disponibles</option>
-                
+                <?php 
+                    $op="SELECT * FROM almacen";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
-            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_cons ;?>>
+            <select name="tipo-elim" id="eliminaciones" class="entrada-1" required <?php echo $acceso_elim ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de eliminacion</option>
                 <option value="unico" id="unico">Solo un registro</option>
