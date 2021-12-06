@@ -51,7 +51,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../paginas/almacen.php">
+               <a href="../paginas/proveedores.php">
                     <button>REGRESAR</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -65,28 +65,42 @@
      <!--    <div class="table-mode">
      -->    <table id="tabla-consultas">
              <tr>
-                 <th>ID</th>
-                 <th>NOMBRE</th>
+                 <th>RFC</th>
+                 <th>EMPRESA</th>
+                 <th>VENDEDOR</th>
                  <th>DESCRIPCION</th>
-                 <th>CAPITAL</th>
+                 <th>TELEFONO</th>
+                 <th>CORREO ELECTRONICO</th>
+                 <th>ESTATUS</th>
                  
                  
              </tr>
              <?php
                 $tipo_cons=$_POST['tipo-cons'];
                 if($tipo_cons=="todo"){
-                    $op="SELECT * FROM almacen";
+                    $op="SELECT * FROM proveedores";
                     $resultado=mysqli_query($conexion,$op);
                     while($row=mysqli_fetch_array($resultado)){
-                        $id=$row['id'];
-                        $nombre=$row['nombre'];
+                        $rfc=$row['RFC'];
+                        $empresa=$row['empresa'];
+                        $nombre_proveedor=$row['nombre_proveedor'];
                         $descripcion=$row['descripcion'];
-                        $capital=$row['capital'];
+                        $telefono=$row['telefono'];
+                        $correo=$row['email'];
+                        $estatus=$row['estatus'];
+                        if($estatus){
+                            $estatus="disponible";
+                        }else{
+                            $estatus="no disponible";
+                        }
                         echo "<tr>
-                                <td> $id </td>
-                                <td> $nombre </td>
+                                <td> $rfc </td>
+                                <td> $empresa </td>
+                                <td> $nombre_proveedor </td>
                                 <td> $descripcion </td>
-                                <td> $capital </td>
+                                <td> $telefono </td>
+                                <td> $correo </td>
+                                <td> $estatus </td>
                         
                         
                             </tr>";
@@ -95,20 +109,29 @@
                     
                 }else{
                     $id=$_POST['id'];
-                    $op="SELECT * FROM almacen WHERE id='$id'";
+                    $op="SELECT * FROM proveedores WHERE RFC='$id'";
                     $resultado=mysqli_query($conexion,$op);
                     $row=mysqli_fetch_array($resultado);
-                    $id=$row['id'];
-                    $nombre=$row['nombre'];
+                    $rfc=$row['RFC'];
+                    $empresa=$row['empresa'];
+                    $nombre_proveedor=$row['nombre_proveedor'];
                     $descripcion=$row['descripcion'];
-                    $capital=$row['capital'];
-                    
+                    $telefono=$row['telefono'];
+                    $correo=$row['email'];
+                    $estatus=$row['estatus'];
+                    if($estatus){
+                            $estatus="disponible";
+                    }else{
+                            $estatus="no disponible";
+                        }
                     echo "<tr>
-                            <td>$id</td>
-                            <td>$nombre</td>
-                            <td>$descripcion</td>
-                            <td>$capital</td>
-                            
+                                <td> $rfc </td>
+                                <td> $empresa </td>
+                                <td> $nombre_proveedor </td>
+                                <td> $descripcion </td>
+                                <td> $telefono </td>
+                                <td> $correo </td>
+                                <td> $estatus </td>
                     
                         </tr>";
                     

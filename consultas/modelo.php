@@ -39,7 +39,7 @@
 <body>
     
     <!-- <main class="contenedor">
-   -->     <input type="checkbox" name="" id="check" checked>
+    -->    <input type="checkbox" name="" id="check" checked>
 
     <header class="site-header">
         
@@ -51,7 +51,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../paginas/almacen.php">
+               <a href="../paginas/modelo.php">
                     <button>REGRESAR</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -62,31 +62,37 @@
         </div>
 
     </header>
-     <!--    <div class="table-mode">
-     -->    <table id="tabla-consultas">
+      <!--   <div class="table-mode">
+      -->   <table id="tabla-consultas">
              <tr>
-                 <th>ID</th>
                  <th>NOMBRE</th>
-                 <th>DESCRIPCION</th>
-                 <th>CAPITAL</th>
+                 <th>ESTATUS</th>
+                 <th>ID DE ARQUITECTURA</th>
+                 <th>TIPO DE ARQUITECTURA</th>
                  
                  
              </tr>
              <?php
                 $tipo_cons=$_POST['tipo-cons'];
                 if($tipo_cons=="todo"){
-                    $op="SELECT * FROM almacen";
+                    $op="SELECT * FROM modelo m JOIN arquitectura a ON m.id_arquitectura=a.id";
                     $resultado=mysqli_query($conexion,$op);
                     while($row=mysqli_fetch_array($resultado)){
-                        $id=$row['id'];
                         $nombre=$row['nombre'];
-                        $descripcion=$row['descripcion'];
-                        $capital=$row['capital'];
+                        $estatus=$row['estatus'];
+                        if($estatus){
+                            $estatus="disponible";
+                        }else{
+                            $estatus="no disponible";
+                        }
+                        $id_arquitectura=$row['id_arquitectura'];
+                        $tipo=$row['tipo'];
+                        
                         echo "<tr>
-                                <td> $id </td>
                                 <td> $nombre </td>
-                                <td> $descripcion </td>
-                                <td> $capital </td>
+                                <td> $estatus </td>
+                                <td> $id_arquitectura </td>
+                                <td> $tipo </td>
                         
                         
                             </tr>";
@@ -95,20 +101,27 @@
                     
                 }else{
                     $id=$_POST['id'];
-                    $op="SELECT * FROM almacen WHERE id='$id'";
+                    $op="SELECT * FROM modelo WHERE nombre='$id'";
                     $resultado=mysqli_query($conexion,$op);
                     $row=mysqli_fetch_array($resultado);
-                    $id=$row['id'];
+                    $id=$row['id_arquitectura'];
+                    $op="SELECT * FROM modelo m JOIN arquitectura a ON a.id='$id'";
+                    $resultado=mysqli_query($conexion,$op);
+                    $row=mysqli_fetch_array($resultado);
                     $nombre=$row['nombre'];
-                    $descripcion=$row['descripcion'];
-                    $capital=$row['capital'];
-                    
+                    $estatus=$row['estatus'];
+                    if($estatus){
+                        $estatus="disponible";
+                     }else{
+                         $estatus="no disponible";
+                     }
+                        $id_arquitectura=$row['id_arquitectura'];
+                        $tipo=$row['tipo'];
                     echo "<tr>
-                            <td>$id</td>
-                            <td>$nombre</td>
-                            <td>$descripcion</td>
-                            <td>$capital</td>
-                            
+                                <td> $nombre </td>
+                                <td> $estatus </td>
+                                <td> $id_arquitectura </td>
+                                <td> $tipo </td>
                     
                         </tr>";
                     
@@ -124,9 +137,9 @@
          </table>
          
          
-       <!--  </div>
+     <!--    </div>
     </main>
-       -->
+      --> 
     
    
 </body>

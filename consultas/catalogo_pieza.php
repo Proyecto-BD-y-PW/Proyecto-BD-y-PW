@@ -34,12 +34,11 @@
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
     <link href="https://file.myfontastic.com/zmGVYTk8c485ktmePB4HkF/icons.css" rel="stylesheet">
-    
 </head>
 <body>
     
-    <!-- <main class="contenedor">
-   -->     <input type="checkbox" name="" id="check" checked>
+     <main class="contenedor">
+        <input type="checkbox" name="" id="check" checked>
 
     <header class="site-header">
         
@@ -51,7 +50,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../paginas/almacen.php">
+               <a href="../paginas/catalogo_piezas.php">
                     <button>REGRESAR</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -62,52 +61,63 @@
         </div>
 
     </header>
-     <!--    <div class="table-mode">
-     -->    <table id="tabla-consultas">
+         <div class="table-mode">
+         <table id="tabla-consultas">
              <tr>
-                 <th>ID</th>
                  <th>NOMBRE</th>
-                 <th>DESCRIPCION</th>
-                 <th>CAPITAL</th>
+                 <th>MODELO</th>
+                 <th>PRECIO</th>
                  
                  
              </tr>
              <?php
                 $tipo_cons=$_POST['tipo-cons'];
                 if($tipo_cons=="todo"){
-                    $op="SELECT * FROM almacen";
+                    $op="SELECT * FROM catalogo_pieza";
                     $resultado=mysqli_query($conexion,$op);
                     while($row=mysqli_fetch_array($resultado)){
-                        $id=$row['id'];
                         $nombre=$row['nombre'];
-                        $descripcion=$row['descripcion'];
-                        $capital=$row['capital'];
+                        $modelo=$row['modelo'];
+                        $precio=$row['precio'];
                         echo "<tr>
-                                <td> $id </td>
                                 <td> $nombre </td>
-                                <td> $descripcion </td>
-                                <td> $capital </td>
-                        
+                                <td> $modelo </td>
+                                <td> $$precio </td>
+                                
                         
                             </tr>";
                         
                     }
                     
                 }else{
-                    $id=$_POST['id'];
-                    $op="SELECT * FROM almacen WHERE id='$id'";
+                    $nombremodelo=$_POST['id'];
+                    $band=true;
+                    $nombre="";
+                    $modelo="";
+                    $separada=explode("*",$nombremodelo);
+                    $tamaño=sizeof($separada);
+      /*  echo $separada[0]."---".$separada[1];
+      
+      */            foreach($separada as $valor){
+                        if($band){
+                        $nombre=$valor;
+                        $band=false;
+                    }else{
+                        $modelo=$valor;
+                        }
+                    }
+                    
+                    $op="SELECT * FROM catalogo_pieza WHERE nombre='$nombre' AND modelo='$modelo'";
                     $resultado=mysqli_query($conexion,$op);
                     $row=mysqli_fetch_array($resultado);
-                    $id=$row['id'];
                     $nombre=$row['nombre'];
-                    $descripcion=$row['descripcion'];
-                    $capital=$row['capital'];
-                    
+                    $modelo=$row['modelo'];
+                    $precio=$row['precio'];
+                       
                     echo "<tr>
-                            <td>$id</td>
                             <td>$nombre</td>
-                            <td>$descripcion</td>
-                            <td>$capital</td>
+                            <td>$modelo</td>
+                            <td>$$precio</td>
                             
                     
                         </tr>";
@@ -124,9 +134,9 @@
          </table>
          
          
-       <!--  </div>
+         </div>
     </main>
-       -->
+       
     
    
 </body>

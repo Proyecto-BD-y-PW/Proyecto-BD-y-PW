@@ -34,12 +34,11 @@
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
     <link href="https://file.myfontastic.com/zmGVYTk8c485ktmePB4HkF/icons.css" rel="stylesheet">
-    
 </head>
 <body>
     
-    <!-- <main class="contenedor">
-   -->     <input type="checkbox" name="" id="check" checked>
+     <main class="contenedor">
+        <input type="checkbox" name="" id="check" checked>
 
     <header class="site-header">
         
@@ -51,7 +50,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../paginas/almacen.php">
+               <a href="../paginas/arquitecturas.php">
                     <button>REGRESAR</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -62,32 +61,26 @@
         </div>
 
     </header>
-     <!--    <div class="table-mode">
-     -->    <table id="tabla-consultas">
+         <div class="table-mode">
+         <table id="tabla-consultas">
              <tr>
                  <th>ID</th>
-                 <th>NOMBRE</th>
-                 <th>DESCRIPCION</th>
-                 <th>CAPITAL</th>
+                 <th>TIPO</th>
                  
                  
              </tr>
              <?php
                 $tipo_cons=$_POST['tipo-cons'];
                 if($tipo_cons=="todo"){
-                    $op="SELECT * FROM almacen";
+                    $op="SELECT * FROM arquitectura";
                     $resultado=mysqli_query($conexion,$op);
                     while($row=mysqli_fetch_array($resultado)){
                         $id=$row['id'];
-                        $nombre=$row['nombre'];
-                        $descripcion=$row['descripcion'];
-                        $capital=$row['capital'];
+                        $tipo=$row['tipo'];
                         echo "<tr>
                                 <td> $id </td>
-                                <td> $nombre </td>
-                                <td> $descripcion </td>
-                                <td> $capital </td>
-                        
+                                <td> $tipo </td>
+                                
                         
                             </tr>";
                         
@@ -95,19 +88,15 @@
                     
                 }else{
                     $id=$_POST['id'];
-                    $op="SELECT * FROM almacen WHERE id='$id'";
+                    $op="SELECT * FROM arquitectura WHERE id='$id'";
                     $resultado=mysqli_query($conexion,$op);
                     $row=mysqli_fetch_array($resultado);
                     $id=$row['id'];
-                    $nombre=$row['nombre'];
-                    $descripcion=$row['descripcion'];
-                    $capital=$row['capital'];
-                    
+                    $tipo=$row['tipo'];
+                       
                     echo "<tr>
                             <td>$id</td>
-                            <td>$nombre</td>
-                            <td>$descripcion</td>
-                            <td>$capital</td>
+                            <td>$tipo</td>
                             
                     
                         </tr>";
@@ -124,9 +113,9 @@
          </table>
          
          
-       <!--  </div>
+         </div>
     </main>
-       -->
+       
     
    
 </body>

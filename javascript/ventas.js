@@ -3,10 +3,14 @@ const select1_btn = document.getElementById("eliminaciones");
 const select2_btn = document.getElementById("elim-id");
 const select3_btn = document.getElementById("elim-fecha");
 
-const select4_btn = document.getElementById("consultas");
 
-const select5_btn = document.getElementById("disponibles");
+/*const select4_btn = document.getElementById("consultas");
 
+const select5_btn = document.getElementById("disponibles");*/
+
+const select6_btn = document.getElementById("consultas");
+const select7_btn = document.getElementById("consultas-id");
+const select8_btn = document.getElementById("consultas-fecha");
 
 /*const registrar_mode = document.querySelector(".registrar-mode");*/
 /*const registrar_mode = document.getElementsByClassName("registrar-mode");
@@ -58,7 +62,7 @@ select1_btn.addEventListener('change',function(){
     }
      
 });
-select4_btn.addEventListener('change',function(){
+/*select4_btn.addEventListener('change',function(){
     
     var opcion_seleccionada=this.options[select4_btn.selectedIndex];
     if(opcion_seleccionada.value=='unico'){
@@ -69,7 +73,7 @@ select4_btn.addEventListener('change',function(){
         select5_btn.classList.add("remove");
         select5_btn.removeAttribute("required","");
     }
-});
+});*/
 
 radio1_btn.addEventListener('click', function()  {
     
@@ -113,6 +117,33 @@ radio1_btn.addEventListener('click', function()  {
   */  
     
 });
+
+
+select6_btn.addEventListener('change',function(){
+    
+    var opcion_seleccionada=this.options[select6_btn.selectedIndex];
+    if(opcion_seleccionada.value==='unico-i'){
+        select7_btn.classList.remove("remove");
+        select7_btn.setAttribute("required","");
+        select8_btn.classList.add("remove");
+        select8_btn.removeAttribute("required","");
+    
+    }else if(opcion_seleccionada.value==='unico-f'){
+        select7_btn.classList.add("remove");
+        select7_btn.removeAttribute("required","");
+        select8_btn.classList.remove("remove");
+        select8_btn.setAttribute("required","");
+    }else{
+        select7_btn.classList.add("remove");
+        select7_btn.removeAttribute("required","");
+        select8_btn.classList.add("remove");
+        select8_btn.removeAttribute("required","");
+
+        
+    }
+     
+});
+
 
 
 radio1_btn.click();

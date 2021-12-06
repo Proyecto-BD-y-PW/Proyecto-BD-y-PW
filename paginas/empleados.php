@@ -187,15 +187,29 @@
       
     
    </form>
- <form action="enviar.php" method="post" class="consultar-mode">
+ <form action="../consultas/empleado.php" method="post" class="consultar-mode">
        
        <div class="formulario">
           <h2>CONSULTAR EMPLEADOS</h2>
 
             <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons ;?>>
 
-                <option value="" selected disabled>Proveedores disponibles</option>
-                
+                <option value="" selected disabled>Empleados disponibles</option>
+                <?php 
+                    $op="SELECT * FROM empleado";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']."</option>";
+                        }
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
  
             <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>

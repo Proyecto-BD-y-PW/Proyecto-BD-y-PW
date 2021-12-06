@@ -38,8 +38,8 @@
 </head>
 <body>
     
-    <!-- <main class="contenedor">
-   -->     <input type="checkbox" name="" id="check" checked>
+     <main class="contenedor">
+        <input type="checkbox" name="" id="check" checked>
 
     <header class="site-header">
         
@@ -51,7 +51,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../paginas/almacen.php">
+               <a href="../paginas/clientes.php">
                     <button>REGRESAR</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -62,31 +62,31 @@
         </div>
 
     </header>
-     <!--    <div class="table-mode">
-     -->    <table id="tabla-consultas">
+         <div class="table-mode">
+         <table id="tabla-consultas">
              <tr>
-                 <th>ID</th>
+                 <th>RFC</th>
                  <th>NOMBRE</th>
-                 <th>DESCRIPCION</th>
-                 <th>CAPITAL</th>
+                 <th>TELEFONO</th>
+                 <th>CORREO ELECTRONICO</th>
                  
                  
              </tr>
              <?php
                 $tipo_cons=$_POST['tipo-cons'];
                 if($tipo_cons=="todo"){
-                    $op="SELECT * FROM almacen";
+                    $op="SELECT * FROM cliente";
                     $resultado=mysqli_query($conexion,$op);
                     while($row=mysqli_fetch_array($resultado)){
-                        $id=$row['id'];
+                        $rfc=$row['RFC'];
                         $nombre=$row['nombre'];
-                        $descripcion=$row['descripcion'];
-                        $capital=$row['capital'];
+                        $telefono=$row['telefono'];
+                        $correo=$row['email'];
                         echo "<tr>
-                                <td> $id </td>
+                                <td> $rfc </td>
                                 <td> $nombre </td>
-                                <td> $descripcion </td>
-                                <td> $capital </td>
+                                <td> $telefono </td>
+                                <td> $correo </td>
                         
                         
                             </tr>";
@@ -94,20 +94,20 @@
                     }
                     
                 }else{
-                    $id=$_POST['id'];
-                    $op="SELECT * FROM almacen WHERE id='$id'";
+                    $rfc=$_POST['id'];
+                    $op="SELECT * FROM cliente WHERE RFC='$rfc'";
                     $resultado=mysqli_query($conexion,$op);
                     $row=mysqli_fetch_array($resultado);
-                    $id=$row['id'];
+                    $rfc=$row['RFC'];
                     $nombre=$row['nombre'];
-                    $descripcion=$row['descripcion'];
-                    $capital=$row['capital'];
+                    $telefono=$row['telefono'];
+                    $correo=$row['email'];
                     
                     echo "<tr>
-                            <td>$id</td>
+                            <td>$rfc</td>
                             <td>$nombre</td>
-                            <td>$descripcion</td>
-                            <td>$capital</td>
+                            <td>$telefono</td>
+                            <td>$correo</td>
                             
                     
                         </tr>";
@@ -124,9 +124,9 @@
          </table>
          
          
-       <!--  </div>
+         </div>
     </main>
-       -->
+       
     
    
 </body>

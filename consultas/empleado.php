@@ -51,7 +51,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../paginas/almacen.php">
+               <a href="../paginas/empleados.php">
                     <button>REGRESAR</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -62,31 +62,39 @@
         </div>
 
     </header>
-     <!--    <div class="table-mode">
+      <!--   <div class="table-mode">
      -->    <table id="tabla-consultas">
              <tr>
                  <th>ID</th>
                  <th>NOMBRE</th>
-                 <th>DESCRIPCION</th>
-                 <th>CAPITAL</th>
+                 <th>ESTATUS</th>
+                 <th>TELEFONO</th>
+                 <th>CORREO</th>
                  
                  
              </tr>
              <?php
                 $tipo_cons=$_POST['tipo-cons'];
                 if($tipo_cons=="todo"){
-                    $op="SELECT * FROM almacen";
+                    $op="SELECT * FROM empleado";
                     $resultado=mysqli_query($conexion,$op);
                     while($row=mysqli_fetch_array($resultado)){
                         $id=$row['id'];
                         $nombre=$row['nombre'];
-                        $descripcion=$row['descripcion'];
-                        $capital=$row['capital'];
+                        $estatus=$row['estatus'];
+                        if($estatus){
+                            $estatus="disponible";
+                        }else{
+                            $estatus="no disponible";
+                        }
+                        $telefono=$row['telefono'];
+                        $correo=$row['correo'];
                         echo "<tr>
                                 <td> $id </td>
                                 <td> $nombre </td>
-                                <td> $descripcion </td>
-                                <td> $capital </td>
+                                <td> $estatus </td>
+                                <td> $telefono </td>
+                                <td> $correo </td>
                         
                         
                             </tr>";
@@ -95,19 +103,26 @@
                     
                 }else{
                     $id=$_POST['id'];
-                    $op="SELECT * FROM almacen WHERE id='$id'";
+                    $op="SELECT * FROM empleado WHERE id='$id'";
                     $resultado=mysqli_query($conexion,$op);
                     $row=mysqli_fetch_array($resultado);
                     $id=$row['id'];
                     $nombre=$row['nombre'];
-                    $descripcion=$row['descripcion'];
-                    $capital=$row['capital'];
+                    $estatus=$row['estatus'];
+                    if($estatus){
+                        $estatus="disponible";
+                    }else{
+                        $estatus="no disponible";
+                    }
+                    $telefono=$row['telefono'];
+                    $correo=$row['correo'];
                     
                     echo "<tr>
                             <td>$id</td>
                             <td>$nombre</td>
-                            <td>$descripcion</td>
-                            <td>$capital</td>
+                            <td>$estatus</td>
+                            <td>$telefono</td>
+                            <td>$correo</td>
                             
                     
                         </tr>";
@@ -125,8 +140,8 @@
          
          
        <!--  </div>
-    </main>
-       -->
+    </main>-->
+       
     
    
 </body>

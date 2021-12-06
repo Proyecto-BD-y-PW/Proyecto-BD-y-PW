@@ -185,12 +185,26 @@
       
      
    </form>
- <form action="enviar.php" method="post" class="consultar-mode">
+ <form action="../consultas/arquitectura.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR ARQUITECTURAS</h2>
-            <select name="disponibles" id="disponibles" class="entrada" required <?php echo $acceso_cons; ?>>
+            <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons; ?>>
                 <option value="" selected disabled>Arquitecturas disponibles</option>
-                
+                 <?php 
+                    $op="SELECT * FROM arquitectura";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."*ID: ".$row['id']."  *TIPO: ".$row['tipo']."</option>";
+                        }
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
             <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons;?>>
                 <option value="" selected disabled>Seleccione tipo de consulta</option>

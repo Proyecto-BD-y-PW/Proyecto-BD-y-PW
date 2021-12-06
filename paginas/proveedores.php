@@ -204,7 +204,7 @@
       
     
    </form>
- <form action="enviar.php" method="post" class="consultar-mode">
+ <form action="../consultas/proveedor.php" method="post" class="consultar-mode">
        
        <div class="formulario">
            <h2>CONSULTAR PROVEEDORES</h2>
@@ -212,7 +212,21 @@
             <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons ;?>>
 
                 <option value="" selected disabled>Proveedores disponibles</option>
-                
+                <?php 
+                    $op="SELECT * FROM proveedores";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['RFC'];
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."*RFC: ".$row['RFC']."  *EMPRESA: ".$row['empresa']."</option>";
+                        }
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
  
             <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>

@@ -191,14 +191,29 @@
       
      
    </form>
- <form action="enviar.php" method="post" class="consultar-mode">
+ <form action="../consultas/cliente.php" method="post" class="consultar-mode">
        <div class="formulario">
            <h2>CONSULTAR CLIENTES</h2>
 
             <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons ;?>>
 
                 <option value="" selected disabled>Clientes disponibles</option>
-                
+                <?php 
+                    $op="SELECT * FROM cliente";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['RFC'];
+
+                        echo "<option value='".$i."' >"."*RFC: ".$row['RFC']."  *NOMBRE: ".$row['nombre']."</option>";
+
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
  
             <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>

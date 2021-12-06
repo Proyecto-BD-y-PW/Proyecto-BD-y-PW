@@ -421,17 +421,17 @@ input[type="text"]:disabled{
 }
 
 .piezas{
-    /*height: 150px;
-    width: 100%;*/
-    overflow-y: auto;
-    
+    height: 150px;
+    width: 100%;
+    overflow-y: scroll;
+   /* background: red;*/
   /*  display: flex;
     flex-direction: column;*/
 }
 .productos{
     margin-top: 15px;
     height: 150px;
-    width: 100%;
+    width: 50%;
     overflow-y: auto;
     background: yellow;
 }
@@ -458,17 +458,18 @@ input[type="checkbox"]{
     
 }
 .table-mode{
+    margin-top: 100px;
     width: 100%;
-    height: 700px;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+   /* overflow-y: scroll;
+   */ 
     
 }
 table{
-    width: 800px;
-    height: 500px;
+    
     /*margin: auto;
   */  border: 4px solid black;
     border-spacing: 40px;
@@ -478,6 +479,7 @@ table{
 
 th,td{
     border: 2px inset black;
+    text-align: center;
 }
 p{
     width: 50%;
@@ -487,3 +489,14 @@ p{
     
 }
 
+#tabla-consultas{
+    width: 100%;
+     border-spacing: 20px;
+   /*margin-top: 162px;
+  */  height: 500px;
+    max-height: 300px;
+    /*overflow-y: scroll;*/
+}
+.site-elements a{
+    text-decoration: none;
+}

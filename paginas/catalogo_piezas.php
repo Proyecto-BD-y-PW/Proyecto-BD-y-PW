@@ -179,13 +179,27 @@
       
     
    </form>
- <form action="enviar.php" method="post" class="consultar-mode">
+ <form action="../consultas/catalogo_pieza.php" method="post" class="consultar-mode">
        
        <div class="formulario">
              <h2>CONSULTAR CATALOGO DE PIEZAS</h2>
-            <select name="serie" id="disponibles" class="entrada">
+            <select name="id" id="disponibles" class="entrada">
                 <option value="" selected disabled>Piezas registradas</option>
-                
+                <?php 
+                    $op="SELECT * FROM catalogo_pieza";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    $separador="*";
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['nombre'];
+                        $j=$row['modelo'];
+                        echo "<option value='".$i.$separador.$j."' >"."*NOMBRE: ".$row['nombre']."  *MODELO: ".$row['modelo']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
              <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
 
