@@ -26,8 +26,27 @@
         
         $op="INSERT INTO modelo(nombre,estatus,id_arquitectura) VALUES ('$nombre',1,'$id_arquitectura')";
         mysqli_query($conexion,$op);
-        header('location:../paginas/modelo.php');
-        
+          
+        $op="SELECT * FROM catalogo_pieza";
+        $resultado=mysqli_query($conexion,$op);
+        $nombre_pieza="";
+        $modelo_pieza="";
+        $band=true;
+        $separada=explode("*",$nombremodelo);
+        $tamaño=sizeof($separada);
+      /*  echo $separada[0]."---".$separada[1];
+      
+      */  
+        while($row=mysqli_fetch_array($resultado)){
+            $nombre_pieza=$row['nombre'];
+            $modelo_pieza=$row['modelo'];
+            if(isset($_POST[$nombre."*".$modelo])){
+                $op="INSERT INTO pieza_modelo (nombre_modelo,nombre_pieza,modelo_pieza) VALUES('$nombre','$nombre_pieza','$modelo_pieza')";
+                
+            }
+        }    
+         header('location:../paginas/modelo.php');
+       
     }else if(strcmp($pagina,"arquitectura")==0){
         $tipo=$_POST['tipo'];
         $op="INSERT INTO arquitectura(tipo,estatus) VALUES ('$tipo',1)";

@@ -67,7 +67,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../funciones/closeSession.php">
+               <a href="../paginas/perfil.php">
                     <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -122,6 +122,36 @@
                 mysqli_close($conexion);
                 ?>
            </select>
+           <label for="" class="entrada">Selecciona las piezas que tendra: </label>
+          
+             <div class="piezas" >
+                <ol>
+                 <?php 
+                    $op="SELECT * FROM catalogo_pieza";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    $separador="*";
+                    while($row=mysqli_fetch_array($resultado)){
+                        
+                        $nombre=$row['nombre'];
+                        $modelo=$row['modelo'];
+                        
+                            echo "<li>
+                                <div class='checks'>
+                                    <input type='checkbox' name='".$nombre.$separador.$modelo."' id='checkboxs'><label for='checkboxs'>$nombre $modelo</label>  
+                                </div>
+                            </li>";
+                        
+                        
+                    }
+                        mysqli_close($conexion);
+                ?>
+               
+                   
+               </ol>
+                
+            </div>
        </div>
 
        <div class="botones">
@@ -133,7 +163,7 @@
 
    </form>
     
-    <form action="enviar.php" method="post" class="eliminar-mode">
+    <form action="../mysql/eliminar.php" method="post" class="eliminar-mode">
        <div class="formulario">
            <h2>ELIMINAR MODELO</h2>
 

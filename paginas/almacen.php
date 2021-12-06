@@ -67,7 +67,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../funciones/closeSession.php">
+               <a href="../paginas/perfil.php">
                     <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -123,7 +123,7 @@
 
    </form>
     
-    <form action="enviar.php" method="post" class="eliminar-mode">
+    <form action="../mysql/eliminar.php" method="post" class="eliminar-mode">
        <div class="formulario">
             <h2>ELIMINAR ALMACENES</h2>
 
