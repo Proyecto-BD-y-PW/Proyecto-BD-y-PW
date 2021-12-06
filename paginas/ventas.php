@@ -244,7 +244,7 @@
 
                 <option value="" selected disabled>Fechas registradas</option>
                  <?php 
-                    $op="SELECT distinct c.fecha FROM pieza p JOIN compras c ON p.id_compras=c.id";
+                    $op="SELECT distinct fecha, id FROM venta";
                     $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
                     $resultado=mysqli_query($conexion,$op);
                   

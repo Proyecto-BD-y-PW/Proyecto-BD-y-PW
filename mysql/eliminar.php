@@ -129,14 +129,14 @@
         }else{
             $fecha=$_POST['fecha'];
         
-            $op="SELECT * FROM compras WHERE fecha='$fecha'";
+            $op="SELECT * FROM pieza_armado WHERE fecha='$fecha'";
             $resultado=mysqli_query($conexion,$op);
             $row=mysqli_fetch_array($resultado);
             $id=$row['id'];
             $op="DELETE FROM pieza WHERE id='$id'";
             mysqli_query($conexion,$op);
             
-            
+
             
         }
         header("location:../paginas/pieza_armado.php");
@@ -164,7 +164,7 @@
             $resultado=mysqli_query($conexion,$op);
             
             
-            $op="UPDATE producto SET en_almacen='0' WHERE no_serie='$no_serie'";
+            $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
             mysqli_query($conexion,$op);
             
             
@@ -228,7 +228,7 @@
             $resultado=mysqli_query($conexion,$op);
             
             
-            $op="UPDATE producto SET en_almacen='0' WHERE no_serie='$no_serie'";
+            $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
             mysqli_query($conexion,$op);
             
             
