@@ -67,7 +67,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../funciones/closeSession.php">
+               <a href="../paginas/perfil.php">
                     <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -142,7 +142,7 @@
 
    </form>
     
-    <form action="enviar.php" method="post" class="eliminar-mode">
+    <form action="../mysql/eliminar.php" method="post" class="eliminar-mode">
        <div class="formulario">
             <h2>ELIMINAR PIEZAS DE VENTA</h2>
 
@@ -150,15 +150,16 @@
 
                 <option value="" selected disabled>Piezas de venta disponibles</option>
                  <?php 
-                    $op="SELECT pv.id,p.nombre,p.modelo FROM pieza_venta pv JOIN pieza p ON pv.id=p.id";
+                    $op="SELECT pv.id,p.nombre,p.modelo,p.en_almacen FROM pieza_venta pv JOIN pieza p ON pv.id=p.id";
                     $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
                     $resultado=mysqli_query($conexion,$op);
                   
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['id'];
-                        echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']." *MODELO: ".$row['modelo']."</option>";
-                        
+                        if($row['en_almacen']){
+                            echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']." *MODELO: ".$row['modelo']."</option>";
+                        }
                         
                     }
                     mysqli_close($conexion);

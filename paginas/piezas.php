@@ -66,7 +66,7 @@
             </div>
 
             <div class="header-right">
-               <a href="funciones/closeSession.php">
+               <a href="../paginas/perfil.php">
                     <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="funciones/closeSession.php">
@@ -173,7 +173,7 @@
        </div>
    </form>
     
-    <form action="enviar.php" method="post" class="eliminar-mode">
+    <form action="../mysql/eliminar.php" method="post" class="eliminar-mode">
        <div class="formulario">
           <h2>ELIMINAR PIEZAS</h2>
 
@@ -188,8 +188,9 @@
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['id'];
-                        echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']." *MODELO: ".$row['modelo']."</option>";
-                        
+                        if($row['en_almacen']){
+                            echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']." *MODELO: ".$row['modelo']."</option>";
+                        }
                         
                     }
                     mysqli_close($conexion);

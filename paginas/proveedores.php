@@ -68,8 +68,8 @@
             </div>
 
             <div class="header-right">
-               <a href="../funciones/closeSession.php">
-                    <button>REGRESAR</button>
+               <a href="../paginas/perfil.php">
+                    <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
                     <button>CERRAR SESIÓN</button>
@@ -131,7 +131,7 @@
 
    </form>
     
-    <form action="enviar.php" method="post" class="eliminar-mode">
+    <form action="../mysql/eliminar.php" method="post" class="eliminar-mode">
        <div class="formulario">
            <h2>ELIMINAR PROVEEDORES</h2>
 
@@ -146,8 +146,9 @@
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['RFC'];
-                        echo "<option value='".$i."' >"."RFC: ".$row['RFC']."  empresa: ".$row['empresa']."</option>";
-                        
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."*RFC: ".$row['RFC']."  *EMPRESA: ".$row['empresa']."</option>";
+                        }
                         
                     }
                     mysqli_close($conexion);

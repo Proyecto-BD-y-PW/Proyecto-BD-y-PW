@@ -67,7 +67,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../funciones/closeSession.php">
+               <a href="../paginas/perfil.php">
                     <button>PERFIL DEL USUARIO</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -123,7 +123,7 @@
 
    </form>
     
-    <form action="enviar.php" method="post" class="eliminar-mode">
+    <form action="../mysql/eliminar.php" method="post" class="eliminar-mode">
        <div class="formulario">
             <h2>ELIMINAR ALMACENES</h2>
 
@@ -181,7 +181,7 @@
       
     
    </form>
- <form action="enviar.php" method="post" class="consultar-mode">
+ <form action="../consultas/almacen.php" method="post" class="consultar-mode">
        
        <div class="formulario">
            <h2>CONSULTAR ALMACENES</h2>
@@ -189,7 +189,20 @@
             <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons ;?>>
 
                 <option value="" selected disabled>Almacenes disponibles</option>
-                
+                <?php 
+                    $op="SELECT * FROM almacen";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
  
             <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
