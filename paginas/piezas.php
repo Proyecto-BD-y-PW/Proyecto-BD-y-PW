@@ -167,8 +167,8 @@
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_reg ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg ;?>>  
            
        </div>
    </form>
@@ -189,9 +189,9 @@
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['id'];
 
-                        if($row['en_almacen']){
+                        if($row['en_almacen'])
                             echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']." *MODELO: ".$row['modelo']."</option>";
-
+                            
                         
                     }
                     mysqli_close($conexion);
@@ -225,25 +225,37 @@
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_elim ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_elim ;?>>  
            
        </div>
       
      
    </form>
-    <form action="enviar.php" method="post" class="actualizar-mode">
+    <form action="../cambiosPaginas/cam_piezas.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR PIEZAS</h2>
-            <select name="id" id="id" class="entrada">
-                <option value="" selected disabled>Piezas disponibles</option>
-                
-            </select>
+           <?php
+            echo "<select name='id' id='id' class='entrada'>
+                <option value='' selected disabled>Piezas disponibles</option>";
+                $op="SELECT * FROM pieza";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+
+                        if($row['en_almacen'])
+                            echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']." *MODELO: ".$row['modelo']."</option>";     
+                    }
+            echo "</select>";
+            ?>
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_actua ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_actua ;?>>  
            
        </div>
       
@@ -266,8 +278,8 @@
        </div>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Enviar" class="btn">
-           <input id="borrar" type="reset" value="BORRAR" class="btn">  
+           <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_cons ;?>>
+           <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
            
        </div>
       
