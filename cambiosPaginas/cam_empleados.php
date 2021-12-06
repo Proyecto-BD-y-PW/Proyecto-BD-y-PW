@@ -3,8 +3,7 @@
     session_start();
     $usuario=$_SESSION['user'];
     $pass=$_SESSION['password'];
-    $_SESSION['pagina']="proveedor";
-
+    $_SESSION['pagina']="empleado";
     if($usuario=="" && $pass==""){
         
        echo "<script>
@@ -16,7 +15,7 @@
        </script>";
         die();
     }
-
+    
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +23,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Clientes</title>
+    <title>Empleados</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
-
 </head>
 <body>
     
@@ -45,7 +43,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../paginas/proveedores.php">
+               <a href="../paginas/empleados.php">
                     <button>REGRESAR</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -56,13 +54,14 @@
         </div>
 
     </header>
-    
-    
+
+       
    <form action="../mysql/actualizar.php" method="post">
-          <div class="formulario" >
-          <?php 
-            $rfc=$_POST['rfc'];
-            $op="SELECT * FROM proveedores WHERE RFC='$rfc'";
+       <div class="formulario">
+       <h2>ACTUALIZAR EMPLEADO</h2>
+       <?php 
+            $id=$_POST['id'];
+            $op="SELECT * FROM empleado WHERE id='$id'";
             $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
             $resultado=mysqli_query($conexion,$op);
             $row=mysqli_fetch_array($resultado);
@@ -71,43 +70,38 @@
            /*libera la memoria*/
            mysqli_free_result( $resultado );
            mysqli_close($conexion);
-          ?>
-          
-           <h2>ACTUALIZAR PROVEEDOR</h2>
-           <?php
-           $rfc=$row['RFC'];
-           echo "<h3 class='titlePK'>RFC: ".$rfc."</h3><br>";
            
-           echo "<input type='hidden' name='rfc' value='$rfc'><br>";
-           echo "<input class='entrada' type='text' id='rfccamb' name='rfccamb' placeholder='".$row['RFC']."' required ><br>";
-           echo "<input class='entrada' type='text' id='empresa' name='empresa' placeholder='".$row['empresa']."' required ><br>";
-           echo "<input class='entrada' type='text' id='nproveedor' name='nproveedor' placeholder='".$row['nombre_proveedor']."' required ><br>";
-           echo "<input class='entrada' type='text' id='descripcion' name='descripcion' placeholder='".$row['descripcion']."' required ><br>";
-           echo "<input class='entrada' type='text' id='telefono' name='telefono' placeholder='".$row['telefono']."' required ><br>";
-           echo "<input class='entrada' type='email' id='correo' name='correo' placeholder='".$row['email']."' required ><br>";
+           $id=$row['id'];
+           echo "<h3 class='titlePK'>ID: ".$id."</h3><br>";
+           
+           echo "<input type='hidden' name='id' value='$id'><br>";
+           echo "<input class='entrada' type='text' id='nombre' name='nombre' placeholder='".$row['nombre']."' required >";
+           echo "<input class='entrada' type='text' id='telefono' name='telefono' placeholder='".$row['telefono']."' required >";
+           echo "<input class='entrada' type='email' id='correo' name='correo' placeholder='".$row['correo']."' required >";
+           
            echo "<select name='estatus' class='entrada' required>";
            if($row['estatus']==true){
-               $estatus='Esta Habilitado el proveedor';
+               $estatus='Esta Habilitada el empleado';
            }else{
-               $estatus='Esta Deshabilitado el proveedor';
+               $estatus='Esta Deshabilitada el empleado';
            }
            echo "<option value='' selected disabled>".$estatus."</option>";
            echo "<option value='1'>Habilitar</option>";
            echo "<option value='0'>Deshabilitar</option>";
            echo "</select>";
-           ?>
-    
+           
+          ?>
+           
        </div>
 
-      <div class="botones">
+       <div class="botones">
            <input id="enviar" type="submit" value="Enviar" class="btn" >
            <input id="borrar" type="reset" value="BORRAR" class="btn" >  
+           
        </div>
-
+   
 
    </form>
-
     </main>
-    
 </body>
 </html>

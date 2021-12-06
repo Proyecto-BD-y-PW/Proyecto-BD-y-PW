@@ -90,14 +90,7 @@
          VALUES('$id','1','','$descripcion','$id_compras','$id_almacen','$nombre','$modelo')";
         mysqli_query($conexion,$op);
        
-        
-        
-        
-        
-        
-        
-     /*   $op="INSERT INTO producto(en_almcen,tipo,descripcion,id_compras,id_almacen,nombre,modelo) VALUES (,'1','$tipo','$descripcion','$id_compras','$id_almacen','$nombre','$modelo')";
-        mysqli_query($conexion,$op);*/
+
         
         /*Para sacar la cantidad de productos y el precio de la compra y si esta pieza esta en elmacen*/
         $op='SELECT p.id, p.nombre, p.modelo, cp.precio,c.id"id_compra", p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo';
@@ -241,15 +234,19 @@
         mysqli_query($conexion,$op);
         
         header('location:../paginas/almacen.php');
+        
     }else if(strcmp($pagina,"empleado")==0){
         $nombre=$_POST['nombre'];
         $telefono=$_POST['telefono'];
         $correo=$_POST['correo'];
+        $estatus=$_POST['estatus'];
+        $id=$_POST['id'];
         
-        $op="INSERT INTO empleado(nombre,estatus,telefono,correo) VALUES ('$nombre','1','$telefono','$correo')";
+        $op="UPDATE empleado SET nombre='$nombre',estatus='$estatus',telefono='$telefono',correo='$correo' WHERE id='$id'";
         mysqli_query($conexion,$op);
         
         header('location:../paginas/empleados.php');
+        
     }else if(strcmp($pagina,"catalogo_pieza")==0){
          $nombre=$_POST['nombre'];
         $modelo=$_POST['modelo'];

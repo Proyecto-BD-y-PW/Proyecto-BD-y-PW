@@ -74,7 +74,7 @@
        <h2>ACTUALIZAR EL CLIENTE</h2>
            <?php
            $rfc=$row['RFC'];
-           echo "<h3 class='titlePK'>".$rfc."</h3><br>";
+           echo "<h3 class='titlePK'>RFC: ".$rfc."</h3><br>";
            
            echo "<input type='hidden' name='rfc' value='$rfc'><br>";
            echo "<input class='entrada' type='text' id='rfc' name='rfccamb' placeholder='".$row['RFC']."' required ><br>";

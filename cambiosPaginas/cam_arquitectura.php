@@ -66,7 +66,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../funciones/arquitecturas.php">
+               <a href="../paginas/arquitecturas.php">
                     <button>REGRESAR</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -94,7 +94,7 @@
            mysqli_close($conexion);
            
            $id=$row['id'];
-           echo "<h3 class='titlePK'>".$id."</h3><br>";
+           echo "<h3 class='titlePK'>ID: ".$id."</h3><br>";
            
            echo "<input type='hidden' name='id' value='$id'><br>";
            echo "<input class='entrada' type='text' id='tipo' name='tipo' placeholder='".$row['tipo']."' required ><br>";
