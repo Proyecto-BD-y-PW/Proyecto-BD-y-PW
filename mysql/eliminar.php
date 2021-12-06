@@ -135,7 +135,7 @@
             $op="DELETE FROM pieza WHERE id='$id'";
             mysqli_query($conexion,$op);
             
-            
+
             
         }
         header("location:../paginas/pieza_armado.php");

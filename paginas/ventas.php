@@ -244,7 +244,9 @@
 
                 <option value="" selected disabled>Fechas registradas</option>
                  <?php 
+
                     $op="SELECT distinct fecha,id FROM venta ";
+
                     $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
                     $resultado=mysqli_query($conexion,$op);
                   
