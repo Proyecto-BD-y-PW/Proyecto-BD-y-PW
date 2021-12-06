@@ -112,7 +112,7 @@
           <h2>¿DESEAS ELIMINAR ESTE USUARIO?</h2>
 
        <div class="botones">
-           <input id="enviar" type="submit" value="Aceptar" class="btn" >
+           <input id="enviar" name="tipo-elim" type="submit" value="Aceptar" class="btn" >
            
        </div>
       
@@ -120,7 +120,13 @@
     <form action="../mysql/actualizar.php" method="post" class="actualizar-mode">
        
         <h2>ACTUALIZACIONES</h2>
-        
+        <div class="formulario">
+        <input type="text" placeholder="Ingresa nuevo nombre. Actual: <?php echo $row['nombre'];?>">
+        <input type="text" placeholder="Ingresa nuevo correo. Actual: <?php echo $row['correo'];?>">
+        <input type="text" placeholder="Ingresa provilegios.Actuales: <?php echo $row['privilegios'];?>">
+        <input type="text" placeholder="Si deseas cambiar contraseña coloca la actual">
+        <input type="text" placeholder="Contraseña nueva">
+        </div>
        <div class="botones">
            <input id="enviar" type="submit" value="Enviar" class="btn" >
            <input id="borrar" type="reset" value="BORRAR" class="btn" >  
@@ -130,9 +136,10 @@
     
    </form>
  <form action="enviar.php" method="post" class="consultar-mode">
-      <h2>SECCION EXTRA</h2>
-       
-    
+      <h2>INFORMACION DE LA EMPRESA</h2>
+       <div class="formulario">
+           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro nihil facere soluta dolores deserunt, magnam doloribus excepturi sunt earum maxime aut maiores perspiciatis dolorum tenetur voluptatum, hic neque nesciunt reiciendis.</p>
+        </div>
    </form>
   <!---->
     

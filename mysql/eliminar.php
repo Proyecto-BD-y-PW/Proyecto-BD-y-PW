@@ -1,8 +1,7 @@
 <?php
-    
-
+  
     session_start();
-    
+     
     $usuario=$_SESSION['user'];
     $pass=$_SESSION['password'];
     if($usuario=="" && $pass==""){        
@@ -22,17 +21,17 @@
     }    else if( $pagina=="compra"){
         $pagina=$pagina."s";
     }
- 
-    
+    $ext=true;
     echo "<script>
-        var reply=confirm('Estas seguro de que deseas continuar? ten en cuenta de que se eliminaran todos los registros que se relacionen con este(s)');
-        if(!reply){
-            window.location='../$pagina.php';
         
+        var reply2=confirm('Estas seguro de que deseas continuar ten en cuenta de que se eliminaran todos los registros que se relacionen con este(s)');
+        if(!reply2===true){
+            window.location='../paginas/".$pagina.".php';
+            $ext=false;
         }
         
     </script>";
-    
+   
     $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
     $tipo_elim=$_POST['tipo-elim'];
     if(strcmp($tipo_elim,"todo")==0){
@@ -115,8 +114,8 @@
         $nombre=$_POST['id-elim'];
         $op="UPDATE modelo SET estatus='0' WHERE nombre='$nombre'";
         mysqli_query($conexion,$op);
-        header("location:../paginas/modelo.php");
-        
+       /* header("location:../paginas/modelo.php");
+     */   
     }else if(strcmp($pagina,"pieza_armado")==0){
         
         $tipo_elim=$_POST['tipo-elim'];
@@ -129,7 +128,7 @@
         }else{
             $fecha=$_POST['fecha'];
         
-            $op="SELECT * FROM compras WHERE fecha='$fecha'";
+            $op="SELECT * FROM pieza_armado WHERE fecha='$fecha'";
             $resultado=mysqli_query($conexion,$op);
             $row=mysqli_fetch_array($resultado);
             $id=$row['id'];
@@ -164,7 +163,7 @@
             $resultado=mysqli_query($conexion,$op);
             
             
-            $op="UPDATE producto SET en_almacen='0' WHERE no_serie='$no_serie'";
+            $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
             mysqli_query($conexion,$op);
             
             
@@ -228,13 +227,13 @@
             $resultado=mysqli_query($conexion,$op);
             
             
-            $op="UPDATE producto SET en_almacen='0' WHERE no_serie='$no_serie'";
+            $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
             mysqli_query($conexion,$op);
             
             
         }else{
             $fecha=$_POST['fecha'];
-        
+            /*eliminar todos por la fecha esta mal planteado*/
             $op="SELECT pieza.id FROM pieza JOIN compras ON pieza.id_compras=compras.id AND compras.fecha='$fecha'";
             $resultado=mysqli_query($conexion,$op);
             
@@ -255,7 +254,7 @@
                 $capital=$row2['capital']-$precio;
                 $op="UPDATE almacen SET capital='$capital' WHERE id='$id_almacen'";
                 mysqli_query($conexion,$op);
-                 $op="UPDATE pieza SET en_almacen='0' WHERE id='$fecha'";
+                 $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
                 mysqli_query($conexion,$op);
                 
                 

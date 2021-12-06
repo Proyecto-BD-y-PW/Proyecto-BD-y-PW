@@ -171,7 +171,7 @@
 
                 <option value="" selected disabled>Modelo disponibles</option>
                  <?php 
-                    $op="SELECT * FROM modelo m JOIN arquitectura a ON m.id_arquitectura=a.id";
+                    $op="SELECT m.nombre,a.id,m.estatus,a.tipo FROM modelo m JOIN arquitectura a ON m.id_arquitectura=a.id";
                     $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
                     $resultado=mysqli_query($conexion,$op);
                   
