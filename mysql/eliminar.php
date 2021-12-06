@@ -35,9 +35,9 @@
     $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
     $tipo_elim=$_POST['tipo-elim'];
     if(strcmp($tipo_elim,"todo")==0){
-        /*$op="DELETE FROM $pagina";
+        $op="DELETE FROM $pagina";
         mysqli_query($conexion,$op);
-       */ 
+        
         if($pagina=="arquitectura" || $pagina=="catalogo_pieza" || $pagina=="cliente"
            || $pagina=="empleado" || $pagina=="pieza" || $pagina=="producto" || $pagina=="venta"
           
