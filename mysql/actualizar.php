@@ -22,11 +22,33 @@
     echo $pagina;
     if(strcmp($pagina,"modelo")==0){
         $nombre=$_POST['nombre'];
+        $idnombre=$_POST['idnombre'];
         $id_arquitectura=$_POST['id-arquitectura'];
+        $estatus=$_POST['estatus'];
         
-        $op="INSERT INTO modelo(nombre,estatus,id_arquitectura) VALUES ('$nombre',1,'$id_arquitectura')";
+        $op="UPDATE modelo SET nombre='$nombre', estatus='$estatus', id_arquitectura= '$id_arquitectura' WHERE nombre='$idnombre'";
+        /*$op="INSERT INTO modelo(nombre,estatus,id_arquitectura) VALUES ('$nombre',1,'$id_arquitectura')";*/
         mysqli_query($conexion,$op);
+        
+        $op="SELECT * FROM catalogo_pieza";
+        $resultado=mysqli_query($conexion,$op);
+        $nombre_pieza="";
+        $modelo_pieza="";
+        $band=true;
+        $separada=explode("*",$nombremodelo);
+        $tamaño=sizeof($separada);
+        
+        while($row=mysqli_fetch_array($resultado)){
+            $nombre_pieza=$row['nombre'];
+            $modelo_pieza=$row['modelo'];
+            if(isset($_POST[$nombre."*".$modelo])){
+                $op="INSERT INTO pieza_modelo (nombre_modelo,nombre_pieza,modelo_pieza) VALUES('$nombre','$nombre_pieza','$modelo_pieza')";
+                
+            }
+        } 
+        
         header('location:../paginas/modelo.php');
+        
         
     }else if(strcmp($pagina,"arquitectura")==0){
         $tipo=$_POST['tipo'];
@@ -34,6 +56,7 @@
         $id=$_POST['id'];
         $op="UPDATE arquitectura SET tipo='$tipo', estatus='$estatus' WHERE id='$id'";
         mysqli_query($conexion,$op);
+        
         header('location:../paginas/arquitecturas.php'); 
         
     }else if(strcmp($pagina,"cliente")==0){
@@ -61,13 +84,12 @@
         
     }else if(strcmp($pagina,"pieza")==0){
         $id=$_POST['id'];
+        $idcompra=$_POST['idcompra'];
         $id_almacen=$_POST['idalmacen'];
         $id_compras=$_POST['idcompras'];
         
-        $fecha=$_POST['fecha'];
-        $hora=$_POST['hora'];
+        
         $descripcion=$_POST['descripcion'];
-        $tiempo=date('Y-m-d H:i:s', strtotime("$fecha $hora"));
        
         
         $nombremodelo=$_POST['nombremodelo'];
@@ -76,9 +98,43 @@
         $modelo="";
         $separada=explode("*",$nombremodelo);
         $tamaño=sizeof($separada);
-      /*  echo $separada[0]."---".$separada[1];
-      
-      */  foreach($separada as $valor){
+        
+        /*Actualizar los datos que tienen atributos calculados de otras tablas para eso primero toms mos algnos datos de lo que tiene la base de datos*/
+        $op="SELECT p.id,p.nombre,p.modelo,cp.precio,p.id_almacen,al.nombre,al.capital FROM pieza p JOIN almacen al ON p.id_almacen=al.id JOIN catalogo_pieza cp ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE p.id='$id'";
+        $resultado=mysqli_query($conexion,$op);
+        $row = mysqli_fetch_array( $resultado );
+        $precioPieza=$row['precio'];/*Recupero el precio de esa pieza*/
+        $idal=$row['id_almacen'];/*Recupero el ID del almacen donde etaba esta pieza*/
+        /*-------------------------------------------------------------------------*/
+        
+        $op="UPDATE pieza SET id='$id', descripcion='$descripcion', id_compras='$id_compras', id_almacen='$id_almacen', nombre=$nombre, modelo='$modelo'";
+        mysqli_query($conexion,$op);
+        
+        
+        $op="SELECT * FROM almacen WHERE id='$idal'";
+        mysqli_query($conexion,$op);
+        $resultado=mysqli_query($conexion,$op);
+        $rowAl = mysqli_fetch_array( $resultado );
+        $capitalActua=$rowAl['capital']-$precioPieza;
+        
+        $op="UPDATE almacen SET capital='$capitalActua' WHERE id='$idal'";/*Actualizo el capital de ese almacen para no tnerlo doble*/
+        mysqli_query($conexion,$op);
+        
+        $op="SELECT * FROM compras WHERE id='$idcompra'";
+        $resultado=mysqli_query($conexion,$op);
+        $row = mysqli_fetch_array( $resultado );
+        $cantidad=$row['cantidad']-1;
+        $preciocompra=$row['precio']-$precioPieza;
+        /*libera la memoria*/
+        mysqli_free_result( $resultado );
+        
+        $op="UPDATE compras SET cantidad='$cantidad', precio='$preciocompra' WHERE id='$idcompra'";/*Le quito esta pieza a la cantida de compras asi como disminuir el costo de esa compra en su precio*/
+        mysqli_query($conexion,$op);
+     
+        
+        /*-----------------------------------------------------------------------------------*/
+        
+        foreach($separada as $valor){
             if($band){
                 $nombre=$valor;
                 $band=false;
@@ -86,9 +142,6 @@
                 $modelo=$valor;
             }
         }
-        $op="INSERT INTO pieza (id,en_almacen,tipo,descripcion,id_compras,id_almacen,nombre,modelo)
-         VALUES('$id','1','','$descripcion','$id_compras','$id_almacen','$nombre','$modelo')";
-        mysqli_query($conexion,$op);
        
 
         
@@ -119,10 +172,20 @@
         $resultado=mysqli_query($conexion,$op);
         $row = mysqli_fetch_array( $resultado );
         $cantidad=$row['cantidad']+1;
+        $precioTot=$row['precio'];
+        
+        $op="SELECT * FROM almacen WHERE id='$id_almacen'";/*Actualizar el capital del almacen*/
+        $resultado=mysqli_query($conexion,$op);
+        $arrayAl=mysqli_fetch_array( $resultado );
+        $capital=$precioTot+$arrayAl['capital'];
+        
+        $op="UPDATE almacen SET capital='$capital' WHERE id='$id_almacen'";
+        mysqli_query($conexion,$op);
         
         /*libera la memoria*/
         mysqli_free_result( $resultado );
         
+        /*Se actualiza el numero de compras de ese id de compras*/
         $op="UPDATE compras SET cantidad='$cantidad' WHERE id='$id_compras'";
         mysqli_query($conexion,$op);
         
@@ -160,72 +223,19 @@
 
 
     }else if(strcmp($pagina,"venta")==0){
+        $idventa=$_POST['id'];
         $rfc=$_POST['rfc'];
+        $estatus=$_POST['estatus'];
         $idempleado=$_POST['idempleado'];
         $fecha=$_POST['fecha'];
         $hora=$_POST['hora'];
         $tiempo=date('Y-m-d H:i:s', strtotime("$fecha $hora"));
         
-        $op="INSERT INTO venta(fecha,cantidad,total,estatus,id_empleado,RFC_cliente) VALUES ('$tiempo','0','0','0','$idempleado','$rfc')";
+        $op="UPDATE venta SET fecha='$tiempo',estatus='$estatus',id_empleado='$idempleado',RFC_cliente='$rfc' WHERE id='$idventa'";
         mysqli_query($conexion,$op);
-        $idventa=mysqli_insert_id($conexion);
-         $op="SELECT * FROM pieza_venta";
-        $resultado=mysqli_query($conexion,$op);
-        
-        while($row=mysqli_fetch_array($resultado)){
-            $id_pieza=$row['id'];
-            if(isset($_POST[$id_pieza])){
-            
-                $op="INSERT INTO venta_pieza(id_venta,id_pieza) VALUES ('$idventa','$id_pieza')";
-                mysqli_query($conexion,$op);
-                $op="UPDATE pieza SET en_almacen=0 WHERE id='$id_pieza'";
-                mysqli_query($conexion,$op);
-                $op="SELECT * from venta WHERE id='$idventa'";
-                $result=mysqli_query($conexion,$op);
-                $ventarow=mysqli_fetch_array($result);
-                $cantidad=$ventarow['cantidad'];
-                $cantidad=$cantidad+1;
-                $precio=$ventarow['total'];
-                $precio=$precio+$row['precio_publico'];
-                
-                $op="UPDATE venta SET cantidad='$cantidad' WHERE id='$idventa'";
-                $result=mysqli_query($conexion,$op);
-                 $op="UPDATE venta SET total='$precio' WHERE id='$idventa'";
-               $result=mysqli_query($conexion,$op);
-            
-                
-            }
-        }
-       $op="SELECT * FROM producto";
-        $resultado=mysqli_query($conexion,$op);
-        
-        while($row=mysqli_fetch_array($resultado)){
-            $no_serie=$row['no_serie'];
-            if(isset($_POST[$no_serie])){
-            
-                $op="INSERT INTO venta_producto(no_serie,id_venta) VALUES ('$no_serie','$idventa')";
-                mysqli_query($conexion,$op);
-                $op="UPDATE producto SET en_almacen=0 WHERE no_serie='$no_serie'";
-                mysqli_query($conexion,$op);
-                $op="SELECT * from venta WHERE id='$idventa'";
-                $result=mysqli_query($conexion,$op);
-                $ventarow=mysqli_fetch_array($result);
-                $cantidad=$ventarow['cantidad'];
-                $cantidad=$cantidad+1;
-                $precio=$ventarow['total'];
-                $precio=$precio+$row['costo'];
-                
-                $op="UPDATE venta SET cantidad='$cantidad' WHERE id='$idventa'";
-                $result=mysqli_query($conexion,$op);
-                 $op="UPDATE venta SET total='$precio' WHERE id='$idventa'";
-               $result=mysqli_query($conexion,$op);
-                
-            }
-        }     
-        
-        
         
         header('location:../paginas/ventas.php');
+        
     }else if(strcmp($pagina,"almacen")==0){
         $almacen=$_POST['n-almacen'];
         $descripcion=$_POST['descripcion'];
