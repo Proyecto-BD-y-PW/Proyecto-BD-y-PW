@@ -75,9 +75,9 @@
         $hora=$_POST['hora'];
         $tiempo=date('Y-m-d H:i:s', strtotime("$fecha $hora"));
         $rfc=$_POST['rfc_proveedor'];
+        $id=$_POST['id'];
         
-        
-        $op="INSERT INTO compras(fecha,cantidad,precio,estatus,RFC) VALUES ('$tiempo','0','0','1','$rfc')";
+        $op="UPDATE compras SET fecha='$tiempo',RFC='$rfc' WHERE id='$id'";
         mysqli_query($conexion,$op);
         
         header('location:../paginas/compras.php');
@@ -178,7 +178,7 @@
         $resultado=mysqli_query($conexion,$op);
         $num_reg=mysqli_num_rows($resultado);
         
-        /*PROBAR SU FUNCIONALIDAD*/
+        
         $precio=0;
         if($num_reg > 0){
             
@@ -288,12 +288,66 @@
         header('location:../paginas/empleados.php');
         
     }else if(strcmp($pagina,"catalogo_pieza")==0){
-         $nombre=$_POST['nombre'];
+        $nombre=$_POST['nombre'];
         $modelo=$_POST['modelo'];
         $precio_compra=$_POST['precio_compra'];
         
-        $op="INSERT INTO catalogo_pieza(nombre,modelo,precio) VALUES ('$nombre','$modelo','$precio_compra')";
+        /*---------------------------------------------------------------------------------*/
+        //Actualizar el precio de la compra de la tabla catalogo_pieza
+       /* $op="UPDATE catalogo_pieza SET precio='$precio_compra' WHERE nombre='$nombre' AND modelo='$modelo'";
         mysqli_query($conexion,$op);
+        */
+        /*------------------------------------------------------------------------------------*/
+        /*ACTUALIZAR EL CAPITAL DE ALMACEN Y EL PRECIO DE LA COMPRA*/
+        $op="SELECT * FROM compras";
+        $resultado=mysqli_query($conexion,$op);
+        $num_regComp=mysqli_num_rows($resultado);/*Cuantos registros tenemos en compras*/
+        
+        $op="SELECT * FROM almacen";
+        $resultado=mysqli_query($conexion,$op);
+        $num_regAl=mysqli_num_rows($resultado);/*Cuantos registros tenemos en almacen*/
+        
+        for($i = 1; $i <= 10; $i++){
+            
+        }
+        
+        
+        /*$op="SELECT p.id, p.nombre, p.modelo, cp.precio,c.id'id_compra', p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE c.id='$id_compras' AND p.en_almacen=1";
+        $resultado=mysqli_query($conexion,$op);
+        $num_reg=mysqli_num_rows($resultado);
+        
+        
+        $precio=0;
+        if($num_reg > 0){
+            
+            //Mientras mysqli_fetch_array traiga algo, lo agregamos a una variable temporal
+            while($row = mysqli_fetch_array( $resultado ) ){
+                $precio=$precio+$row['precio']; /*precios detodaslas piezas en almacen para calcular el precio de compra*/
+            /*}
+        }
+        
+        /*$op="UPDATE compras SET precio='$precio' WHERE id='$id_compras'";
+        mysqli_query($conexion,$op);
+        
+        $op="SELECT p.id, p.nombre, p.modelo, cp.precio,c.id'id_compra', p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE p.id_almacen='$id_almacen' AND p.en_almacen=1";
+        $resultado=mysqli_query($conexion,$op);
+        $num_reg=mysqli_num_rows($resultado);
+        
+        $capital=0;
+        if($num_reg > 0){
+            
+            //Mientras mysqli_fetch_array traiga algo, lo agregamos a una variable temporal
+            while($row = mysqli_fetch_array( $resultado ) ){
+                $capital=$capital+$row['precio']; /*precios detodaslas piezas en almacen para calcular el el capital del almacen*/
+           /* }
+        }
+        
+        $op="UPDATE almacen SET capital='$capital' WHERE id='$id_almacen'";
+        mysqli_query($conexion,$op);
+        /*----------------------------------------------------------------------------------------*/
+        
+        /*libera la memoria*/
+        /*mysqli_free_result( $resultado );*/
         
         header('location:../paginas/catalogo_piezas.php');
         
@@ -310,9 +364,7 @@
          $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
         mysqli_query($conexion,$op);
         
-        
-        
-        
+    
         header('location:../paginas/pieza_armado.php');
         
     }else if(strcmp($pagina,"pieza_venta")==0){

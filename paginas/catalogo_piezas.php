@@ -159,15 +159,28 @@
        </div>
       
    </form>
-    <form action="enviar.php" method="post" class="actualizar-mode">
+    <form action="../cambiosPaginas/cam_catalogo_pieza.php" method="post" class="actualizar-mode">
        
        <div class="formulario">
-           <h2>ACTUALIZAR PIEZAS EN EL CATÁLOGO</h2>
+           <h2>ACTUALIZAR PIEZA EN EL CATÁLOGO</h2>
 
-            <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
+            <select name="nombremodelo" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
 
                 <option value="" selected disabled>Piezas en el catálogo disponibles</option>
-                
+                <?php
+                    $op="SELECT * FROM catalogo_pieza";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    $separador="*";
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['nombre'];
+                        $j=$row['modelo'];
+                        echo "<option value='".$i.$separador.$j."' >"."*NOMBRE: ".$row['nombre']."  *MODELO: ".$row['modelo']."</option>";
+                        
+                        
+                    }
+                ?>
             </select>
        </div>
 
