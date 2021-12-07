@@ -90,7 +90,7 @@
                         
                     }
                 
-            echo "</select>
+           /* echo "</select>
             <select name='idcompras' id='tipo' class='entrada' required>
                 <option value='' selected disabled>*COMPRA: ".$rowBD['id_compras']." *PROVEEDOR: ".$rowBD['empresa']." *RFC: ".$rowBD['RFC']."</option>";
                  
@@ -105,7 +105,7 @@
                         }
                         
                     }
-           
+           */
             echo "</select>
             <select name='nombremodelo' id='tipo' class='entrada' required>
                 <option value='' selected disabled>*Nombre: ".$rowBD['nombre']." *Modelo: ".$rowBD['modelo']."</option>";
