@@ -303,13 +303,25 @@
         $resultado=mysqli_query($conexion,$op);
         $num_regComp=mysqli_num_rows($resultado);/*Cuantos registros tenemos en compras*/
         
+        
+        if($num_regComp > 0){
+            //Mientras mysqli_fetch_array traiga algo, lo agregamos a una variable temporal
+            while($row = mysqli_fetch_array( $resultado ) ){
+                $id_compras=$row['id'];
+                $op="SELECT p.id, p.nombre, p.modelo, cp.precio,c.id'id_compra', p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE c.id='$id_compras' AND p.en_almacen=1";
+                $consulta=mysqli_query($conexion,$op);
+                $precio=0;
+                 while($reg = mysqli_fetch_array( $consulta ) ){
+                     $precio=$precio+$reg['precio']; /*precios detodaslas piezas en almacen para calcular el precio de compra*/
+                 }
+                echo "<br><br>Total en la compra = ".$precio;
+            }
+        }
+        /*
         $op="SELECT * FROM almacen";
         $resultado=mysqli_query($conexion,$op);
         $num_regAl=mysqli_num_rows($resultado);/*Cuantos registros tenemos en almacen*/
         
-        for($i = 1; $i <= 10; $i++){
-            
-        }
         
         
         /*$op="SELECT p.id, p.nombre, p.modelo, cp.precio,c.id'id_compra', p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE c.id='$id_compras' AND p.en_almacen=1";
@@ -349,7 +361,7 @@
         /*libera la memoria*/
         /*mysqli_free_result( $resultado );*/
         
-        header('location:../paginas/catalogo_piezas.php');
+        //header('location:../paginas/catalogo_piezas.php');
         
     }else if(strcmp($pagina,"pieza_armado")==0){
         $id=$_POST['id-pieza'];
