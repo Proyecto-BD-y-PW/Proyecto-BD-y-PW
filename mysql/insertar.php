@@ -32,13 +32,12 @@
         $nombre_pieza="";
         $modelo_pieza="";
         $band=true;
-            /*  echo $separada[0]."---".$separada[1];
-      
-      */  
         $i=1;
+        /*parte donde llenamos la tabla pieza_modelo para saber que piezas lleva este modelo*/
         while($row=mysqli_fetch_array($resultado)){
             $nombre_pieza=$row['nombre'];
             $modelo_pieza=$row['modelo'];
+            /*usamos un contador ya que en el name de los checkbox comenzamos desde 1 para nombrarlos, esto debido a que los ordenamos de manera ASC para que siempre salgan en este orden*/
             if(isset($_POST[$i])){
                 $op="INSERT INTO pieza_modelo (nombre_modelo,nombre_pieza,modelo_pieza) VALUES('$nombre','$nombre_pieza','$modelo_pieza')";
                 mysqli_query($conexion,$op);
@@ -47,8 +46,8 @@
             $i++;
         }  
         
-         /*header('location:../paginas/modelo.php');
-       */
+         header('location:../paginas/modelo.php');
+       
     }else if(strcmp($pagina,"arquitectura")==0){
         $tipo=$_POST['tipo'];
         $op="INSERT INTO arquitectura(tipo,estatus) VALUES ('$tipo',1)";
@@ -94,9 +93,7 @@
         $modelo="";
         $separada=explode("*",$nombremodelo);
         $tamaño=sizeof($separada);
-      /*  echo $separada[0]."---".$separada[1];
-      
-      */  foreach($separada as $valor){
+        foreach($separada as $valor){
             if($band){
                 $nombre=$valor;
                 $band=false;

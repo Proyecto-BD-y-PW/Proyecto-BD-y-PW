@@ -78,6 +78,21 @@
                 $modelo=$valor;
             }
         }
+        $op="SELECT *,ca.nombre 'nombre_catalogo',ca.modelo 'modelo_catalogo' FROM catalogo_pieza ca JOIN pieza p ON ca.nombre=p.nombre AND ca.modelo=p.modelo JOIN almacen a ON p.id_almacen=a.id WHERE ca.nombre='$nombre' AND ca.modelo='$modelo'";
+        $resultado=mysqli_query($conexion,$op);
+        /*actualizamos capital del almacen ya que al eliminar algo de catalogo pieza se eliminan las piezas que se relacionan, solo con el detalle de checar si sigue en almacen yaque si ya no esta en almacen es porque ya fue restado ese precio del capital*/
+        while($row=mysqli_fetch_array($resultado)){
+            if($row['en_almacen']){
+                $capital=$row['capital']-$row['precio'];
+                $id_almacen=$row['id_almacen'];
+                $op="UPDATE almacen SET capital='$capital' WHERE id=";
+            }
+            
+        }
+        
+        
+        
+        
         $op="DELETE FROM catalogo_pieza WHERE nombre='$nombre' AND modelo='$modelo'";
         mysqli_query($conexion,$op);
         header("location:../paginas/catalogo_piezas.php");
@@ -121,17 +136,6 @@
         $tipo_elim=$_POST['tipo-elim'];
         if(strcmp($tipo_elim,"unico-id")==0){
            $id=$_POST['id-elim'];
-            /*$op="SELECT * FROM pieza p JOIN catalogo_pieza ca ON p.nombre=ca.nombre AND p.modelo=ca.modelo WHERE p.id='$id'";            
-            $resultado=mysqli_query($conexion,$op);
-            $row=mysqli_fetch_array($resultado);
-            $precio=$row['precio'];
-            $id_almacen=$row['id_almacen'];
-            $op="SELECT * FROM almacen WHERE id='$id_almacen'";
-            $resultado=mysqli_query($conexion,$op);
-            $row=mysqli_fetch_array($resultado);
-            $precio=$row['capital']-$precio;
-            $op="UPDATE almacen SET capital='$precio' WHERE id='$id_almacen'";
-            mysqli_query($conexion,$op);*/
             
             
             
@@ -144,24 +148,14 @@
             
             $op="SELECT * FROM pieza_armado WHERE fecha='$fecha'";
             $resultado=mysqli_query($conexion,$op);
-            $row=mysqli_fetch_array($resultado);
-            $id=$row['id'];
-            
-             /*$op="SELECT * FROM pieza_armado pa JOIN pieza p ON pa.id=p.id JOIN catalogo_pieza ca ON p.nombre=ca.nombre AND p.modelo=ca.modelo WHERE pa.id='$id'";            
-            $resultado=mysqli_query($conexion,$op);
-            $row=mysqli_fetch_array($resultado);
-            $precio=$row['precio'];
-            $id_almacen=$row['id_almacen'];
-            $op="SELECT * FROM almacen WHERE id='$id_almacen'";
-            $resultado=mysqli_query($conexion,$op);
-            $row=mysqli_fetch_array($resultado);
-            $precio=$row['capital']-$precio;
-            $op="UPDATE almacen SET capital='$precio' WHERE id='$id_almacen'";
-            mysqli_query($conexion,$op);*/
-            
-            
-            $op="DELETE FROM pieza WHERE id='$id'";
-            mysqli_query($conexion,$op);
+            while($row=mysqli_fetch_array($resultado)){
+                $id=$row['id'];
+                $op="DELETE FROM pieza WHERE id='$id'";
+                mysqli_query($conexion,$op);
+                
+                
+                
+            }
             
 
             
@@ -214,7 +208,7 @@
                 
                  $op="SELECT * FROM almacen WHERE id='$id_almacen'";
                 $resultado2=mysqli_query($conexion,$op);
-                $row2=mysqli_fetch_array($resultado);
+                $row2=mysqli_fetch_array($resultado2);
                 $capital=$row2['capital']-$precio;
                 $op="UPDATE almacen SET capital='$capital' WHERE id='$id_almacen'";
                 mysqli_query($conexion,$op);
@@ -262,29 +256,32 @@
         }else{
             $fecha=$_POST['fecha'];
             /*eliminar todos por la fecha esta mal planteado*/
-            $op="SELECT pieza.id FROM pieza JOIN compras ON pieza.id_compras=compras.id AND compras.fecha='$fecha'";
+            /*correccion el 7 de dic del 2021 al parecer ya esta funcionando*/
+            $op="SELECT *,p.id 'id_pieza' FROM pieza p JOIN compras c ON p.id_compras=c.id WHERE c.fecha='$fecha'";
             $resultado=mysqli_query($conexion,$op);
             
             while($row=mysqli_fetch_array($resultado)){
-                $id=$nombre=$row['id'];    
+                $id=$nombre=$row['id_pieza'];    
                 $nombre=$row['nombre'];
                 $modelo=$row['modelo'];
-                $op="SELECT * FROM pieza p JOIN catalogo_pieza c ON c.nombre='$nombre' AND c.modelo='$modelo'";
-                $resultado2=mysqli_query($conexion,$op);
-                $row2=mysqli_fetch_array($resultado2);
-                 $precio=$row2['precio'];
-                 $id_almacen=$row2['id_almacen'];
+                
+                if($row['en_almacen']){
+                    $op="SELECT * FROM pieza p JOIN catalogo_pieza c ON c.nombre=p.nombre AND c.modelo=p.modelo WHERE p.id='$id'";
+                    $resultado2=mysqli_query($conexion,$op);
+                    $row2=mysqli_fetch_array($resultado2);
+                    $precio=$row2['precio'];
+                    $id_almacen=$row2['id_almacen'];
             
                 
-                 $op="SELECT * FROM almacen WHERE id='$id_almacen'";
-                $resultado2=mysqli_query($conexion,$op);
-                $row2=mysqli_fetch_array($resultado);
-                $capital=$row2['capital']-$precio;
-                $op="UPDATE almacen SET capital='$capital' WHERE id='$id_almacen'";
-                mysqli_query($conexion,$op);
-                 $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
-                mysqli_query($conexion,$op);
-                
+                    $op="SELECT * FROM almacen WHERE id='$id_almacen'";
+                    $resultado2=mysqli_query($conexion,$op);
+                    $row2=mysqli_fetch_array($resultado2);
+                    $capital=$row2['capital']-$precio;
+                    $op="UPDATE almacen SET capital='$capital' WHERE id='$id_almacen'";
+                    mysqli_query($conexion,$op);
+                    $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
+                    mysqli_query($conexion,$op);
+                }
                 
             }
             
