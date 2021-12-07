@@ -191,8 +191,13 @@
        
        <div class="formulario">
           <h2>CONSULTAR EMPLEADOS</h2>
+             <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
 
-            <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons ;?>>
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Consultar todos los registros</option>
+            </select>
+            <select name="id" id="disponibles" class="remove" required <?php echo $acceso_cons ;?>>
 
                 <option value="" selected disabled>Empleados disponibles</option>
                 <?php 
@@ -203,21 +208,16 @@
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['id'];
-                        if($row['estatus']){
+                        
                             echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']."</option>";
-                        }
+                        
                         
                     }
                     mysqli_close($conexion);
                 ?>
             </select>
  
-            <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
-
-                <option value="" selected disabled>Selecciona tipo de consulta</option>
-                <option value="unico" id="unico">Solo un registro</option>
-                <option value="todo" >Consultar todos los registros</option>
-            </select>
+           
        </div>
 
        <div class="botones">

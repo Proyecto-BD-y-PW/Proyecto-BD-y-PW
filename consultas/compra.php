@@ -148,6 +148,45 @@
                         </tr>";
                     
                     
+                }else if($tipo_cons=="rango-fecha"){
+                    $fecha_inicial=$_POST['fecha-ini'];
+                    $fecha_final=$_POST['fecha-fin'];
+                     $op="SELECT *,p.RFC 'RFC_proveedor' FROM compras c JOIN proveedores p ON p.RFC=c.RFC WHERE fecha BETWEEN '$fecha_inicial 00:00:00' AND '$fecha_final 23:59:59'";
+                    $resultado=mysqli_query($conexion,$op);
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $id=$row['id'];
+                        $fecha=$row['fecha'];
+                        $cantidad=$row['cantidad'];
+                        $precio=$row['precio'];
+                        $estatus=$row['estatus'];
+                        if($estatus){
+                            $estatus="terminada";
+                        }else{
+                            $estatus="en proceso";
+                        }
+                         $empresa=$row['empresa'];
+                        $rfc=$row['RFC_proveedor'];
+                        $nombre=$row['nombre_proveedor'];
+                    
+                    echo "<tr>
+                                <td> $id </td>
+                                <td> $fecha </td>
+                                <td> $cantidad </td>
+                                <td> $precio </td>
+                                <td> $estatus </td>
+                                <td> $empresa </td>
+                                <td> $rfc </td>
+                                <td> $nombre </td>
+                    
+                        </tr>";
+                    
+                            
+                        
+                    }
+                    
+                    
+                    
                 }else{
                     $fecha=$_POST['fecha-cons'];
                     

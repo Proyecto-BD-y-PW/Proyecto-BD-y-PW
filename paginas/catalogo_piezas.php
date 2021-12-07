@@ -183,7 +183,13 @@
        
        <div class="formulario">
              <h2>CONSULTAR CATALOGO DE PIEZAS</h2>
-            <select name="id" id="disponibles" class="entrada">
+             <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Consultar todos los registros</option>
+            </select>
+            <select name="id" id="disponibles" class="remove">
                 <option value="" selected disabled>Piezas registradas</option>
                 <?php 
                     $op="SELECT * FROM catalogo_pieza";
@@ -201,12 +207,7 @@
                     mysqli_close($conexion);
                 ?>
             </select>
-             <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
-
-                <option value="" selected disabled>Selecciona tipo de consulta</option>
-                <option value="unico" id="unico">Solo un registro</option>
-                <option value="todo" >Consultar todos los registros</option>
-            </select>
+             
        </div>
 
        <div class="botones">

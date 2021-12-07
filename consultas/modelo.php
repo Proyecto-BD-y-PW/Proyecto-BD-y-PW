@@ -69,13 +69,14 @@
                  <th>ESTATUS</th>
                  <th>ID DE ARQUITECTURA</th>
                  <th>TIPO DE ARQUITECTURA</th>
+                 <th>PIEZAS QUE LLEVA</th>
                  
                  
              </tr>
              <?php
                 $tipo_cons=$_POST['tipo-cons'];
                 if($tipo_cons=="todo"){
-                    $op="SELECT * FROM modelo m JOIN arquitectura a ON m.id_arquitectura=a.id";
+                    $op="SELECT * FROM modelo m JOIN arquitectura a ON m.id_arquitectura=a.id ";
                     $resultado=mysqli_query($conexion,$op);
                     while($row=mysqli_fetch_array($resultado)){
                         $nombre=$row['nombre'];
@@ -87,29 +88,37 @@
                         }
                         $id_arquitectura=$row['id_arquitectura'];
                         $tipo=$row['tipo'];
-                        
+                        $op="SELECT * FROM modelo m JOIN pieza_modelo pm ON m.nombre=pm.nombre_modelo WHERE pm.nombre_modelo='$nombre'";
+                        $resultado2=mysqli_query($conexion,$op);
                         echo "<tr>
                                 <td> $nombre </td>
                                 <td> $estatus </td>
                                 <td> $id_arquitectura </td>
                                 <td> $tipo </td>
-                        
-                        
-                            </tr>";
-                        
+                                ";
+                        echo "<td>";
+                        if($resultado2){
+                        while($row2=mysqli_fetch_array($resultado2)){
+                            echo "*".$row2['nombre_pieza']." ".$row2['modelo_pieza']."--";
+                            
+                        }
+                        }
+                        echo "</td></tr>";
                     }
                     
                 }else{
                     $id=$_POST['id'];
+                    $nombre=$id;
                     $op="SELECT * FROM modelo WHERE nombre='$id'";
                     $resultado=mysqli_query($conexion,$op);
                     $row=mysqli_fetch_array($resultado);
                     $id=$row['id_arquitectura'];
-                    $op="SELECT * FROM modelo m JOIN arquitectura a ON a.id='$id'";
+                    $op="SELECT * FROM modelo m JOIN arquitectura a ON a.id=m.id_arquitectura  WHERE m.nombre='$nombre'";
                     $resultado=mysqli_query($conexion,$op);
                     $row=mysqli_fetch_array($resultado);
                     $nombre=$row['nombre'];
                     $estatus=$row['estatus'];
+                     
                     if($estatus){
                         $estatus="disponible";
                      }else{
@@ -117,13 +126,23 @@
                      }
                         $id_arquitectura=$row['id_arquitectura'];
                         $tipo=$row['tipo'];
-                    echo "<tr>
+                    
+                     $op="SELECT * FROM modelo m JOIN pieza_modelo pm ON m.nombre=pm.nombre_modelo WHERE pm.nombre_modelo='$nombre'";
+                    $resultado2=mysqli_query($conexion,$op);
+                     echo "<tr>
                                 <td> $nombre </td>
                                 <td> $estatus </td>
                                 <td> $id_arquitectura </td>
                                 <td> $tipo </td>
-                    
-                        </tr>";
+                                ";
+                        echo "<td>";
+                        if($resultado2){
+                        while($row2=mysqli_fetch_array($resultado2)){
+                            echo "*".$row2['nombre_pieza']." ".$row2['modelo_pieza']."--";
+                            
+                        }
+                        }
+                        echo "</td></tr>";
                     
                     
                 }

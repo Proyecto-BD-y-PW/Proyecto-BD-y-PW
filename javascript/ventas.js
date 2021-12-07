@@ -2,6 +2,7 @@ const radio1_btn = document.getElementById("radio-1");
 const select1_btn = document.getElementById("eliminaciones");
 const select2_btn = document.getElementById("elim-id");
 const select3_btn = document.getElementById("elim-fecha");
+const input_fecha = document.querySelectorAll(".consultar-mode .formulario #fecha");
 
 
 /*const select4_btn = document.getElementById("consultas");
@@ -46,18 +47,33 @@ select1_btn.addEventListener('change',function(){
         select2_btn.setAttribute("required","");
         select3_btn.classList.add("remove");
         select3_btn.removeAttribute("required","");
+        /*input_fecha.classList.add("remove");
+        input_fecha.removeAttribute("required","");*/
     
     }else if(opcion_seleccionada.value==='unico-fecha'){
         select2_btn.classList.add("remove");
         select2_btn.removeAttribute("required","");
         select3_btn.classList.remove("remove");
         select3_btn.setAttribute("required","");
+        /*input_fecha.classList.add("remove");
+        input_fecha.removeAttribute("required","");*/
+    
+    }else if(opcion_seleccionada.value==="rango-fecha"){
+        
+        select2_btn.classList.add("remove");
+        select2_btn.removeAttribute("required","");
+        select3_btn.classList.add("remove");
+        select3_btn.removeAttribute("required","");
+        /*input_fecha.classList.remove("remove");
+        input_fecha.setAttribute("required","");*/
+             
     }else{
         select2_btn.classList.add("remove");
         select2_btn.removeAttribute("required","");
         select3_btn.classList.add("remove");
         select3_btn.removeAttribute("required","");
-
+      /*  input_fecha.classList.add("remove");
+        input_fecha.removeAttribute("required","");*/
         
     }
      
@@ -127,18 +143,51 @@ select6_btn.addEventListener('change',function(){
         select7_btn.setAttribute("required","");
         select8_btn.classList.add("remove");
         select8_btn.removeAttribute("required","");
-    
+        input_fecha[0].classList.add("remove");
+        input_fecha[1].classList.add("remove");
+        input_fecha[1].removeAttribute("required","");
+        input_fecha[2].classList.add("remove");
+        input_fecha[3].classList.add("remove");
+        input_fecha[3].removeAttribute("required","");
+        
     }else if(opcion_seleccionada.value==='unico-f'){
         select7_btn.classList.add("remove");
         select7_btn.removeAttribute("required","");
         select8_btn.classList.remove("remove");
         select8_btn.setAttribute("required","");
+        input_fecha[0].classList.add("remove");
+          
+        input_fecha[1].classList.add("remove");
+        input_fecha[1].removeAttribute("required","");
+        input_fecha[2].classList.add("remove");
+        input_fecha[3].classList.add("remove");
+        input_fecha[3].removeAttribute("required","");
+        
+    }else if(opcion_seleccionada.value==='rango-fecha'){
+        select7_btn.classList.add("remove");
+        select7_btn.removeAttribute("required","");
+        select8_btn.classList.add("remove");
+        select8_btn.removeAttribute("required","");
+        input_fecha[0].classList.remove("remove");
+         
+        input_fecha[1].classList.remove("remove");
+        input_fecha[1].setAttribute("required","");
+        input_fecha[2].classList.remove("remove");
+        input_fecha[3].classList.remove("remove");
+        input_fecha[3].setAttribute("required","");
+        
     }else{
         select7_btn.classList.add("remove");
         select7_btn.removeAttribute("required","");
         select8_btn.classList.add("remove");
         select8_btn.removeAttribute("required","");
-
+        input_fecha[0].classList.add("remove");
+          
+        input_fecha[1].classList.add("remove");
+        input_fecha[1].removeAttribute("required","");
+        input_fecha[2].classList.add("remove");
+        input_fecha[3].classList.add("remove");
+        input_fecha[3].removeAttribute("required","");
         
     }
      

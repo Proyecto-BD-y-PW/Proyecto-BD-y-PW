@@ -227,7 +227,7 @@
             $resultado=mysqli_query($conexion,$op);
             
             
-            $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
+            $op="UPDATE pieza SET en_almacen='0', WHERE id='$id'";
             mysqli_query($conexion,$op);
             
             

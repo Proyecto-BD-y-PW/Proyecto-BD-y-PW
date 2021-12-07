@@ -185,8 +185,13 @@
        
        <div class="formulario">
            <h2>CONSULTAR ALMACENES</h2>
+            <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
 
-            <select name="id" id="disponibles" class="entrada" required <?php echo $acceso_cons ;?>>
+                <option value="" selected disabled>Selecciona tipo de consulta</option>
+                <option value="unico" id="unico">Solo un registro</option>
+                <option value="todo" >Consultar todos los registros</option>
+            </select>
+            <select name="id" id="disponibles" class="remove" required <?php echo $acceso_cons ;?>>
 
                 <option value="" selected disabled>Almacenes disponibles</option>
                 <?php 
@@ -205,12 +210,7 @@
                 ?>
             </select>
  
-            <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
-
-                <option value="" selected disabled>Selecciona tipo de consulta</option>
-                <option value="unico" id="unico">Solo un registro</option>
-                <option value="todo" >Consultar todos los registros</option>
-            </select>
+            
 
        </div>
 
