@@ -197,12 +197,24 @@
       
      
    </form>
-    <form action="enviar.php" method="post" class="actualizar-mode">
+    <form action="../cambiosPaginas/cam_compras.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR COMPRAS</h2>
             <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
                 <option value="" selected disabled>Compras disponibles</option>
-                
+                <?php 
+                    $op="SELECT * FROM compras";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                            echo "<option value='".$i."' >"."*ID: ".$row['id']."  *FECHA: ".$row['fecha']." *PROVEEDOR: ".$row['RFC']."</option>";
+                       
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
        </div>
 

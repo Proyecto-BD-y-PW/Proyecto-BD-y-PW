@@ -1,9 +1,10 @@
+
 <?php
     
     session_start();
     $usuario=$_SESSION['user'];
     $pass=$_SESSION['password'];
-    $_SESSION['pagina']="empleado";
+    $_SESSION['pagina']="compra";
     if($usuario=="" && $pass==""){
         
        echo "<script>
@@ -15,7 +16,7 @@
        </script>";
         die();
     }
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +24,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Empleados</title>
+    <title>Actualizar Compras</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -45,7 +46,7 @@
             </div>
 
             <div class="header-right">
-               <a href="../paginas/empleados.php">
+               <a href="../paginas/compras.php">
                     <button>REGRESAR</button>
                 </a>
                 <a href="../funciones/closeSession.php">
@@ -56,44 +57,49 @@
         </div>
 
     </header>
-
        
-   <form action="../mysql/actualizar.php" method="post">
+   <form action="../mysql/actualizar.php" method="post" >
        <div class="formulario">
-       <h2>ACTUALIZAR EMPLEADO</h2>
-       <?php 
-            $id=$_POST['id'];
-            $op="SELECT * FROM empleado WHERE id='$id'";
-            $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
-            $resultado=mysqli_query($conexion,$op);
-            $row=mysqli_fetch_array($resultado);
-            
+           <h2>ACTUALIZAR COMPRAS</h2>
+           <!--El id es autoincrementable-->
            
-           /*libera la memoria*/
-           mysqli_free_result( $resultado );
-           mysqli_close($conexion);
+           <?php
+           $id=$_POST['id'];
+           $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+           $op="SELECT * FROM compras WHERE id='$id'";
+           $resultado=mysqli_query($conexion,$op);
+           $rowBD=mysqli_fetch_array($resultado);
+           $RFC=$rowBD['RFC'];
            
-           $id=$row['id'];
-           echo "<h3 class='titlePK'>ID: ".$id."</h3><br>";
+           echo "<h3 class='titlePK'>ID COMPRA: ".$id."</h3><br>";
            
            echo "<input type='hidden' name='id' value='$id'><br>";
-           echo "<input class='entrada' type='text' id='nombre' name='nombre' placeholder='".$row['nombre']."' required >";
-           echo "<input class='entrada' type='text' id='telefono' name='telefono' placeholder='".$row['telefono']."' required >";
-           echo "<input class='entrada' type='email' id='correo' name='correo' placeholder='".$row['correo']."' required >";
            
-           echo "<select name='estatus' class='entrada' required>";
-           if($row['estatus']==true){
-               $estatus='Esta Habilitada el empleado';
-           }else{
-               $estatus='Esta Deshabilitada el empleado';
-           }
-           echo "<option value='' selected disabled>".$estatus."</option>";
-           echo "<option value='1'>Habilitar</option>";
-           echo "<option value='0'>Deshabilitar</option>";
+           $op="SELECT * FROM proveedores WHERE RFC='$RFC'";
+           $resultado=mysqli_query($conexion,$op);
+           $row=mysqli_fetch_array($resultado);
+           
+           echo "<label for='' class='entrada'>Ingresar Fecha y Hora de la compra: ".$rowBD['fecha']."</label>
+           <input class='entrada' type='date' id='fecha' name='fecha' required >
+           <input class='entrada' type='time' id='hora' name='hora' placeholder='Ingresa la hora de la compra' required >
+           <select name='rfc_proveedor' id='rfc'>
+               <option value='' selected disabled>*PROVEEDOR: ".$row['empresa']." *RFC: ".$row['empresa']."</option>";
+                    
+                    $op="SELECT * FROM proveedores";
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['RFC'];
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."*PROVEEDOR: ".$row['empresa']." *RFC: ".$row['RFC']."</option>";
+                        }
+                        
+                    }
+                    mysqli_close($conexion);
+               
            echo "</select>";
-           
-          ?>
-           
+           ?>
        </div>
 
        <div class="botones">
@@ -105,5 +111,6 @@
 
    </form>
     </main>
+    
 </body>
 </html>

@@ -45,7 +45,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventarios</title>
+    <title>Almacen</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -161,7 +161,7 @@
        </div>
       
    </form>
-    <form action="enviar.php" method="post" class="actualizar-mode">
+    <form action="../cambiosPaginas/cam_almacen.php" method="post" class="actualizar-mode">
        
        <div class="formulario">
            <h2>ACTUALIZAR ALMACENES</h2>
@@ -169,7 +169,20 @@
             <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
 
                 <option value="" selected disabled>Almacenes disponibles</option>
-                
+                <?php 
+                    $op="SELECT * FROM almacen";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."*ID: ".$row['id']."  *NOMBRE: ".$row['nombre']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
        </div>
 
