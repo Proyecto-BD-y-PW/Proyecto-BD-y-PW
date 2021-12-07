@@ -122,6 +122,95 @@
              ?>
              
          </table>
+         <!--tabla que se encarga de imprimir las piezas y los productos-->
+         <table id="tabla-consultas" >
+             <tr>
+                 <th>ID</th>
+                 <th>NOMBRE</th>
+                 <th>PIEZAS</th>
+                 <th>PRODUCTOS </th>
+                 
+                 
+             </tr>
+             <?php
+                $tipo_cons=$_POST['tipo-cons'];
+                if($tipo_cons=="todo"){
+                    $op="SELECT * FROM ALMACEN  ";
+                    $resultado=mysqli_query($conexion,$op);
+                    while($row=mysqli_fetch_array($resultado)){
+                        $id=$row['id'];
+                        $nombre=$row['nombre'];
+                         $capital=$row['capital'];
+                        echo "<tr>
+                                <td> $id </td>
+                                <td> $nombre </td>
+                                <td>"; 
+                        $op="SELECT *,a.nombre 'nombre_almacen',p.id 'id_pieza' FROM almacen a JOIN pieza p ON a.id=p.id_almacen WHERE p.id_almacen='$id'";
+                        $resultado2=mysqli_query($conexion,$op);
+                                
+                        while($row2=mysqli_fetch_array($resultado2)){
+                            
+                            echo "*ID: ".$row2['id_pieza']." ".$row2['nombre']." ".$row2['modelo']." - ";
+                            
+                        }
+                        
+                        echo "</td>";
+                        echo "<td>";
+                        $op="SELECT *,a.nombre 'nombre_almacen',p.no_serie FROM almacen a JOIN producto p ON a.id=p.id_almacen WHERE p.id_almacen='$id'";
+                        $resultado2=mysqli_query($conexion,$op);
+                                
+                        while($row2=mysqli_fetch_array($resultado2)){
+                            
+                            echo "*NO SERIE: ".$row2['no_serie']." ".$row2['nombre_modelo']." - ";
+                            
+                        }
+                        echo "</td></tr>";
+                    }
+                    
+                }else{
+                    $id=$_POST['id'];                  
+                    $op="SELECT * FROM ALMACEN  WHERE id='$id'";
+                    $resultado=mysqli_query($conexion,$op);
+                    $row=mysqli_fetch_array($resultado);
+                        $id=$row['id'];
+                        $nombre=$row['nombre'];
+                         $capital=$row['capital'];
+                        echo "<tr>
+                                <td> $id </td>
+                                <td> $nombre </td>
+                                <td>"; 
+                        $op="SELECT *,a.nombre 'nombre_almacen',p.id 'id_pieza' FROM almacen a JOIN pieza p ON a.id=p.id_almacen WHERE p.id_almacen='$id'";
+                        $resultado2=mysqli_query($conexion,$op);
+                                
+                        while($row2=mysqli_fetch_array($resultado2)){
+                            
+                            echo "*ID: ".$row2['id_pieza']." ".$row2['nombre']." ".$row2['modelo']." - ";
+                            
+                        }
+                        
+                        echo "</td>";
+                        echo "<td>";
+                        $op="SELECT *,a.nombre 'nombre_almacen',p.no_serie FROM almacen a JOIN producto p ON a.id=p.id_almacen WHERE p.id_almacen='$id'";
+                        $resultado2=mysqli_query($conexion,$op);
+                                
+                        while($row2=mysqli_fetch_array($resultado2)){
+                            
+                            echo "*NO SERIE: ".$row2['no_serie']." ".$row2['nombre_modelo']." - ";
+                            
+                        }
+                        echo "</td></tr>";
+                    
+                    
+                    
+                }
+                
+                
+             
+             
+             
+             ?>
+             
+         </table>
          
          
        <!--  </div>

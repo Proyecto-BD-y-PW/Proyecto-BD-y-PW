@@ -108,12 +108,13 @@ h4{
     z-index: 2;
     background-color: #4d84e2;
     padding-top: 1rem;
-    position: fixed;
+   /* position: fixed;
     left: 0;
-    width: 30rem;
+   */ width: 30rem;
     height: 90%;
 }
 
+/*
 .profile-data{
     width: 100%;
     text-align: center;
@@ -121,6 +122,7 @@ h4{
     margin-top: 0;
     margin-bottom: 2rem;
 }
+*/
 
 .sidebar a{
     font-size: 2.8rem;
@@ -224,7 +226,6 @@ input:not([type="date"]):not([type="button"]):not([type="submit"]){
     background-color: #5995fd;
      transform: scale(1.2);
 }
-
 
 
 .boton{
@@ -495,13 +496,80 @@ p{
 }
 
 #tabla-consultas{
+    margin: auto;
+  /*  width: 1100px;
+  */
     width: 90%;
-     border-spacing: 20px;
-   /*margin-top: 162px;
-  */  height: 500px;
-    max-height: 300px;
-    /*overflow-y: scroll;*/
+    border-spacing: 20px;
+    height: 550px;
+    overflow-x: auto;
+    display: block;  
 }
 .site-elements a{
     text-decoration: none;
+}
+
+
+@media(max-width:850px){
+    h2{
+        width: 100px;
+         box-shadow: 6px 8px 5px orange inset;
+    }
+    .formulario{
+        align-items: flex-start;
+    }
+    form{
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+    .botones{
+        justify-content: flex-start;
+        margin: 0;
+    }
+    table{
+        
+        -webkit-width: 100%;
+    }
+}
+@media(max-width:700px){
+    .fa-shopping-cart{
+        color: black;
+        display: none;
+        list-style: none;
+        visibility: hidden;
+        
+    }
+    .sidebar{
+        width: 20rem;
+        padding-top: 0;
+        overflow-y: auto;
+    }
+    
+    .sidebar a{
+        line-height: 20px;
+        padding-left: 0;
+        margin-bottom: 1px;
+        height: 60px;
+        width: 100%;
+        text-align: right;
+        margin-left: -30px;
+    }
+    h2{
+        
+        width: 150px; 
+        font-size: 30px;
+        box-shadow: 6px 8px 5px orange inset;
+    }
+    form{
+        position: absolute;
+    }
+    .sidebar i{
+        padding-right: 0;
+    }
+    
+
+     #check:checked ~ .sidebar{
+        left: -20rem;
+    }
+    
 }
