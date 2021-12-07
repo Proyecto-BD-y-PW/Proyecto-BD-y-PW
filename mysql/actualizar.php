@@ -123,11 +123,6 @@
         /*--------------------------------------------------------------------------*/
         /*actualizar el precio de la compra de la compra donde se saco esta pieza*/
        
-        /*$op="SELECT * FROM almacen WHERE id='$idal'";
-        mysqli_query($conexion,$op);
-        $resultado=mysqli_query($conexion,$op);
-        $rowAl = mysqli_fetch_array( $resultado );
-        $capitalActua=$rowAl['capital']-$precioPieza;*/
         
         $op="SELECT p.id, p.nombre, p.modelo, cp.precio,c.id'id_compra', p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE c.id='$idcomp' AND p.en_almacen=1";
         $resultado=mysqli_query($conexion,$op);
@@ -224,7 +219,7 @@
         /*libera la memoria*/
         mysqli_free_result( $resultado );
         
-       // header('location:../paginas/piezas.php');
+        header('location:../paginas/piezas.php');
         
     }else if(strcmp($pagina,"producto")==0){
         $noserie=$_POST['nserie'];
