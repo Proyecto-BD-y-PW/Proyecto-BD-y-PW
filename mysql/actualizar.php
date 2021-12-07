@@ -84,6 +84,7 @@
         
     }else if(strcmp($pagina,"pieza")==0){
         $id=$_POST['id'];
+        $id_new=$_POST['id_new'];
         $idcompra=$_POST['idcompra'];
         $id_almacen=$_POST['idalmacen'];
         $id_compras=$_POST['idcompras'];
@@ -100,38 +101,73 @@
         $tamaño=sizeof($separada);
         
         /*Actualizar los datos que tienen atributos calculados de otras tablas para eso primero toms mos algnos datos de lo que tiene la base de datos*/
-        $op="SELECT p.id,p.nombre,p.modelo,cp.precio,p.id_almacen,al.nombre,al.capital FROM pieza p JOIN almacen al ON p.id_almacen=al.id JOIN catalogo_pieza cp ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE p.id='$id'";
+        $op="SELECT p.id,p.nombre,p.modelo,cp.precio,p.id_almacen,p.id_compras,al.nombre,al.capital FROM pieza p JOIN almacen al ON p.id_almacen=al.id JOIN catalogo_pieza cp ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE p.id='$id'";
         $resultado=mysqli_query($conexion,$op);
         $row = mysqli_fetch_array( $resultado );
         $precioPieza=$row['precio'];/*Recupero el precio de esa pieza*/
         $idal=$row['id_almacen'];/*Recupero el ID del almacen donde etaba esta pieza*/
+        $idcomp=$row['id_compras'];/*Recupero el ID de la compra en la que estaba esta pieza*/
         /*-------------------------------------------------------------------------*/
         
-        $op="UPDATE pieza SET id='$id', descripcion='$descripcion', id_compras='$id_compras', id_almacen='$id_almacen', nombre=$nombre, modelo='$modelo'";
+        //Actualizamos los datos de la pieza
+        $op="UPDATE pieza SET id='$id_new', descripcion='$descripcion', id_compras='$id_compras', id_almacen='$id_almacen', nombre=$nombre, modelo='$modelo'";
         mysqli_query($conexion,$op);
-        
-        
-        $op="SELECT * FROM almacen WHERE id='$idal'";
+        /*--------------------------------------------------------------------------*/
+        /*actualizar el precio de la compra de la compra donde se saco esta pieza*/
+       
+        /*$op="SELECT * FROM almacen WHERE id='$idal'";
         mysqli_query($conexion,$op);
         $resultado=mysqli_query($conexion,$op);
         $rowAl = mysqli_fetch_array( $resultado );
-        $capitalActua=$rowAl['capital']-$precioPieza;
+        $capitalActua=$rowAl['capital']-$precioPieza;*/
         
-        $op="UPDATE almacen SET capital='$capitalActua' WHERE id='$idal'";/*Actualizo el capital de ese almacen para no tnerlo doble*/
-        mysqli_query($conexion,$op);
-        
-        $op="SELECT * FROM compras WHERE id='$idcompra'";
+        $op="SELECT p.id, p.nombre, p.modelo, cp.precio,c.id'id_compra', p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE c.id='$idcomp' AND p.en_almacen=1";
         $resultado=mysqli_query($conexion,$op);
-        $row = mysqli_fetch_array( $resultado );
-        $cantidad=$row['cantidad']-1;
-        $preciocompra=$row['precio']-$precioPieza;
-        /*libera la memoria*/
-        mysqli_free_result( $resultado );
+        $num_reg=mysqli_num_rows($resultado);
         
-        $op="UPDATE compras SET cantidad='$cantidad', precio='$preciocompra' WHERE id='$idcompra'";/*Le quito esta pieza a la cantida de compras asi como disminuir el costo de esa compra en su precio*/
+        
+        $precio=0;
+        if($num_reg > 0){
+            
+            //Mientras mysqli_fetch_array traiga algo, lo agregamos a una variable temporal
+            while($row = mysqli_fetch_array( $resultado ) ){
+                $precio=$precio+$row['precio']; /*precios detodaslas piezas en almacen para calcular el precio de compra*/
+            }
+        }
+        
+        $op="UPDATE compras SET precio='$precio' WHERE id='$idcomp'";/*Se actualizo el precio de la compra de la compra donde estaba la pieza*/
         mysqli_query($conexion,$op);
-     
         
+        /*--------------------------------------------------------------------------*/
+        //Actualizar el capital del almacen en el que fue sacado la pieza
+        
+        $op="SELECT p.id, p.nombre, p.modelo, cp.precio,c.id'id_compra', p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE p.id_almacen='$idal' AND p.en_almacen=1";
+        $resultado=mysqli_query($conexion,$op);
+        $num_reg=mysqli_num_rows($resultado);
+        
+        $capital=0;
+        if($num_reg > 0){
+            
+            //Mientras mysqli_fetch_array traiga algo, lo agregamos a una variable temporal
+            while($row = mysqli_fetch_array( $resultado ) ){
+                $capital=$capital+$row['precio']; /*precios detodaslas piezas en almacen para calcular el el capital del almacen*/
+            }
+        }
+        
+        $op="UPDATE almacen SET capital='$capital' WHERE id='$idal'";/*Actualizo el capital del almacen anterior*/
+        mysqli_query($conexion,$op);
+        
+        /*-----------------------------------------------------------------------------------------*/
+        /*Se actualiza la cantidad de productos de la compra anterior*/
+        
+        $op="SELECT p.id, p.nombre, p.modelo, cp.precio,c.id'id_compra', p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE c.id='$idcomp'";
+        $resultado=mysqli_query($conexion,$op);
+        $num_regC=mysqli_num_rows($resultado);
+        
+        $op="UPDATE compras SET cantidad='$num_regC' WHERE id='$id_compras'";
+        mysqli_query($conexion,$op);
+        
+        /*------------------------------------------------------------------------------------------*/
         /*-----------------------------------------------------------------------------------*/
         
         foreach($separada as $valor){
@@ -145,49 +181,51 @@
        
 
         
-        /*Para sacar la cantidad de productos y el precio de la compra y si esta pieza esta en elmacen*/
-        $op='SELECT p.id, p.nombre, p.modelo, cp.precio,c.id"id_compra", p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo';
+       /*Para sacar la cantidad de productos y el precio de la compra y si esta pieza esta en elmacen*/
+        $op="SELECT p.id, p.nombre, p.modelo, cp.precio,c.id'id_compra', p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE c.id='$id_compras' AND p.en_almacen=1";
         $resultado=mysqli_query($conexion,$op);
         $num_reg=mysqli_num_rows($resultado);
         
         /*PROBAR SU FUNCIONALIDAD*/
+        $precio=0;
         if($num_reg > 0){
-            $precio=0;
             
             //Mientras mysqli_fetch_array traiga algo, lo agregamos a una variable temporal
             while($row = mysqli_fetch_array( $resultado ) ){
-              if($row['id_compra']==$id_compras && $row['en_almacen']==true){
-                  $precio=$precio+$row['precio'];
-              }  
+                $precio=$precio+$row['precio']; /*precios detodaslas piezas en almacen para calcular el precio de compra*/
             }
         }
         
         $op="UPDATE compras SET precio='$precio' WHERE id='$id_compras'";
         mysqli_query($conexion,$op);
         
-        /*libera la memoria*/
-        mysqli_free_result( $resultado );
-        
-        $op="SELECT * FROM compras WHERE id='$id_compras'";
+        $op="SELECT p.id, p.nombre, p.modelo, cp.precio,c.id'id_compra', p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE p.id_almacen='$id_almacen' AND p.en_almacen=1";
         $resultado=mysqli_query($conexion,$op);
-        $row = mysqli_fetch_array( $resultado );
-        $cantidad=$row['cantidad']+1;
-        $precioTot=$row['precio'];
+        $num_reg=mysqli_num_rows($resultado);
         
-        $op="SELECT * FROM almacen WHERE id='$id_almacen'";/*Actualizar el capital del almacen*/
-        $resultado=mysqli_query($conexion,$op);
-        $arrayAl=mysqli_fetch_array( $resultado );
-        $capital=$precioTot+$arrayAl['capital'];
+        $capital=0;
+        if($num_reg > 0){
+            
+            //Mientras mysqli_fetch_array traiga algo, lo agregamos a una variable temporal
+            while($row = mysqli_fetch_array( $resultado ) ){
+                $capital=$capital+$row['precio']; /*precios detodaslas piezas en almacen para calcular el el capital del almacen*/
+            }
+        }
         
         $op="UPDATE almacen SET capital='$capital' WHERE id='$id_almacen'";
         mysqli_query($conexion,$op);
         
-        /*libera la memoria*/
-        mysqli_free_result( $resultado );
         
         /*Se actualiza el numero de compras de ese id de compras*/
-        $op="UPDATE compras SET cantidad='$cantidad' WHERE id='$id_compras'";
+        $op="SELECT p.id, p.nombre, p.modelo, cp.precio,c.id'id_compra', p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE c.id='$id_compras'";
+        $resultado=mysqli_query($conexion,$op);
+        $num_regC=mysqli_num_rows($resultado);
+        
+        $op="UPDATE compras SET cantidad='$num_regC' WHERE id='$id_compras'";
         mysqli_query($conexion,$op);
+        
+        /*libera la memoria*/
+        mysqli_free_result( $resultado );
         
         header('location:../paginas/piezas.php');
         

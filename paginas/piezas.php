@@ -194,7 +194,6 @@
                             
                         
                     }
-                    }
                     mysqli_close($conexion);
                 ?>
             </select>
