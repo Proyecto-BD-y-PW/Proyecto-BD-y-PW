@@ -127,11 +127,11 @@
             $precio=$row['precio'];
             $id_almacen=$row['id_almacen'];
             $op="SELECT * FROM almacen WHERE id='$id_almacen'";
-            $resultado=mysqli_fetch_array($conexion,$op);
+            $resultado=mysqli_query($conexion,$op);
             $row=mysqli_fetch_array($resultado);
             $precio=$row['capital']-$precio;
             $op="UPDATE almacen SET capital='$precio' WHERE id='$id_almacen'";
-            mysqli_fetch_array($conexion,$op);
+            mysqli_query($conexion,$op);
             
             
             
@@ -153,11 +153,11 @@
             $precio=$row['precio'];
             $id_almacen=$row['id_almacen'];
             $op="SELECT * FROM almacen WHERE id='$id_almacen'";
-            $resultado=mysqli_fetch_array($conexion,$op);
+            $resultado=mysqli_query($conexion,$op);
             $row=mysqli_fetch_array($resultado);
             $precio=$row['capital']-$precio;
             $op="UPDATE almacen SET capital='$precio' WHERE id='$id_almacen'";
-            mysqli_fetch_array($conexion,$op);
+            mysqli_query($conexion,$op);
             
             
             $op="DELETE FROM pieza WHERE id='$id'";
