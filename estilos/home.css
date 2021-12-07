@@ -10,7 +10,7 @@ html{
 body{
     font-size: 2rem;
     background-color: #4d84e2;
-    overflow-y: auto;
+   /* overflow-y: auto;*/
 }
 
 .contenedor{
@@ -18,7 +18,7 @@ body{
     width: 100%;
     min-height: 100vh;
     background-color: #4d84e2;
-    overflow-y: auto;
+   /* overflow-y: auto;*/
 }
 img{
     position: absolute;
@@ -382,7 +382,7 @@ select,input[type="date"],input[type="time"]{
    position: absolute;
    top: -100%;
     display: none;
-    
+    visibility: 0;
 }
 
 .eliminar-mode-remove{
@@ -426,7 +426,7 @@ input[type="text"]:disabled{
 }
 
 .piezas{
-    height: 150px;
+    height: 100px;
     width: 100%;
     overflow-y: scroll;
    /* background: red;*/
