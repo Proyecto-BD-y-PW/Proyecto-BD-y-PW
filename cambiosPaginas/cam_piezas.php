@@ -16,26 +16,6 @@
        </script>";
         die();
     }
-    
-    $privilegios=$_SESSION['privilegios'];
-    $acceso_reg="";
-    $acceso_elim="";
-    $acceso_actua="";
-    $acceso_cons="";
-
-    if(strcmp($privilegios,"administrador")==0){
-        
-    }else if(strcmp($privilegios,"usuario-cap")==0){
-        $acceso_elim="disabled";
-        $acceso_cons="";
-        
-    }else{
-        $acceso_reg="disabled";
-        $acceso_elim="disabled";
-        $acceso_actua="disabled";
-        
-        
-    }
 
 ?>
 
@@ -49,7 +29,6 @@
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
 
-    <script src="https://kit.fontawesome.com/eefb3f6366.js" crossorigin="anonymous"></script>
 </head>
 <body>
     
@@ -84,19 +63,21 @@
         
        <div class="formulario">
            <h2>ACTUALIZAR PIEZA</h2>
-           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la pieza" required>
            <?php
            $id=$_POST['id'];
-           echo "<h3 class='titlePK'>ID PIEZA: ".$id."</h3><br>";
-           
-           echo "<input type='hidden' name='id' value='$id'><br>";
-           $op="SELECT p.id'id_pieza',p.tipo,p.nombre,p.modelo,p.id_almacen, p.id_compras'id_compras',p.descripcion,c.RFC'rfc',pr.RFC'RFC',pr.empresa'empresa' FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN proveedores pr ON c.RFC=pr.RFC WHERE p.id='$id'";
+           $op="SELECT p.id'id_pieza',p.tipo,p.nombre,p.modelo,p.id_almacen, p.id_compras'id_compras',p.descripcion,c.RFC'rfc',pr.RFC'RFC',pr.empresa'empresa', al.nombre'nombre_almacen' FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN proveedores pr ON c.RFC=pr.RFC JOIN almacen al ON p.id_almacen=al.id WHERE p.id='$id'";
            $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
            $resultado=mysqli_query($conexion,$op);
            $rowBD=mysqli_fetch_array($resultado);
            
+           echo "<h3 class='titlePK'>ID PIEZA: ".$id."</h3><br>";
+           echo "<input class='entrada' type='text' id='id' name='id_new' placeholder='*ID: ".$rowBD['id_pieza']."' required>";
+           
+           echo "<input type='hidden' name='id' value='$id'><br>";
+           echo "<input type='hidden' name='idcompra' value='".$rowBD['id_compras']."'><br>";
+           
            echo "<select name='idalmacen' id='tipo' class='entrada' required>
-                <option value='' selected disabled>".$rowBD['id_almacen']."</option>";
+                <option value='' selected disabled>*ID ALMACEN: ".$rowBD['id_almacen']." *NOMBRE:  ".$rowBD['nombre_almacen']."</option>";
                   
                     $op="SELECT * FROM almacen";
                     $resultado=mysqli_query($conexion,$op);
@@ -111,7 +92,7 @@
                 
             echo "</select>
             <select name='idcompras' id='tipo' class='entrada' required>
-                <option value='' selected disabled>*COMPRA: ".$rowBD['id_compras']." *PROVEEDOR: ".$row['empresa']." *RFC: ".$row['RFC']."</option>";
+                <option value='' selected disabled>*COMPRA: ".$rowBD['id_compras']." *PROVEEDOR: ".$rowBD['empresa']." *RFC: ".$rowBD['RFC']."</option>";
                  
                     $op="SELECT c.estatus,c.id,p.RFC,p.empresa FROM compras c JOIN proveedores p ON c.RFC=p.RFC";
                     $resultado=mysqli_query($conexion,$op);

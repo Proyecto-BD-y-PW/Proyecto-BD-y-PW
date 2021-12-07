@@ -284,12 +284,12 @@
                 <option value="" selected disabled>Ventas disponibles</option>
                 <?php 
 
-                    $op="SELECT c.RFC,c.nombre 'nombre_cliente',e.id,e.nombre,v.id 'id_venta' FROM venta v JOIN cliente c ON v.RFC_cliente=c.RFC JOIN empleado e ON e.id=v.id_empleado";
+                    $op="SELECT c.RFC,c.nombre 'nombre_cliente',e.id,e.nombre,v.id'id_venta' FROM venta v JOIN cliente c ON v.RFC_cliente=c.RFC JOIN empleado e ON e.id=v.id_empleado";
                     $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
                     $resultado=mysqli_query($conexion,$op);
                   
                     while($row=mysqli_fetch_array($resultado)){
-                        $i=$row['id'];
+                        $i=$row['id_venta'];
                         echo "<option value='".$i."' >"."ID DE LA VENTA: ".$row['id_venta']." *CLIENTE:  ".$row["nombre_cliente"]." *RFC: ".$row['RFC']." VENDEDOR: ".$row['nombre']." ID: ".$row['id']."</option>";
                         
                     }

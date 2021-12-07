@@ -203,12 +203,26 @@
       
      
    </form>
-    <form action="enviar.php" method="post" class="actualizar-mode">
+    <form action="../cambiosPaginas/cam_modelo.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR MODELO</h2>
-            <select name="id" id="id" class="entrada" required <?php echo $acceso_actua; ?>>
+            <select name="id_nombre" id="id" class="entrada" required <?php echo $acceso_actua; ?>>
                 <option value="" selected disabled>Modelos disponibles</option>
-                
+                <?php 
+                    $op="SELECT m.nombre,a.id,m.estatus,a.tipo FROM modelo m JOIN arquitectura a ON m.id_arquitectura=a.id";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['nombre'];
+                        if($row['estatus']){
+                            echo "<option value='".$i."' >"."*NOMBRE: ".$row['nombre']."  *ARQUITECTURA: ".$row['tipo']."</option>";
+                        }
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
        </div>
 
