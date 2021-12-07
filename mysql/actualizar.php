@@ -108,9 +108,17 @@
         $idal=$row['id_almacen'];/*Recupero el ID del almacen donde etaba esta pieza*/
         $idcomp=$row['id_compras'];/*Recupero el ID de la compra en la que estaba esta pieza*/
         /*-------------------------------------------------------------------------*/
+        foreach($separada as $valor){
+            if($band){
+                $nombre=$valor;
+                $band=false;
+            }else{
+                $modelo=$valor;
+            }
+        }
         
         //Actualizamos los datos de la pieza
-        $op="UPDATE pieza SET id='$id_new', descripcion='$descripcion', id_compras='$id_compras', id_almacen='$id_almacen', nombre=$nombre, modelo='$modelo'";
+        $op="UPDATE pieza SET id='$id_new', descripcion='$descripcion', id_compras='$id_compras', id_almacen='$id_almacen', nombre='$nombre', modelo='$modelo' WHERE id='$id'";
         mysqli_query($conexion,$op);
         /*--------------------------------------------------------------------------*/
         /*actualizar el precio de la compra de la compra donde se saco esta pieza*/
@@ -169,18 +177,7 @@
         
         /*------------------------------------------------------------------------------------------*/
         /*-----------------------------------------------------------------------------------*/
-        
-        foreach($separada as $valor){
-            if($band){
-                $nombre=$valor;
-                $band=false;
-            }else{
-                $modelo=$valor;
-            }
-        }
-       
-
-        
+  
        /*Para sacar la cantidad de productos y el precio de la compra y si esta pieza esta en elmacen*/
         $op="SELECT p.id, p.nombre, p.modelo, cp.precio,c.id'id_compra', p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN catalogo_pieza CP ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE c.id='$id_compras' AND p.en_almacen=1";
         $resultado=mysqli_query($conexion,$op);
@@ -227,7 +224,7 @@
         /*libera la memoria*/
         mysqli_free_result( $resultado );
         
-        header('location:../paginas/piezas.php');
+       // header('location:../paginas/piezas.php');
         
     }else if(strcmp($pagina,"producto")==0){
         $noserie=$_POST['nserie'];
