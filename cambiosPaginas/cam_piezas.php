@@ -24,11 +24,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piezas</title>
+    <title>Actualizar Piezas</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
-
+    <link href="https://file.myfontastic.com/zmGVYTk8c485ktmePB4HkF/icons.css" rel="stylesheet">
+    
 </head>
 <body>
     
@@ -40,7 +41,7 @@
         <div class="site-elements">
 
             <div class="header-left">
-                <label for="check"><i class="fas fa-bars" id="sidebar_btn"></i></label>
+                <label for="check"><i class="icon-desktop" id="sidebar_btn"></i></label>
                 <a href="home.php?op=0"><h1>IGNITION<span> PC</span></h1></a>
             </div>
 
@@ -89,23 +90,7 @@
                         
                         
                     }
-                
-           /* echo "</select>
-            <select name='idcompras' id='tipo' class='entrada' required>
-                <option value='' selected disabled>*COMPRA: ".$rowBD['id_compras']." *PROVEEDOR: ".$rowBD['empresa']." *RFC: ".$rowBD['RFC']."</option>";
-                 
-                    $op="SELECT c.estatus,c.id,p.RFC,p.empresa FROM compras c JOIN proveedores p ON c.RFC=p.RFC";
-                    $resultado=mysqli_query($conexion,$op);
-                  
-                    
-                    while($row=mysqli_fetch_array($resultado)){
-                        $i=$row['id'];
-                        if($row['estatus']){
-                            echo "<option value='".$i."' >"."*COMPRA: ".$row['id']." *PROVEEDOR: ".$row['empresa']." *RFC: ".$row['RFC']."</option>";
-                        }
-                        
-                    }
-           */
+           
             echo "</select>
             <select name='nombremodelo' id='tipo' class='entrada' required>
                 <option value='' selected disabled>*Nombre: ".$rowBD['nombre']." *Modelo: ".$rowBD['modelo']."</option>";

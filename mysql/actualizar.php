@@ -310,10 +310,10 @@
     }else if(strcmp($pagina,"almacen")==0){
         $almacen=$_POST['n-almacen'];
         $descripcion=$_POST['descripcion'];
+        $id=$_POST['id'];
         
-        $op="INSERT INTO almacen(nombre,descripcion,capital) VALUES ('$almacen','$descripcion',0)";
+        $op="UPDATE almacen SET nombre='$almacen', descripcion='$descripcion' WHERE id='$id'";
         mysqli_query($conexion,$op);
-        
         header('location:../paginas/almacen.php');
         
     }else if(strcmp($pagina,"empleado")==0){
