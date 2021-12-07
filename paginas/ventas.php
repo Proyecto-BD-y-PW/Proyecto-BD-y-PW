@@ -204,6 +204,8 @@
                </ol>
                 
             </div>
+            
+   
        </div>
 
        <div class="botones" >
@@ -211,7 +213,6 @@
            <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_reg; ?>>  
            
        </div>
-   
 
    </form>
     
@@ -307,27 +308,62 @@
       
      
    </form>
- <form action="enviar.php" method="post" class="consultar-mode">
+ <form action="../consultas/venta.php" method="post" class="consultar-mode">
        <div class="formulario">
                <h2>CONSULTAR VENTAS</h2>
-            <select name="serie" id="disponibles" class="entrada">
-                <option value="" selected disabled>Ventas disponibles</option>
-                
-            </select>
-             <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
+            <select name="tipo-cons" id="consultas" class="entrada" required <?php echo $acceso_cons ;?>>
 
                 <option value="" selected disabled>Selecciona tipo de consulta</option>
-                <option value="unico" id="unico">Solo un registro</option>
+                <option value="unico-i" id="unico-id">Solo un registro por su id</option>
+                <option value="unico-f" id="unico-fecha">Registros con una fecha en especifico</option>
+                <option value="rango-fecha" id="rango-fecha">Mostrar registros por un rango de fecha</option>
                 <option value="todo" >Consultar todos los registros</option>
             </select>
-       </div>
+              <select name="id-cons" id="consultas-id" class="remove" required <?php echo $acceso_cons ;?>>
 
-       <div class="botones">
+                <option value="" selected disabled>Ventas disponibles</option>
+                 <?php 
+                    $op="SELECT * FROM venta ";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                            echo "<option value='".$i."' >"."*ID: ".$row['id']."</option>";
+                       
+                    }
+                    mysqli_close($conexion);
+                ?>
+            </select>
+             <select name="fecha-cons" id="consultas-fecha" class="remove" required <?php echo $acceso_cons ;?>>
+
+                <option value="" selected disabled>Fechas registradas </option>
+                 <?php 
+                    $op="SELECT distinct fecha FROM venta";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['fecha'];
+                             echo "<option value='".$i."' >"."*FECHA: ".$row['fecha']."</option>";
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
+           </select>
+           <p id="fecha" class="remove">Ingresa fecha inicial</p>
+            <input type="date" name="fecha-ini"  id="fecha" class="remove" required <?php echo $acceso_cons ;?>>
+            <p id="fecha" class="remove">Ingresa fecha final</p>
+            <input type="date" name="fecha-fin" id="fecha" class="remove" placeholder="in" required <?php echo $acceso_cons ;?>>
+           
+       </div>
+      <div class="botones">
            <input id="enviar" type="submit" value="Enviar" class="btn" <?php echo $acceso_cons ;?>>
            <input id="borrar" type="reset" value="BORRAR" class="btn" <?php echo $acceso_cons ;?>>  
            
        </div>
-      
      
    </form>
   <!---->

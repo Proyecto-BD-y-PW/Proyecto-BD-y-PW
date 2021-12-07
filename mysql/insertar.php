@@ -231,7 +231,21 @@
                 $result=mysqli_query($conexion,$op);
                  $op="UPDATE venta SET total='$precio' WHERE id='$idventa'";
                $result=mysqli_query($conexion,$op);
-            
+                
+                
+                /*actualizamos capital del almacen*/
+                $op="SELECT * FROM pieza p JOIN catalogo_pieza ca ON p.modelo=ca.modelo AND p.nombre=ca.nombre WHERE p.id='$id_pieza'";
+                $result=mysqli_query($conexion,$op);
+                $row3=mysqli_fetch_array($resultado);
+                $precio=$row['precio'];
+                $id_almacen=$row['id_almacen'];
+                $op="SELECT * FROM almacen WHERE id='$id_almacen'";
+                $result=mysqli_query($conexion,$op);
+                $row3=mysqli_fetch_array($resultado);
+                $precio=$row3['capital']-$precio;
+                $op="UPDATE almacen SET capital='$precio' WHERE id='$id_almacen'";
+                mysqli_query($conexion,$op);
+                
                 
             }
         }
@@ -258,6 +272,21 @@
                 $result=mysqli_query($conexion,$op);
                  $op="UPDATE venta SET total='$precio' WHERE id='$idventa'";
                $result=mysqli_query($conexion,$op);
+                
+                /*actualizamos capital del almacen*/
+                $op="SELECT * FROM producto WHERE no_serie='$no_serie'";
+                $result=mysqli_query($conexion,$op);
+                $row3=mysqli_fetch_array($resultado);
+                $precio=$row['costo'];
+                $id_almacen=$row['id_almacen'];
+                $op="SELECT * FROM almacen WHERE id='$id_almacen'";
+                $result=mysqli_query($conexion,$op);
+                $row3=mysqli_fetch_array($resultado);
+                $precio=$row3['capital']-$precio;
+                $op="UPDATE almacen SET capital='$precio' WHERE id='$id_almacen'";
+                mysqli_query($conexion,$op);
+                
+                
                 
             }
         }     

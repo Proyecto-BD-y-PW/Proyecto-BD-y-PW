@@ -3,7 +3,7 @@ const select1_btn = document.getElementById("eliminaciones");
 const select2_btn = document.getElementById("elim-id");
 const select3_btn = document.getElementById("elim-fecha");
 const input_fecha = document.querySelectorAll(".consultar-mode .formulario #fecha");
-
+const contenedor=document.querySelector(".contenedor");
 
 /*const select4_btn = document.getElementById("consultas");
 
@@ -102,8 +102,8 @@ radio1_btn.addEventListener('click', function()  {
         band4=false;
     
     }else if(band2===true){
-    
-        eliminar_mode.classList.add('eliminar-mode-add');
+     /*   contenedor.style.overflow='hidden';
+     */   eliminar_mode.classList.add('eliminar-mode-add');
        registrar_mode.classList.remove("registrar-mode-add");
         band2=false;
         band1=false;
