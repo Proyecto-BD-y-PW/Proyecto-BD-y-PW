@@ -121,7 +121,7 @@
         $tipo_elim=$_POST['tipo-elim'];
         if(strcmp($tipo_elim,"unico-id")==0){
            $id=$_POST['id-elim'];
-            $op="SELECT * FROM pieza p JOIN catalogo_pieza ca ON p.nombre=ca.nombre AND p.modelo=ca.modelo WHERE p.id='$id'";            
+            /*$op="SELECT * FROM pieza p JOIN catalogo_pieza ca ON p.nombre=ca.nombre AND p.modelo=ca.modelo WHERE p.id='$id'";            
             $resultado=mysqli_query($conexion,$op);
             $row=mysqli_fetch_array($resultado);
             $precio=$row['precio'];
@@ -131,7 +131,7 @@
             $row=mysqli_fetch_array($resultado);
             $precio=$row['capital']-$precio;
             $op="UPDATE almacen SET capital='$precio' WHERE id='$id_almacen'";
-            mysqli_query($conexion,$op);
+            mysqli_query($conexion,$op);*/
             
             
             
@@ -147,7 +147,7 @@
             $row=mysqli_fetch_array($resultado);
             $id=$row['id'];
             
-             $op="SELECT * FROM pieza_armado pa JOIN pieza p ON pa.id=p.id JOIN catalogo_pieza ca ON p.nombre=ca.nombre AND p.modelo=ca.modelo WHERE pa.id='$id'";            
+             /*$op="SELECT * FROM pieza_armado pa JOIN pieza p ON pa.id=p.id JOIN catalogo_pieza ca ON p.nombre=ca.nombre AND p.modelo=ca.modelo WHERE pa.id='$id'";            
             $resultado=mysqli_query($conexion,$op);
             $row=mysqli_fetch_array($resultado);
             $precio=$row['precio'];
@@ -157,7 +157,7 @@
             $row=mysqli_fetch_array($resultado);
             $precio=$row['capital']-$precio;
             $op="UPDATE almacen SET capital='$precio' WHERE id='$id_almacen'";
-            mysqli_query($conexion,$op);
+            mysqli_query($conexion,$op);*/
             
             
             $op="DELETE FROM pieza WHERE id='$id'";

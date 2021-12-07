@@ -180,6 +180,14 @@
         $op="INSERT INTO producto(no_serie,en_almacen,descripcion,fecha,costo,id_almacen,nombre_modelo) VALUES ('$noserie','1','$descripcion','$tiempo','$costo','$id_almacen','$nombre_modelo')";
         mysqli_query($conexion,$op);
         
+                $op="SELECT * FROM almacen WHERE id='$id_almacen'";
+                $result=mysqli_query($conexion,$op);
+                $row3=mysqli_fetch_array($result);
+                $precio=$row3['capital']+$costo;
+                 $op="UPDATE almacen SET capital='$precio' WHERE id='$id_almacen'";
+                mysqli_query($conexion,$op);
+                
+        
 
         header('location:../paginas/productos.php');
     }else if(strcmp($pagina,"proveedor")==0){
@@ -337,7 +345,20 @@
          $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
         mysqli_query($conexion,$op);
         
-        
+        $op="SELECT * FROM pieza p JOIN catalogo_pieza ca ON p.nombre=ca.nombre AND p.modelo=ca.modelo WHERE p.id='$id'";
+        $result=mysqli_query($conexion,$op);
+                
+        $row3=mysqli_fetch_array($result);
+                
+        $precio=$row3['precio'];
+        $id_almacen=$row3['id_almacen'];
+        $op="SELECT * FROM almacen WHERE id='$id_almacen'";
+        $result=mysqli_query($conexion,$op);
+        $row3=mysqli_fetch_array($result);
+        $precio=$row3['capital']-$precio;
+         $op="UPDATE almacen SET capital='$precio' WHERE id='$id_almacen'";
+        mysqli_query($conexion,$op);
+                
         
         
         header('location:../paginas/pieza_armado.php');

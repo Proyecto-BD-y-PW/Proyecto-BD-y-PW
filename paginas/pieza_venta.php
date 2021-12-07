@@ -170,15 +170,16 @@
 
                 <option value="" selected disabled>Fechas registradas</option>
                  <?php 
-                    $op="SELECT distinct c.fecha FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN pieza_venta pv ON p.id=pv.id";
+                    $op="SELECT distinct c.fecha,p.en_almacen FROM pieza p JOIN compras c ON p.id_compras=c.id JOIN pieza_venta pv ON p.id=pv.id";
                     $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
                     $resultado=mysqli_query($conexion,$op);
                   
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['fecha'];
-                        echo "<option value='".$i."' >"."*FECHA: ".$row['fecha']."</option>";
-                        
+                            if($row['en_almacen']){
+                                echo "<option value='".$i."' >"."*FECHA: ".$row['fecha']."</option>";
+                            }
                         
                     }
                     mysqli_close($conexion);
