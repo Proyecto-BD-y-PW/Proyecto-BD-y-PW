@@ -262,21 +262,6 @@
         
         header('location:../paginas/piezas.php');
         
-    }else if(strcmp($pagina,"producto")==0){
-        $noserie=$_POST['nserie'];
-        $descripcion=$_POST['descripcion'];
-        $fecha=$_POST['fecha'];
-        $hora=$_POST['hora'];
-        $tiempo=date('Y-m-d H:i:s', strtotime("$fecha $hora"));
-        $costo=$_POST['costo'];
-        $id_almacen=$_POST['idalmacen'];
-        $nombre_modelo=$_POST['modelo'];
-        
-        $op="INSERT INTO producto(no_serie,en_almacen,descripcion,fecha,costo,id_almacen,nombre_modelo) VALUES ('$noserie','1','$descripcion','$tiempo','$costo','$id_almacen','$nombre_modelo')";
-        mysqli_query($conexion,$op);
-        
-
-        header('location:../paginas/productos.php');
     }else if(strcmp($pagina,"proveedor")==0){
 
         $RFC=$_POST['rfc'];
@@ -408,22 +393,6 @@
         /*mysqli_free_result( $resultado );*/
         
         header('location:../paginas/catalogo_piezas.php');
-        
-    }else if(strcmp($pagina,"pieza_armado")==0){
-        $id=$_POST['id-pieza'];
-        $fecha=$_POST['fecha'];
-        $hora=$_POST['hora'];
-        $tiempo=date('Y-m-d H:i:s', strtotime("$fecha $hora"));
-       
-        $op="INSERT INTO pieza_armado(id,fecha) VALUES ('$id','$tiempo')";
-        mysqli_query($conexion,$op);
-        $op="UPDATE pieza SET tipo='armado' WHERE id='$id'";
-        mysqli_query($conexion,$op);
-         $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
-        mysqli_query($conexion,$op);
-        
-    
-        header('location:../paginas/pieza_armado.php');
         
     }else if(strcmp($pagina,"pieza_venta")==0){
         $id=$_POST['id'];
