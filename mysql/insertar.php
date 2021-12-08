@@ -159,6 +159,7 @@
         $op="INSERT INTO producto(no_serie,en_almacen,descripcion,fecha,costo,id_almacen,nombre_modelo) VALUES ('$noserie','1','$descripcion','$tiempo','$costo','$id_almacen','$nombre_modelo')";
         mysqli_query($conexion,$op);
         
+        
         $op="SELECT * FROM almacen WHERE id='$id_almacen'";
         $result=mysqli_query($conexion,$op);
         $row3=mysqli_fetch_array($result);
@@ -181,7 +182,7 @@
             $id_almacen=$row['id_almacen'];  
             $op="INSERT INTO pieza_armado(id,fecha) VALUES('$id_pieza','$tiempo')";
             mysqli_query($conexion,$op);
-             $op="UPDATE pieza SET en_almacen='0' WHERE id='$id_pieza'";
+             $op="UPDATE pieza SET en_almacen='0',tipo='armado' WHERE id='$id_pieza'";
              mysqli_query($conexion,$op);
              
              $op="SELECT * FROM almacen WHERE id='$id_almacen'";
