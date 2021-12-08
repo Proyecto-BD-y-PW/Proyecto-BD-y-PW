@@ -200,7 +200,7 @@
        </div>
       
    </form>
-    <form action="enviar.php" method="post" class="actualizar-mode">
+    <form action="../cambiosPaginas/cam_pieza_venta.php" method="post" class="actualizar-mode">
        
        <div class="formulario">
            <h2>ACTUALIZAR PIEZAS DE VENTA</h2>
@@ -208,7 +208,20 @@
             <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
 
                 <option value="" selected disabled>Piezas de venta disponibles</option>
-                
+                <?php 
+                    $op="SELECT * FROM pieza p WHERE p.tipo='venta' AND p.en_almacen=1";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."*ID: ".$row['id']."  *PIEZA: ".$row['nombre'] ." ".$row['modelo']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
        </div>
 
