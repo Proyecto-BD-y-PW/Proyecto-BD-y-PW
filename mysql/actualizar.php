@@ -426,11 +426,9 @@
         header('location:../paginas/pieza_armado.php');
         
     }else if(strcmp($pagina,"pieza_venta")==0){
-        $id=$_POST['id-pieza'];
+        $id=$_POST['id'];
         $precio=$_POST['precio'];
-        $op="INSERT INTO pieza_venta(id,precio_publico) VALUES ('$id','$precio')";
-        mysqli_query($conexion,$op);
-        $op="UPDATE pieza SET tipo='venta' WHERE id='$id'";
+        $op="UPDATE pieza_venta SET precio_publico='$precio' WHERE id='$id'";
         mysqli_query($conexion,$op);
         
         

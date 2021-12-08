@@ -89,7 +89,6 @@
         <a href="almacen.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
         <a href="pieza_venta.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
-        <a href="pieza_armado.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
         <a href="catalogo_piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Catálogo de Piezas</span></a>
         <a href="productos.php?op=1"><i class="fas fa-shopping-cart"></i><span>Productos</span></a>
         <a href="modelo.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
@@ -200,7 +199,7 @@
        </div>
       
    </form>
-    <form action="enviar.php" method="post" class="actualizar-mode">
+    <form action="../cambiosPaginas/cam_pieza_venta.php" method="post" class="actualizar-mode">
        
        <div class="formulario">
            <h2>ACTUALIZAR PIEZAS DE VENTA</h2>
@@ -208,7 +207,20 @@
             <select name="id" id="id" class="entrada" required <?php echo $acceso_actua ;?>>
 
                 <option value="" selected disabled>Piezas de venta disponibles</option>
-                
+                <?php 
+                    $op="SELECT * FROM pieza p WHERE p.tipo='venta' AND p.en_almacen=1";
+                    $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
+                    $resultado=mysqli_query($conexion,$op);
+                  
+                    
+                    while($row=mysqli_fetch_array($resultado)){
+                        $i=$row['id'];
+                        echo "<option value='".$i."' >"."*ID: ".$row['id']."  *PIEZA: ".$row['nombre'] ." ".$row['modelo']."</option>";
+                        
+                        
+                    }
+                    mysqli_close($conexion);
+                ?>
             </select>
        </div>
 
