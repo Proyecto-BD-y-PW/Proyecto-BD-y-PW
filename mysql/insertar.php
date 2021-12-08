@@ -168,14 +168,15 @@
         
         
          $op="SELECT DISTINCT p.nombre,p.modelo FROM pieza p JOIN pieza_modelo pm ON p.nombre=pm.nombre_pieza AND p.modelo=pm.modelo_pieza WHERE pm.nombre_modelo='$nombre_modelo'";
-        $resultado=mysqli_query($conexion,$op);
+         $resultado=mysqli_query($conexion,$op);
           while($row2=mysqli_fetch_array($resultado)){
             $nombre_pieza=$row2['nombre'];
             $nombre_modelo=$row2['modelo'];
-            $op="SELECT * FROM pieza p JOIN catalogo_pieza ca ON p.nombre=ca.nombre AND p.modelo=ca.modelo WHERE p.nombre='$nombre_pieza' AND p.modelo='$nombre_modelo'";
+             $op="SELECT * FROM pieza p JOIN catalogo_pieza ca ON p.nombre=ca.nombre AND p.modelo=ca.modelo WHERE p.nombre='$nombre_pieza' AND p.modelo='$nombre_modelo' AND p.en_almacen='1'";
             $resultado2=mysqli_query($conexion,$op);
             $row=mysqli_fetch_array($resultado2);  
             $id_pieza=$row['id']; 
+             
             $precio=$row['precio']; 
             $id_almacen=$row['id_almacen'];  
             $op="INSERT INTO pieza_armado(id,fecha) VALUES('$id_pieza','$tiempo')";
@@ -184,7 +185,7 @@
              mysqli_query($conexion,$op);
              
              $op="SELECT * FROM almacen WHERE id='$id_almacen'";
-             echo $precio."------";
+         
               $resultado2=mysqli_query($conexion,$op);
              $row=mysqli_fetch_array($resultado2);
              echo $row['capital'];

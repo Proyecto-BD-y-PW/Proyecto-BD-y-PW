@@ -88,7 +88,6 @@
         <a href="almacen.php?op=1"><i class="fas fa-shopping-cart"></i><span>Almacen</span></a>
         <a href="piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas</span></a>
         <a href="pieza_venta.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de venta</span></a>
-        <a href="pieza_armado.php?op=1"><i class="fas fa-shopping-cart"></i><span>Piezas de armado</span></a>
         <a href="catalogo_piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Catálogo de Piezas</span></a>
         <a href="productos.php?op=1"><i class="fas fa-shopping-cart"></i><span>Productos</span></a>
         <a href="modelo.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
@@ -144,8 +143,7 @@
                             $resultado2=mysqli_query($conexion,$op);
                             $numero=mysqli_num_rows($resultado2);
                             
-                            /*while($row2=mysqli_fetch_array($resultado2)){
-                            */  $nombre=$row2['nombre_pieza'];
+                               $nombre=$row2['nombre_pieza'];
                                 $modelo=$row2['modelo_pieza'];
                                 $op="SELECT DISTINCT p.nombre, p.modelo FROM pieza p JOIN pieza_modelo pm ON p.nombre=pm.nombre_pieza AND p.modelo=pm.modelo_pieza WHERE pm.nombre_modelo='$i' AND p.en_almacen='1'";
                                 $resultado2=mysqli_query($conexion,$op);
@@ -153,18 +151,12 @@
                                 if($numero_piezas>=$numero){
                                     echo "<option value='".$i."' >"."*MODELO: ".$row['nombre']." *ARQUITECTURA: ".$row['tipo']."</option>";
                            
-                                }
-                                
-                                /*if($numero_piezas=mysqli_num_rows($resultado2)>0){
+                                }else {
+                                    echo "<option value='".$i."' disabled>"."*MODELO: ".$row['nombre']." *ARQUITECTURA: ".$row['tipo']." Sin piezas en stock</option>";
+                           
                                     
-                                }else{
-                                    $band=false;
-                                }*/
-                                
-                                
-                                
-                            /*}*/
-                            
+                                }
+                             
                             
                          }
                         
