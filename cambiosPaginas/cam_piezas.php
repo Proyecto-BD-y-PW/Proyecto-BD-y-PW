@@ -91,27 +91,9 @@
                         
                     }
            
-            echo "</select>
-            <select name='nombremodelo' id='tipo' class='entrada' required>
-                <option value='' selected disabled>*Nombre: ".$rowBD['nombre']." *Modelo: ".$rowBD['modelo']."</option>";
-                  
-                    $op="SELECT * FROM catalogo_pieza";
-                    $resultado=mysqli_query($conexion,$op);
-                  
-                    $separador="*";
-                    while($row=mysqli_fetch_array($resultado)){
-                        $i=$row['nombre'];
-                        $j=$row['modelo'];
-                        
-                        echo "<option value='".$i.$separador.$j."' >".$row['nombre']." ".$row['modelo']."</option>";
-                        
-                        
-                    }
-                    mysqli_close($conexion);
-                
-            echo "</select>
             
-             <input class='entrada' type='text' id='descripción' name='descripcion' placeholder='".$rowBD['descripcion']."' required>";
+            
+            echo "<input class='entrada' type='text' id='descripción' name='descripcion' placeholder='".$rowBD['descripcion']."' required>";
            ?>
        </div>
 

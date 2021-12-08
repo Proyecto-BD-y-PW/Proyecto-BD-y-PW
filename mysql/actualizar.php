@@ -76,7 +76,7 @@
         $descripcion=$_POST['descripcion'];
        
         
-        $nombremodelo=$_POST['nombremodelo'];
+        /*$nombremodelo=$_POST['nombremodelo'];
         $band=true;
         $nombre="";
         $modelo="";
@@ -89,7 +89,7 @@
             }else{
                 $modelo=$valor;
             }
-        }
+        }*/
         /*Actualizar los datos que tienen atributos calculados de otras tablas para eso primero toms mos algnos datos de lo que tiene la base de datos*/
         $op="SELECT p.id,p.nombre,p.modelo,cp.precio,p.id_almacen,p.id_compras,al.nombre,al.capital FROM pieza p JOIN almacen al ON p.id_almacen=al.id JOIN catalogo_pieza cp ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE p.id='$id' ";
         $resultado=mysqli_query($conexion,$op);
@@ -98,10 +98,10 @@
         $idal=$row['id_almacen'];/*Recupero el ID del almacen donde etaba esta pieza*/
         $idcomp=$row['id_compras'];/*Recupero el ID de la compra en la que estaba esta pieza*/
         /*-------------------------------------------------------------------------*/
-        $op="SELECT * FROM catalogo_pieza WHERE nombre='$nombre' AND modelo='$modelo'";
+       /* $op="SELECT * FROM catalogo_pieza WHERE nombre='$nombre' AND modelo='$modelo'";
         $result=mysqli_query($conexion,$op);
-        $row=mysqli_fetch_array($result);
-        $precio_nuevo=$row['precio'];
+        $row=mysqli_fetch_array($result);*/
+        $precio_nuevo=$precio_pieza;
         /***************************NUEVO PARA ACTUALIZAR LA PIEZA***************************/
         //Recupero el capital que tengo en el almacen en el que estaba para quitarle el precio de esta
         $op="SELECT * FROM almacen WHERE id='$idal'";

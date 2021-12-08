@@ -512,6 +512,7 @@ p{
 
 @media(max-width:850px){
     h2{
+        font-size: 20px;
         width: 100px;
          box-shadow: 6px 8px 5px orange inset;
     }
@@ -555,9 +556,8 @@ p{
         margin-left: -30px;
     }
     h2{
-        
-        width: 150px; 
-        font-size: 30px;
+        font-size: 20px;
+        width: 100px; 
         box-shadow: 6px 8px 5px orange inset;
     }
     form{
@@ -576,7 +576,11 @@ p{
 
 @media(max-width:480px){
     
-    
+    h2{
+        font-size: 20px;
+        width: 100px; 
+        box-shadow: 6px 8px 5px orange inset;
+    }
     .formulario{
         width: 90%;
    
