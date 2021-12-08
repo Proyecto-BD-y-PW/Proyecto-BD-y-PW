@@ -149,9 +149,9 @@
                         $resultado2=mysqli_query($conexion,$op);
                                 
                         while($row2=mysqli_fetch_array($resultado2)){
-                            
-                            echo "*ID: ".$row2['id_pieza']." ".$row2['nombre']." ".$row2['modelo']." - ";
-                            
+                            if($row2['en_almacen']){
+                                echo "*ID: ".$row2['id_pieza']." ".$row2['nombre']." ".$row2['modelo']." - ";
+                            }
                         }
                         
                         echo "</td>";
@@ -160,8 +160,9 @@
                         $resultado2=mysqli_query($conexion,$op);
                                 
                         while($row2=mysqli_fetch_array($resultado2)){
-                            
-                            echo "*NO SERIE: ".$row2['no_serie']." ".$row2['nombre_modelo']." - ";
+                            if($row2['en_almacen']){
+                                echo "*NO SERIE: ".$row2['no_serie']." ".$row2['nombre_modelo']." - ";
+                            }
                             
                         }
                         echo "</td></tr>";
@@ -184,7 +185,9 @@
                                 
                         while($row2=mysqli_fetch_array($resultado2)){
                             
-                            echo "*ID: ".$row2['id_pieza']." ".$row2['nombre']." ".$row2['modelo']." - ";
+                            if($row2['en_almacen']){
+                                echo "*ID: ".$row2['id_pieza']." ".$row2['nombre']." ".$row2['modelo']." - ";
+                            }
                             
                         }
                         
@@ -194,9 +197,10 @@
                         $resultado2=mysqli_query($conexion,$op);
                                 
                         while($row2=mysqli_fetch_array($resultado2)){
+                            if($row2['en_almacen']){
+                                echo "*NO SERIE: ".$row2['no_serie']." ".$row2['nombre_modelo']." - ";
                             
-                            echo "*NO SERIE: ".$row2['no_serie']." ".$row2['nombre_modelo']." - ";
-                            
+                            }
                         }
                         echo "</td></tr>";
                     

@@ -99,15 +99,6 @@
         $modelo="";
         $separada=explode("*",$nombremodelo);
         $tamaño=sizeof($separada);
-        
-        /*Actualizar los datos que tienen atributos calculados de otras tablas para eso primero toms mos algnos datos de lo que tiene la base de datos*/
-        $op="SELECT p.id,p.nombre,p.modelo,cp.precio,p.id_almacen,p.id_compras,al.nombre,al.capital FROM pieza p JOIN almacen al ON p.id_almacen=al.id JOIN catalogo_pieza cp ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE p.id='$id'";
-        $resultado=mysqli_query($conexion,$op);
-        $row = mysqli_fetch_array( $resultado );
-        $precioPieza=$row['precio'];/*Recupero el precio de esa pieza*/
-        $idal=$row['id_almacen'];/*Recupero el ID del almacen donde etaba esta pieza*/
-        $idcomp=$row['id_compras'];/*Recupero el ID de la compra en la que estaba esta pieza*/
-        /*-------------------------------------------------------------------------*/
         foreach($separada as $valor){
             if($band){
                 $nombre=$valor;
@@ -116,6 +107,18 @@
                 $modelo=$valor;
             }
         }
+        /*Actualizar los datos que tienen atributos calculados de otras tablas para eso primero toms mos algnos datos de lo que tiene la base de datos*/
+        $op="SELECT p.id,p.nombre,p.modelo,cp.precio,p.id_almacen,p.id_compras,al.nombre,al.capital FROM pieza p JOIN almacen al ON p.id_almacen=al.id JOIN catalogo_pieza cp ON p.nombre=cp.nombre AND p.modelo=cp.modelo WHERE p.id='$id' ";
+        $resultado=mysqli_query($conexion,$op);
+        $row = mysqli_fetch_array( $resultado );
+        $precioPieza=$row['precio'];/*Recupero el precio de esa pieza*/
+        $idal=$row['id_almacen'];/*Recupero el ID del almacen donde etaba esta pieza*/
+        $idcomp=$row['id_compras'];/*Recupero el ID de la compra en la que estaba esta pieza*/
+        /*-------------------------------------------------------------------------*/
+        $op="SELECT * FROM catalogo_pieza WHERE nombre='$nombre' AND modelo='$modelo'";
+        $result=mysqli_query($conexion,$op);
+        $row=mysqli_fetch_array($result);
+        $precio_nuevo=$row['precio'];
         /***************************NUEVO PARA ACTUALIZAR LA PIEZA***************************/
         //Recupero el capital que tengo en el almacen en el que estaba para quitarle el precio de esta
         $op="SELECT * FROM almacen WHERE id='$idal'";
@@ -126,11 +129,15 @@
         $op="UPDATE almacen SET capital='$precioActuAlAnt' WHERE id='$idal'";
         $consulta=mysqli_query($conexion,$op);
         
+        $op="UPDATE pieza SET id='$id_new', descripcion='$descripcion', id_almacen='$id_almacen', nombre='$nombre', modelo='$modelo' WHERE id='$id'";
+        mysqli_query($conexion,$op);
+        
+        
         //Recupero el capital que tengo en el almacen en el que va a estar esta pieza y agregarle el precio en el capital
         $op="SELECT * FROM almacen WHERE id='$id_almacen'";
         $consulta=mysqli_query($conexion,$op);
         $rowBD = mysqli_fetch_array( $consulta );
-        $precioActuAlDes=$rowBD['capital']+$precioPieza;
+        $precioActuAlDes=$rowBD['capital']+$precio_nuevo;
         
         $op="UPDATE almacen SET capital='$precioActuAlDes' WHERE id='$id_almacen'";
         $consulta=mysqli_query($conexion,$op);
@@ -158,8 +165,8 @@
         //+++++++++++++++++++++++++++++++++++++++++++++++++
         /***************************NUEVO PARA ACTUALIZAR LA PIEZA***************************/
         //Actualizamos los datos de la pieza
-        $op="UPDATE pieza SET id='$id_new', descripcion='$descripcion', id_almacen='$id_almacen', nombre='$nombre', modelo='$modelo' WHERE id='$id'";
-        mysqli_query($conexion,$op);
+        /*$op="UPDATE pieza SET id='$id_new', descripcion='$descripcion', id_almacen='$id_almacen', nombre='$nombre', modelo='$modelo' WHERE id='$id'";
+        mysqli_query($conexion,$op);*/
         /*--------------------------------------------------------------------------*/
         
         
@@ -258,7 +265,7 @@
         mysqli_query($conexion,$op);
         
         /*libera la memoria*/
-        mysqli_free_result( $consulta );
+        /*mysqli_free_result( $consulta );*/
         
         header('location:../paginas/piezas.php');
         
@@ -452,6 +459,32 @@
         
         
         header('location:../paginas/pieza_venta.php');
+        
+    }else if(strcmp($pagina,"perfil")==0){
+        
+        $nombre=$_POST['nombre'];
+        $correo=$_POST['correo'];
+        $privilegios=$_POST['privilegios'];
+        $contrasena_an=$_POST['contrasena_antigua'];
+        $contrasena_nue=$_POST['contrasena_nueva'];
+        $op="SELECT * FROM usuario WHERE nombre='$nombre'";
+        $resultado=mysqli_query($conexion,$op);
+        $row=mysqli_fetch_array($resultado);
+        if(password_verify($contrasena_an,$row['contrasena'])){
+            $contrasena_nue=password_hash($contrasena_nue,PASSWORD_DEFAULT);
+            $op="UPDATE mysql.user SET user='newusername',password=$contrasena_nue WHERE user='$usuario'";
+            mysqli_query($conexion,$op);
+            
+            $op="FLUSH PRIVILEGES";
+            mysqli_query($conexion,$op);
+        
+            $op="UPDATE usuario SET nombre='$nombre',correo='$correo',privilegios='$privilegios',contrasena='$contrasena_nue'";
+            mysqli_query($conexion,$op);
+            $op="FLUSH PRIVILEGES";
+            mysqli_query($conexion,$op);
+        }
+        
+        
         
     }
 

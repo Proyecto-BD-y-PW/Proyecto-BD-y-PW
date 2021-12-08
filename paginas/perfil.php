@@ -121,11 +121,11 @@
        
         <h2>ACTUALIZACIONES</h2>
         <div class="formulario">
-        <input type="text" placeholder="Ingresa nuevo nombre. Actual: <?php echo $row['nombre'];?>">
-        <input type="text" placeholder="Ingresa nuevo correo. Actual: <?php echo $row['correo'];?>">
-        <input type="text" placeholder="Ingresa provilegios.Actuales: <?php echo $row['privilegios'];?>">
-        <input type="text" placeholder="Si deseas cambiar contraseña coloca la actual">
-        <input type="text" placeholder="Contraseña nueva">
+        <input name="nombre" type="text" placeholder="Ingresa nuevo nombre. Actual: <?php echo $row['nombre'];?>">
+        <input name="correo" type="text" placeholder="Ingresa nuevo correo. Actual: <?php echo $row['correo'];?>">
+        <input name="privilegios" type="text" placeholder="Ingresa provilegios.Actuales: <?php echo $row['privilegios'];?>">
+        <input name="contrasena_antigua" type="text" placeholder="Si deseas cambiar contraseña coloca la actual">
+        <input name="contrasena_nueva" type="text" placeholder="Contraseña nueva">
         </div>
        <div class="botones">
            <input id="enviar" type="submit" value="Enviar" class="btn" >

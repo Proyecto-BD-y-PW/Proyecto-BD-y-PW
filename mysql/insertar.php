@@ -59,7 +59,7 @@
         $nombre=$_POST['nombre'];
         $telefono=$_POST['telefono'];
         $correo=$_POST['correo'];
-        $op="INSERT INTO cliente(RFC,nombre,telefono,email) VALUES ('$rfc','$nombre','$telefono','$email')";
+        $op="INSERT INTO cliente(RFC,nombre,telefono,email) VALUES ('$rfc','$nombre','$telefono','$correo')";
         mysqli_query($conexion,$op);
         
         header('location:../paginas/clientes.php');

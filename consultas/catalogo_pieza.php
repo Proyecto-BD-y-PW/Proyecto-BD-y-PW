@@ -48,7 +48,7 @@
                 <label for="check"><i class="icon-desktop" id="sidebar_btn"></i></label>
                 <a href="home.php?op=0"><h1>IGNITION<span> PC</span></h1></a>
             </div>
-
+            <h1><span> CATALOGO DE PIEZAS</span></h1>
             <div class="header-right">
                <a href="../paginas/catalogo_piezas.php">
                     <button>REGRESAR</button>

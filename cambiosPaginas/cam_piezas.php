@@ -75,7 +75,7 @@
            echo "<input class='entrada' type='text' id='id' name='id_new' placeholder='*ID: ".$rowBD['id_pieza']."' required>";
            
            echo "<input type='hidden' name='id' value='$id'><br>";
-           echo "<input type='hidden' name='idcompra' value='".$rowBD['id_compras']."'><br>";
+           echo "<input type='hidden' name='idcompras' value='".$rowBD['id_compras']."'><br>";
            
            echo "<select name='idalmacen' id='tipo' class='entrada' required>
                 <option value='' selected disabled>*ID ALMACEN: ".$rowBD['id_almacen']." *NOMBRE:  ".$rowBD['nombre_almacen']."</option>";
