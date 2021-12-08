@@ -103,15 +103,15 @@
    <form action="../mysql/insertar.php" method="post" class="registrar-mode">
        <div class="formulario">
            <h2>REGISTRAR PRODUCTOS</h2>
-           <input class="entrada" type="text" id="nserie" name="nserie" placeholder="Ingresa el Numero de serie del producto" required>
+           <input class="entrada" type="text" id="nserie" name="nserie" placeholder="Ingresa el Numero de serie del producto" required <?php echo $acceso_reg ;?>>
         <!--Status en almacen no creo que pueda ser bueno ya que el No.Serie no se repite para ningun producto-->
-           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción del producto" required>
+           <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción del producto" required <?php echo $acceso_reg ;?>>
            <p>Ingresar Fecha y Hora del producto llegado al almacen: </p>
-           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required>
-           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required>
-           <input class="entrada" type="text" id="costo" name="costo" placeholder="Ingresa el costo del producto" required>
+           <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required <?php echo $acceso_reg ;?>>
+           <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required <?php echo $acceso_reg ;?>>
+           <input class="entrada" type="text" id="costo" name="costo" placeholder="Ingresa el costo del producto" required <?php echo $acceso_reg ;?>>
            <!--El ID del almacen es predeterminado al macen de productos-->
-             <select name="idalmacen" id="idalmacen" class="entrada" required>
+             <select name="idalmacen" id="idalmacen" class="entrada" required <?php echo $acceso_reg ;?>>
                 <option value="" selected disabled>Almacenes disponibles</option>
                  
                <?php 
@@ -129,19 +129,44 @@
                     mysqli_close($conexion);
                 ?>
             </select>
-             <select name="modelo" id="modelo" class="entrada" required>
+             <select name="modelo" id="modelo" class="entrada" required <?php echo $acceso_reg ;?>>
                 <option value="" selected disabled>Modelos disponibles</option>
                 <?php 
                     $op="SELECT m.estatus, m.nombre,a.tipo FROM modelo m JOIN arquitectura a ON m.id_arquitectura=a.id";
                     $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");
                     $resultado=mysqli_query($conexion,$op);
-                  
+                    $band=true;
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['nombre'];
-                        if($row["estatus"]){    
-                            echo "<option value='".$i."' >"."*MODELO: ".$row['nombre']." *ARQUITECTURA: ".$row['tipo']."</option>";
-                        }
+                        if($row["estatus"]){
+                            $op="SELECT * FROM modelo m JOIN pieza_modelo pm ON m.nombre=pm.nombre_modelo WHERE m.nombre='$i'";
+                            $resultado2=mysqli_query($conexion,$op);
+                            $numero=mysqli_num_rows($resultado2);
+                            
+                            /*while($row2=mysqli_fetch_array($resultado2)){
+                            */  $nombre=$row2['nombre_pieza'];
+                                $modelo=$row2['modelo_pieza'];
+                                $op="SELECT DISTINCT p.nombre, p.modelo FROM pieza p JOIN pieza_modelo pm ON p.nombre=pm.nombre_pieza AND p.modelo=pm.modelo_pieza WHERE pm.nombre_modelo='$i' AND p.en_almacen='1'";
+                                $resultado2=mysqli_query($conexion,$op);
+                                $numero_piezas=mysqli_num_rows($resultado2);
+                                if($numero_piezas>=$numero){
+                                    echo "<option value='".$i."' >"."*MODELO: ".$row['nombre']." *ARQUITECTURA: ".$row['tipo']."</option>";
+                           
+                                }
+                                
+                                /*if($numero_piezas=mysqli_num_rows($resultado2)>0){
+                                    
+                                }else{
+                                    $band=false;
+                                }*/
+                                
+                                
+                                
+                            /*}*/
+                            
+                            
+                         }
                         
                     }
                     mysqli_close($conexion);
@@ -221,8 +246,8 @@
     <form action="enviar.php" method="post" class="actualizar-mode">
        <div class="formulario">
            <h2>ACTUALIZAR PRODUCTOS</h2>
-            <select name="serie" id="serie" class="entrada">
-                <option value="" selected disabled>Coputadoras disponibles</option>
+            <select name="serie" id="serie" class="entrada" <?php echo $acceso_actua ;?>>
+                <option value="" selected disabled>Computadoras disponibles</option>
                 
             </select>
        </div>

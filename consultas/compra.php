@@ -89,7 +89,7 @@
                         $cantidad=$row['cantidad'];
                         $precio=$row['precio'];
                         $estatus=$row['estatus'];
-                        if($estatus){
+                        if(!$estatus){
                             $estatus="terminada";
                         }else{
                             $estatus="en proceso";
@@ -126,7 +126,7 @@
                         $cantidad=$row['cantidad'];
                         $precio=$row['precio'];
                         $estatus=$row['estatus'];
-                        if($estatus){
+                        if(!$estatus){
                             $estatus="terminada";
                         }else{
                             $estatus="en proceso";
@@ -160,7 +160,7 @@
                         $cantidad=$row['cantidad'];
                         $precio=$row['precio'];
                         $estatus=$row['estatus'];
-                        if($estatus){
+                        if(!$estatus){
                             $estatus="terminada";
                         }else{
                             $estatus="en proceso";
@@ -205,7 +205,7 @@
                         $cantidad=$row['cantidad'];
                         $precio=$row['precio'];
                         $estatus=$row['estatus'];
-                        if($estatus){
+                        if(!$estatus){
                             $estatus="terminada";
                         }else{
                             $estatus="en proceso";

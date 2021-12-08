@@ -105,8 +105,8 @@
         
        <div class="formulario">
            <h2>REGISTRAR PIEZAS</h2>
-           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la pieza" required>
-           <select name="idalmacen" id="tipo" class="entrada" required>
+           <input class="entrada" type="text" id="id" name="id" placeholder="Ingresa el ID de la pieza" required <?php echo $acceso_reg; ?>>
+           <select name="idalmacen" id="tipo" class="entrada" required <?php echo $acceso_reg; ?>>
                 <option value="" selected disabled>Almacen donde se guardara</option>
                  <?php 
                     $op="SELECT * FROM almacen";
@@ -123,7 +123,7 @@
                 mysqli_close($conexion);
                 ?>
             </select>
-            <select name="idcompras" id="tipo" class="entrada" required>
+            <select name="idcompras" id="tipo" class="entrada" required <?php echo $acceso_reg; ?>>
                 <option value="" selected disabled>Compra a la que pertenece</option>
                  <?php 
                     $op="SELECT c.estatus,c.id,p.RFC,p.empresa FROM compras c JOIN proveedores p ON c.RFC=p.RFC";
@@ -142,7 +142,7 @@
                 ?>
             </select>
             
-            <select name="nombremodelo" id="tipo" class="entrada" required>
+            <select name="nombremodelo" id="tipo" class="entrada" required <?php echo $acceso_reg; ?>>
                 <option value="" selected disabled>Seleccion el nombre y modelo</option>
                  <?php 
                     $op="SELECT * FROM catalogo_pieza";
@@ -162,7 +162,7 @@
                 ?>
             </select>
             
-             <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la pieza" required>
+             <input class="entrada" type="text" id="descripción" name="descripcion" placeholder="Ingresa la descripción de la pieza" required <?php echo $acceso_reg; ?>>
            
        </div>
 
@@ -238,7 +238,7 @@
        <div class="formulario">
            <h2>ACTUALIZAR PIEZAS</h2>
            <?php
-            echo "<select name='id' id='id' class='entrada'>
+            echo "<select name='id' id='id' class='entrada' required $acceso_actua>
                 <option value='' selected disabled>Piezas disponibles</option>";
                 $op="SELECT * FROM pieza";
                     $conexion=mysqli_connect("localhost",$usuario,$pass,"inventarios");

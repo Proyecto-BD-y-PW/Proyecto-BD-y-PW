@@ -106,12 +106,12 @@
         $tipo_elim=$_POST['tipo-elim'];
         if(strcmp($tipo_elim,"unico-id")==0){
             $id=$_POST['id-elim'];
-            $op="UPDATE compras SET estatus='0' WHERE id='$id'";
+            $op="UPDATE compras SET estatus='1' WHERE id='$id'";
             mysqli_query($conexion,$op);
             
         }else{
             $fecha=$_POST['fecha'];
-            $op="UPDATE compras SET estatus='0' WHERE fecha='$fecha'";
+            $op="UPDATE compras SET estatus='1' WHERE fecha='$fecha'";
             mysqli_query($conexion,$op);
             
             

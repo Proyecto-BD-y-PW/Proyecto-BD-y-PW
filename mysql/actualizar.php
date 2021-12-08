@@ -333,6 +333,25 @@
         $modelo=$_POST['modelo'];
         $precio_compra=$_POST['precio_compra'];
         
+        
+        
+        $op="SELECT * FROM catalogo_pieza WHERE nombre='$nombre' AND modelo='$modelo'";
+        $resultado=mysqli_query($conexion,$op);
+        $row=mysqli_fetch_array($resultado);
+        $precio_anterior=$row['precio'];
+        $operacion="";
+        $precio_nuevo=0;
+        if($precio_compra>$precio_anterior){
+            
+            $precio_nuevo=$precio_compra-$precio_anterior;
+            $operacion="suma";
+        }else if($precio_compra<$precio_anterior){
+            $precio_nuevo=$precio_anterior-$precio_compra;
+            $operacion="resta";
+        }else{
+            $operacion="nada";
+            $precio_nuevo=$precio_anterior;
+        }
         /*---------------------------------------------------------------------------------*/
         //Actualizar el precio de la compra de la tabla catalogo_pieza
        $op="UPDATE catalogo_pieza SET precio='$precio_compra' WHERE nombre='$nombre' AND modelo='$modelo'";
@@ -341,8 +360,39 @@
         /*------------------------------------------------------------------------------------*/
         
         
+        $op="SELECT * FROM catalogo_pieza ca JOIN pieza p ON ca.nombre=p.nombre AND ca.modelo=p.modelo JOIN almacen a ON p.id_almacen=a.id WHERE p.nombre='$nombre' AND p.modelo='$modelo'";
+        $resultado=mysqli_query($conexion,$op);
         
         
+        while($row=mysqli_fetch_array($resultado)){
+            
+            if($row['en_almacen']){
+                
+                $id_almacen=$row['id_almacen'];
+                $op="SELECT * FROM almacen WHERE id='$id_almacen'";
+                $resultado2=mysqli_query($conexion,$op);
+                $row2=mysqli_fetch_array($resultado2);
+                $capital=$row2['capital'];
+                
+                if($operacion=="suma"){
+                    $capital+=$precio_nuevo;
+                    $op="UPDATE almacen SET capital='$capital' WHERE id='$id_almacen'";
+                    mysqli_query($conexion,$op);
+                }else if($operacion=="resta"){
+                    $capital-=$precio_nuevo;
+                    $op="UPDATE almacen SET capital='$capital' WHERE id='$id_almacen'";
+                    mysqli_query($conexion,$op);
+               
+                }else{
+                    
+                }
+                
+                
+                
+            }
+            
+            
+        }
         
         /*ACTUALIZAR EL CAPITAL DE ALMACEN Y EL PRECIO DE LA COMPRA*/
     /*    $op="SELECT * FROM compras";
