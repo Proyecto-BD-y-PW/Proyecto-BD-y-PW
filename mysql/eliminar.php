@@ -235,12 +235,11 @@
             $row=mysqli_fetch_array($resultado);
             $nombre=$row['nombre'];
             $modelo=$row['modelo'];
-            $op="SELECT * FROM pieza p JOIN catalogo_pieza c ON c.nombre='$nombre' AND c.modelo='$modelo'";
+            $op="SELECT * FROM pieza p JOIN catalogo_pieza c ON c.nombre=p.nombre AND c.modelo=p.modelo WHERE c.nombre='$nombre' AND c.modelo='$modelo' AND p.id='$id'";
             $resultado=mysqli_query($conexion,$op);
             $row=mysqli_fetch_array($resultado);
             $precio=$row['precio'];
             $id_almacen=$row['id_almacen'];
-            
             $op="SELECT * FROM almacen WHERE id='$id_almacen'";
             $resultado=mysqli_query($conexion,$op);
             $row=mysqli_fetch_array($resultado);
@@ -249,7 +248,7 @@
             $resultado=mysqli_query($conexion,$op);
             
             
-            $op="UPDATE pieza SET en_almacen='0', WHERE id='$id'";
+            $op="UPDATE pieza SET en_almacen='0' WHERE id='$id'";
             mysqli_query($conexion,$op);
             
             

@@ -573,3 +573,35 @@ p{
     }
     
 }
+
+@media(max-width:480px){
+    
+    
+    .formulario{
+        width: 90%;
+   
+        align-items: flex-start;
+    }
+    form{
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .botones{
+        flex-wrap: wrap;
+        
+    }
+    .radios{
+        justify-content: flex-start;
+    }
+    img{
+        margin: 0;
+    }
+    #borrar{
+        width: 150px;
+        
+    }
+    .header-right a button{
+        font-size: 15px;
+        
+    }
+}

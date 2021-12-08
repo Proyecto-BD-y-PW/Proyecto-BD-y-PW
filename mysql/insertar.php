@@ -182,15 +182,15 @@
             $id_almacen=$row['id_almacen'];  
             $op="INSERT INTO pieza_armado(id,fecha) VALUES('$id_pieza','$tiempo')";
             mysqli_query($conexion,$op);
-             $op="UPDATE pieza SET en_almacen='0',tipo='armado' WHERE id='$id_pieza'";
-             mysqli_query($conexion,$op);
+            $op="UPDATE pieza SET en_almacen='0',tipo='armado' WHERE id='$id_pieza'";
+            mysqli_query($conexion,$op);
              
-             $op="SELECT * FROM almacen WHERE id='$id_almacen'";
+            $op="SELECT * FROM almacen WHERE id='$id_almacen'";
          
-              $resultado2=mysqli_query($conexion,$op);
-             $row=mysqli_fetch_array($resultado2);
-             echo $row['capital'];
-              $capital=$row['capital']-$precio;
+            $resultado2=mysqli_query($conexion,$op);
+            $row=mysqli_fetch_array($resultado2);
+            echo $row['capital'];
+            $capital=$row['capital']-$precio;
               
              $op="UPDATE almacen SET capital='$capital' WHERE id='$id_almacen'";
              mysqli_query($conexion,$op);
