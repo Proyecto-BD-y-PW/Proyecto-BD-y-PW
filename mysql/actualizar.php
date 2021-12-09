@@ -101,7 +101,7 @@
        /* $op="SELECT * FROM catalogo_pieza WHERE nombre='$nombre' AND modelo='$modelo'";
         $result=mysqli_query($conexion,$op);
         $row=mysqli_fetch_array($result);*/
-        $precio_nuevo=$precio_pieza;
+        $precio_nuevo=$precioPieza;
         /***************************NUEVO PARA ACTUALIZAR LA PIEZA***************************/
         //Recupero el capital que tengo en el almacen en el que estaba para quitarle el precio de esta
         $op="SELECT * FROM almacen WHERE id='$idal'";
@@ -112,7 +112,7 @@
         $op="UPDATE almacen SET capital='$precioActuAlAnt' WHERE id='$idal'";
         $consulta=mysqli_query($conexion,$op);
         
-        $op="UPDATE pieza SET id='$id_new', descripcion='$descripcion', id_almacen='$id_almacen', nombre='$nombre', modelo='$modelo' WHERE id='$id'";
+        $op="UPDATE pieza SET id='$id_new', descripcion='$descripcion', id_almacen='$id_almacen' WHERE id='$id'";
         mysqli_query($conexion,$op);
         
         
