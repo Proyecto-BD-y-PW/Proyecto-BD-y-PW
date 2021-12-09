@@ -48,7 +48,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
-
+    <link rel="stylesheet" href="../estilos/estilosfondos/fondocompras.css">
     <script src="https://kit.fontawesome.com/eefb3f6366.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -62,7 +62,7 @@
 
             <div class="header-left">
                 <label for="check"><i class="fas fa-bars" id="sidebar_btn"></i></label>
-                <a href="home.php?op=0"><h1>IGNITION<span> PC</span></h1></a>
+                <h1>IGNITION<span> PC</span></h1>
             </div>
 
             <div class="header-right">
@@ -103,7 +103,7 @@
        <div class="formulario">
            <h2>REGISTRAR COMPRAS</h2>
            <!--El id es autoincrementable-->
-           <label for="" class="entrada">Ingresar Fecha y Hora de la compra: </label>
+           <label for="" class="entrada" id="etiquetasform">Ingresar Fecha y Hora de la compra: </label>
            <input class="entrada" type="date" id="fecha" name="fecha" placeholder="Ingresa la fecha de la compra" required <?php echo $acceso_reg; ?>>
            <input class="entrada" type="time" id="hora" name="hora" placeholder="Ingresa la hora de la compra" required <?php echo $acceso_reg; ?>>
            <select name="rfc_proveedor" id="rfc" <?php echo $acceso_reg; ?>>

@@ -29,7 +29,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventarios</title>
+    <title>Consulta Catálogo Pieza</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estilos/normalize.css">
     <link rel="stylesheet" href="../estilos/home.css">
@@ -46,7 +46,7 @@
 
             <div class="header-left">
                 <label for="check"><i class="icon-desktop" id="sidebar_btn"></i></label>
-                <a href="home.php?op=0"><h1>IGNITION<span> PC</span></h1></a>
+                <h1>IGNITION<span> PC</span></h1>
             </div>
             <h1><span> CATALOGO DE PIEZAS</span></h1>
             <div class="header-right">

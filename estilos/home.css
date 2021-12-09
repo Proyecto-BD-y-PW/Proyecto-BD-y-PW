@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Quantico&family=Share+Tech+Mono&family=Ubuntu+Mono&family=Vast+Shadow&display=swap');
+
 html{
     box-sizing: border-box;
     font-size: 62.5%; /**Reset para REMS - 62.5% = 10px de 16px**/
@@ -10,7 +12,6 @@ html{
 body{
     font-size: 2rem;
     background-color: #4d84e2;
-   /* overflow-y: auto;*/
 }
 
 .contenedor{
@@ -18,7 +19,6 @@ body{
     width: 100%;
     min-height: 100vh;
     background-color: #4d84e2;
-   /* overflow-y: auto;*/
 }
 img{
     position: absolute;
@@ -106,23 +106,11 @@ h4{
 .sidebar{
     position: absolute;
     z-index: 2;
-    background-color: #4d84e2;
+    background-color: rgba(0,0,0,0.1);
     padding-top: 1rem;
-   /* position: fixed;
-    left: 0;
-   */ width: 30rem;
+    width: 30rem;
     height: 90%;
 }
-
-/*
-.profile-data{
-    width: 100%;
-    text-align: center;
-    color: #ccc;
-    margin-top: 0;
-    margin-bottom: 2rem;
-}
-*/
 
 .sidebar a{
     font-size: 2.8rem;
@@ -272,7 +260,7 @@ input:not([type="date"]):not([type="button"]):not([type="submit"]){
 }
 
 form{
-  /*  position: absolute;*/
+    /*position: absolute;*/
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -319,7 +307,6 @@ input[type="radio"]{
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-/*    margin-top: 5px;*/
     margin-right: 20px;
     margin: auto;
     border-radius: 35px;
@@ -430,9 +417,7 @@ input[type="text"]:disabled{
     height: 100px;
     width: 100%;
     overflow-y: scroll;
-   /* background: red;*/
-  /*  display: flex;
-    flex-direction: column;*/
+    
 }
 .productos{
     margin-top: 15px;
@@ -442,7 +427,8 @@ input[type="text"]:disabled{
     background: yellow;
 }
 .checks{
-    font-family: "Arial";
+    font-family: "Quantico";
+    font-size: 1.0005em;
       width: 200px;
     display: grid;
     grid-template-columns: 15% 85%;
@@ -452,17 +438,7 @@ input[type="text"]:disabled{
      width: 30px;
        margin-top: 15px;
 }
-input[type="checkbox"]{
-  /*  width: 13px;
-    height: 13px;
-    padding: 0;
-    margin:0;
-    vertical-align: bottom;
-    position: relative;
-    top: -1px;*/
-   
-    
-}
+
 .table-mode{
     margin-top: 100px;
     width: 100%;
@@ -470,14 +446,11 @@ input[type="checkbox"]{
     display: flex;
     justify-content: center;
     align-items: center;
-   /* overflow-y: scroll;
-   */ 
     
 }
 table{
     
-    /*margin: auto;
-  */  border: 4px solid black;
+    border: 4px solid black;
     border-spacing: 40px;
     background: rgba(233, 150, 122,0.5);
     border-radius: 15px;
@@ -491,14 +464,12 @@ p{
     width: 50%;
     text-align: center;
     margin: auto;
-    
+    font-family: 'Share Tech Mono';
     
 }
 
 #tabla-consultas{
     margin: auto;
-  /*  width: 1100px;
-  */
     width: 90%;
     border-spacing: 20px;
     height: 550px;
@@ -509,7 +480,14 @@ p{
     text-decoration: none;
 }
 
-
+#etiquetasform{
+    font-family:'Ubuntu Mono';
+    font-size: 1.105em;
+}
+.titlePK{
+    font-family: 'Vast Shadow';
+    font-size: 25px;
+}
 @media(max-width:850px){
     h2{
         font-size: 20px;
@@ -530,6 +508,18 @@ p{
     table{
         
         -webkit-width: 100%;
+    }
+    .checks{
+        font-family: "Quantico";
+        font-size: 0.85em;
+    }
+    #etiquetasform{
+        font-family:'Ubuntu Mono';
+        font-size: 1.105em;
+    }
+    .titlePK{
+        font-family: 'Vast Shadow';
+        font-size: 28px;
     }
 }
 @media(max-width:700px){
@@ -571,6 +561,18 @@ p{
      #check:checked ~ .sidebar{
         left: -20rem;
     }
+    .checks{
+        font-family: "Quantico";
+        font-size: 0.905em;
+    }
+    #etiquetasform{
+        font-family:'Ubuntu Mono';
+        font-size: 1.005em;
+    }
+    .titlePK{
+        font-family: 'Vast Shadow';
+        font-size: 18px;
+    }
     
 }
 
@@ -608,4 +610,17 @@ p{
         font-size: 15px;
         
     }
+    .checks{
+        font-family: "Quantico";
+        font-size: 0.408em;
+    }
+    #etiquetasform{
+        font-family:'Ubuntu Mono';
+        font-size: 1em;
+    }
+    .titlePK{
+        font-family: 'Vast Shadow';
+        font-size: 15px;
+    }
+    
 }
