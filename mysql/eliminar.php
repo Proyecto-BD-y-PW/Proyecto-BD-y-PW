@@ -364,9 +364,14 @@
         header("location:../paginas/ventas.php");
     }else if(strcmp($pagina,"perfil")==0){
         $op="DELETE FROM mysql.user WHERE user = '$usuario'";
-        mysqli_query($conexio,$op);
-        $op="DELETE FROM usuario WHERE nombre='$nombre'";
         mysqli_query($conexion,$op);
+        $op="FLUSH PRIVILEGES";
+        mysqli_query($conexion,$op);
+        
+        
+        $op="DELETE FROM usuario WHERE nombre='$usuario'";
+        mysqli_query($conexion,$op);
+        header ("location: ../index.html");
     }
     mysqli_close($conexion);
 ?>

@@ -261,32 +261,85 @@
         
     }else if(strcmp($pagina,"perfil")==0){
         
-        $nombre=$_POST['nombre'];
-        $correo=$_POST['correo'];
-        $privilegios=$_POST['privilegios'];
-        $contrasena_an=$_POST['contrasena_antigua'];
-        $contrasena_nue=$_POST['contrasena_nueva'];
-        $op="SELECT * FROM usuario WHERE nombre='$nombre'";
-        $resultado=mysqli_query($conexion,$op);
-        $row=mysqli_fetch_array($resultado);
-        if(password_verify($contrasena_an,$row['contrasena'])){
-            $contrasena_nue=password_hash($contrasena_nue,PASSWORD_DEFAULT);
-            $op="UPDATE mysql.user SET user='newusername',password=$contrasena_nue WHERE user='$usuario'";
+        if($_POST['nombre']!=""){
+            
+            $nombre=$_POST['nombre'];
+            $op="UPDATE mysql.user SET user='$nombre' WHERE user='$usuario'";
             mysqli_query($conexion,$op);
             
             $op="FLUSH PRIVILEGES";
             mysqli_query($conexion,$op);
         
-            $op="UPDATE usuario SET nombre='$nombre',correo='$correo',privilegios='$privilegios',contrasena='$contrasena_nue'";
+            $op="UPDATE usuario SET nombre='$nombre' WHERE nombre='$usuario'";
             mysqli_query($conexion,$op);
+            $_SESSION['user']=$nombre;
             $op="FLUSH PRIVILEGES";
             mysqli_query($conexion,$op);
+            
+            
         }
+        if($_POST['correo'] !=""){
+            $correo=$_POST['correo'];
+            $usuario=$_SESSION['user'];
+            $op="UPDATE usuario SET correo='$correo' WHERE nombre='$usuario'";
+            mysqli_query($conexion,$op);
+        }
+       
+        if($_POST['privilegios']!="nada"){
+             mysqli_close($conexion);
+            $conexion=mysqli_connect("localhost","root","","inventarios");
+   
+            $privilegios=$_POST['privilegios'];
+            $usuario=$_SESSION['user'];
+            $op="UPDATE usuario SET privilegios='$privilegios' WHERE nombre='$usuario'";
+            mysqli_query($conexion,$op);
+            if($privilegios=="administrador"){
+                    $permisos="ALL PRIVILEGES";
+                }else if($privilegios=="usuario-cap"){
+                     $permisos="INSERT";
+                    echo $usuario;
+                }else{
+                     $permisos="SELECT";
+                    
+                }
+           $op="REVOKE ALL PRIVILEGES ON * . * FROM '$usuario'@'localhost'";
+            mysqli_query($conexion,$op);
+            
+             $op="GRANT ".$permisos." ON * . * TO '$usuario'@'localhost'";
+            mysqli_query($conexion,$op);
+             $op="FLUSH PRIVILEGES";
+            mysqli_query($conexion,$op);
+             
+        }
+        if($_POST['contrasena_antigua']!="" && $_POST['contrasena_nueva']!=""){
+            mysqli_close($conexion);
+            $conexion=mysqli_connect("localhost","root","","inventarios");
+   
+            $contrasena_an=$_POST['contrasena_antigua'];
+            $contrasena_nue=$_POST['contrasena_nueva'];
+             $usuario=$_SESSION['user'];
+            $op="SELECT * FROM usuario WHERE nombre='$usuario'";
+            $resultado=mysqli_query($conexion,$op);
+            $row=mysqli_fetch_array($resultado);
+       
+            if(password_verify($contrasena_an,$row['contrasena'])){
+                $contrasena_nue=password_hash($contrasena_nue,PASSWORD_DEFAULT);
+                $op="UPDATE mysql.user SET password=$contrasena_nue WHERE user='$usuario'";
+                mysqli_query($conexion,$op);
+            
+                $op="FLUSH PRIVILEGES";
+                mysqli_query($conexion,$op);
+        
+                $op="UPDATE usuario SET contrasena='$contrasena_nue' WHERE nombre='$usuario'";
+                mysqli_query($conexion,$op);
+            }
+            
+       
         
         
         
+        }
     }
-
     mysqli_close($conexion);
 
 ?>

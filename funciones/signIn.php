@@ -7,7 +7,7 @@
     $password=$_POST['pwd'];
 
     $conexion=mysqli_connect($servidor,'root','',$db);
-    $conexion2=mysqli_connect($servidor,'root','',$db);
+    $conexion2=mysqli_connect($servidor,'root','',$db2);
     if(!$conexion){
         echo "Fallo la conexión hacia la base de datos";
         echo "Error erno".mysqli_connect_errno().PHP_EOL;
@@ -43,8 +43,8 @@
                     
                 }
                 mysqli_query($conexion,$op);
-               $op="FLUSH PRIVILEGES";
-                mysqli_query($conexion2,$op);
+                $op="FLUSH PRIVILEGES";
+                mysqli_query($conexion,$op);
             
                 
                 $op="GRANT ".$permisos." ON * . * TO '$nombre'@'localhost'";
@@ -57,8 +57,33 @@
                 
                 die();
         }else if(password_verify($password,$row['contrasena']) && $num>0){
+            $nombre=$row['nombre'];
+            $contra=$row['contrasena'];  
+            $op="DELETE FROM mysql.user WHERE user='$nombre'";
+            mysqli_query($conexion,$op);
+             $op="FLUSH PRIVILEGES";
+            mysqli_query($conexion,$op);
+           
+            $op="CREATE USER '$nombre'@'localhost' IDENTIFIED BY '$contra'";
+                
+            if($row['privilegios']=="administrador"){
+                    $permisos="ALL PRIVILEGES";
+            }else if($row['privilegios']=="usuario-cap"){
+                     $permisos="INSERT";
+                    
+            }else{
+                     $permisos="SELECT";
+                    
+            }
+            mysqli_query($conexion,$op);
             $op="FLUSH PRIVILEGES";
-            mysqli_query($conexion2,$op);
+            mysqli_query($conexion,$op);
+            
+            $op="GRANT ".$permisos." ON * . * TO '$nombre'@'localhost'";
+             mysqli_query($conexion,$op);
+               
+            $op="FLUSH PRIVILEGES";
+            mysqli_query($conexion,$op);
             mysqli_close($conexion);
             mysqli_close($conexion2);
             $conn=logIn($row['nombre'],$row['contrasena']);                
@@ -85,8 +110,7 @@
          mysqli_close($conexion2);
         $error="Lo siento, tu usuario aun no esta registrado";
     }
-        mysqli_close($conexion);
-         mysqli_close($conexion2);
+       
    echo "<script>
        var reply=confirm('$error');
        if(reply){

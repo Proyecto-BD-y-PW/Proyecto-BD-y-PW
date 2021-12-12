@@ -123,7 +123,14 @@
         <div class="formulario">
         <input name="nombre" type="text" placeholder="Ingresa nuevo nombre. Actual: <?php echo $row['nombre'];?>">
         <input name="correo" type="text" placeholder="Ingresa nuevo correo. Actual: <?php echo $row['correo'];?>">
-        <input name="privilegios" type="text" placeholder="Ingresa provilegios.Actuales: <?php echo $row['privilegios'];?>">
+          <select name="privilegios" id="">
+            <option value="nada" >Privilegios actuales: <?php echo $row['privilegios'];?></option>
+            <option value="administrador">Administrador</option>
+            <option value="usuario-cap">Usuario de captura</option>
+            <option value="usuario-cons">Usuario de consulta</option>
+            
+            
+        </select>
         <input name="contrasena_antigua" type="text" placeholder="Si deseas cambiar contraseña coloca la actual">
         <input name="contrasena_nueva" type="text" placeholder="Contraseña nueva">
         </div>
