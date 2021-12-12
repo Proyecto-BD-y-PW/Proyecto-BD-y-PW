@@ -114,7 +114,7 @@
                     
                     while($row=mysqli_fetch_array($resultado)){
                         $i=$row['id'];
-                        if($row['tipo']==""){
+                        if($row['tipo']=="" && $row['en_almacen']!=0){
                             echo "<option value='".$i."' >".$row['nombre']." ".$row['modelo']." *ID:".$row['id']."</option>";
                         }else{
                             

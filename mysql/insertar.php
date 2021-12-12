@@ -317,7 +317,7 @@
         
         
         
-        header('location:../paginas/ventas.php');
+        header('location:../fpdf/fPdf.php');
     }else if(strcmp($pagina,"almacen")==0){
         $almacen=$_POST['n-almacen'];
         $descripcion=$_POST['descripcion'];
