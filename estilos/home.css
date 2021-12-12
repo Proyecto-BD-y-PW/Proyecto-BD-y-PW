@@ -488,6 +488,14 @@ p{
     font-family: 'Vast Shadow';
     font-size: 25px;
 }
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+select{
+    font-size: 15.9px;
+}
 @media(max-width:850px){
     h2{
         font-size: 20px;
@@ -520,6 +528,18 @@ p{
     .titlePK{
         font-family: 'Vast Shadow';
         font-size: 28px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    select{
+        font-size: 16.4px;
+    }
+    input[type="submit"],
+    input[type="reset"]{
+        font-size: 13px;
     }
 }
 @media(max-width:700px){
@@ -573,7 +593,18 @@ p{
         font-family: 'Vast Shadow';
         font-size: 18px;
     }
-    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    select{
+        font-size: 14.5px;
+    }
+    input[type="submit"],
+    input[type="reset"]{
+        font-size: 18px;
+    }
 }
 
 @media(max-width:480px){
@@ -622,5 +653,16 @@ p{
         font-family: 'Vast Shadow';
         font-size: 15px;
     }
-    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    select{
+        font-size: 12.56px;
+    }
+    input[type="submit"],
+    input[type="reset"]{
+        font-size: 13px;
+    }
 }
