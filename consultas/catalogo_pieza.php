@@ -96,9 +96,7 @@
                     $modelo="";
                     $separada=explode("*",$nombremodelo);
                     $tamaño=sizeof($separada);
-      /*  echo $separada[0]."---".$separada[1];
-      
-      */            foreach($separada as $valor){
+                 foreach($separada as $valor){
                         if($band){
                         $nombre=$valor;
                         $band=false;

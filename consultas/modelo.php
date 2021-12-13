@@ -38,8 +38,7 @@
 </head>
 <body>
     
-    <!-- <main class="contenedor">
-    -->    <input type="checkbox" name="" id="check" checked>
+        <input type="checkbox" name="" id="check" checked>
 
     <header class="site-header">
         
@@ -62,8 +61,7 @@
         </div>
 
     </header>
-      <!--   <div class="table-mode">
-      -->   <table id="tabla-consultas">
+         <table id="tabla-consultas">
              <tr>
                  <th>NOMBRE</th>
                  <th>ESTATUS</th>
@@ -156,9 +154,7 @@
          </table>
          
          
-     <!--    </div>
-    </main>
-      --> 
+    
     
    
 </body>

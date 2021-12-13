@@ -488,13 +488,9 @@ p{
     font-family: 'Vast Shadow';
     font-size: 25px;
 }
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"],
-input[type="number"],
-select{
-    font-size: 15.9px;
+input:not([type="date"]):not([type="button"]):not([type="submit"]):not([type="reset"]),select{
+    font-size: 19.05px;
+    font-family: 'Oswald';
 }
 @media(max-width:850px){
     h2{
@@ -503,14 +499,14 @@ select{
          box-shadow: 6px 8px 5px orange inset;
     }
     .formulario{
-        align-items: flex-start;
+        align-items: center;
     }
     form{
-        justify-content: flex-end;
-        align-items: flex-end;
+        justify-content: center;
+        align-items: center;
     }
     .botones{
-        justify-content: flex-start;
+        justify-content: center;
         margin: 0;
     }
     table{
@@ -529,17 +525,12 @@ select{
         font-family: 'Vast Shadow';
         font-size: 28px;
     }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="date"],
-    input[type="number"],
-    select{
+    input:not([type="date"]):not([type="button"]):not([type="submit"]):not([type="reset"]),select{
         font-size: 16.4px;
     }
-    input[type="submit"],
-    input[type="reset"]{
-        font-size: 13px;
+    #enviar, #borrar{
+        font-size: 16px;
+        width: 50%;
     }
 }
 @media(max-width:700px){
@@ -555,7 +546,13 @@ select{
         padding-top: 0;
         overflow-y: auto;
     }
-    
+    .radios{
+        justify-content: center;
+    }
+    img{
+        width: 40px;
+        height: 40px;
+    }
     .sidebar a{
         line-height: 20px;
         padding-left: 0;
@@ -577,7 +574,11 @@ select{
         padding-right: 0;
     }
     
-
+    .botones{
+        justify-content: space-around;
+        align-items: center;
+        
+    }
      #check:checked ~ .sidebar{
         left: -20rem;
     }
@@ -593,17 +594,12 @@ select{
         font-family: 'Vast Shadow';
         font-size: 18px;
     }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="date"],
-    input[type="number"],
-    select{
+    input:not([type="date"]):not([type="button"]):not([type="submit"]):not([type="reset"]),select{
         font-size: 14.5px;
     }
-    input[type="submit"],
-    input[type="reset"]{
-        font-size: 18px;
+    #enviar, #borrar{
+        font-size: 14px;
+        width: 40%;
     }
 }
 
@@ -617,15 +613,16 @@ select{
     .formulario{
         width: 90%;
    
-        align-items: flex-start;
+        align-items: center;
     }
     form{
         justify-content: flex-start;
-        align-items: flex-start;
+        align-items: center;
     }
     .botones{
         flex-wrap: wrap;
-        
+        justify-content: center;
+        align-items: center;
     }
     .radios{
         justify-content: flex-start;
@@ -653,16 +650,11 @@ select{
         font-family: 'Vast Shadow';
         font-size: 15px;
     }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="date"],
-    input[type="number"],
-    select{
+    input:not([type="date"]):not([type="button"]):not([type="submit"]):not([type="reset"]),select{
         font-size: 12.56px;
     }
-    input[type="submit"],
-    input[type="reset"]{
-        font-size: 13px;
+    #enviar, #borrar{
+        font-size: 12px;
+        width: 30%;
     }
 }
