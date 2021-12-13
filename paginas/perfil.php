@@ -27,6 +27,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<link rel="shortcut icon" href="/favicon.ico" />
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,7 +80,7 @@
         <a href="catalogo_piezas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Catálogo de Piezas</span></a>
         <a href="productos.php?op=1"><i class="fas fa-shopping-cart"></i><span>Productos</span></a>
         <a href="modelo.php?op=1"><i class="fas fa-shopping-cart"></i><span>Modelo</span></a>
-        <a href="arquitecturas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitecura</span></a>
+        <a href="arquitecturas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Arquitectura</span></a>
         <a href="ventas.php?op=1"><i class="fas fa-shopping-cart"></i><span>Venta</span></a>
         <a href="empleados.php?op=1"><i class="fas fa-shopping-cart"></i><span>Empleado</span></a>
         <a href="clientes.php?op=1"><i class="fas fa-shopping-cart"></i><span>Cliente</span></a>

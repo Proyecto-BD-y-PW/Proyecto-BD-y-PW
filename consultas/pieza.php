@@ -75,8 +75,8 @@
                   <th>ESTATUS</th>
                  <th>ID DEL ALMACEN</th>
                  <th>NOMBRE DEL ALMACEN</th>
-                 <th>FECHA DE COMPRA</th>
                  <th>ID DE COMPRA</th>
+                 <th>FECHA DE COMPRA</th>
                  <th>RFC DEL PROVEEDOR</th>
                  <th>EMPRESA</th>
                  
