@@ -6,11 +6,6 @@ const select3_btn = document.getElementById("consultas");
 const select4_btn = document.getElementById("disponibles");
 
 
-/*const registrar_mode = document.querySelector(".registrar-mode");*/
-/*const registrar_mode = document.getElementsByClassName("registrar-mode");
-const eliminar_mode = document.getElementsByClassName("eliminar-mode");
-const actualizar_mode = document.getElementsByClassName("actualizar-mode");
-const consultar_mode = document.getElementsByClassName("consultar-mode");*/
 const registrar_mode = document.querySelector(".registrar-mode");
 const eliminar_mode = document.querySelector(".eliminar-mode");
 const actualizar_mode = document.querySelector(".actualizar-mode");
@@ -19,19 +14,7 @@ var band1=true;
 var band2=false;
 var band3=false;
 var band4=false;
-/*
-radio1_btn.addEventListener('click', () => {
-    registrar_mode.classList.add("registrar-mode-add");
-    eliminar_mode.classList.add("eliminar-mode-remove");
-});
 
-radio2_btn.addEventListener('click', () => {
-    
-    registrar_mode.classList.add("registrar-mode-remove");
-    eliminar_mode.classList.add("eliminar-mode-add");
-    });
-
-*/
 select1_btn.addEventListener('change',function(){
     
     var opcion_seleccionada=this.options[select1_btn.selectedIndex];
@@ -94,10 +77,7 @@ radio1_btn.addEventListener('click', function()  {
         band2=false;
         band1=true;
     
-    }
-    
-  /* radio1_btn.click();
-  */  
+    }  
     
 });
 

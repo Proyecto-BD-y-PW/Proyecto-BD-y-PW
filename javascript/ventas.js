@@ -5,19 +5,11 @@ const select3_btn = document.getElementById("elim-fecha");
 const input_fecha = document.querySelectorAll(".consultar-mode .formulario #fecha");
 const contenedor=document.querySelector(".contenedor");
 
-/*const select4_btn = document.getElementById("consultas");
-
-const select5_btn = document.getElementById("disponibles");*/
 
 const select6_btn = document.getElementById("consultas");
 const select7_btn = document.getElementById("consultas-id");
 const select8_btn = document.getElementById("consultas-fecha");
 
-/*const registrar_mode = document.querySelector(".registrar-mode");*/
-/*const registrar_mode = document.getElementsByClassName("registrar-mode");
-const eliminar_mode = document.getElementsByClassName("eliminar-mode");
-const actualizar_mode = document.getElementsByClassName("actualizar-mode");
-const consultar_mode = document.getElementsByClassName("consultar-mode");*/
 const registrar_mode = document.querySelector(".registrar-mode");
 const eliminar_mode = document.querySelector(".eliminar-mode");
 const actualizar_mode = document.querySelector(".actualizar-mode");
@@ -26,19 +18,8 @@ var band1=true;
 var band2=false;
 var band3=false;
 var band4=false;
-/*
-radio1_btn.addEventListener('click', () => {
-    registrar_mode.classList.add("registrar-mode-add");
-    eliminar_mode.classList.add("eliminar-mode-remove");
-});
 
-radio2_btn.addEventListener('click', () => {
-    
-    registrar_mode.classList.add("registrar-mode-remove");
-    eliminar_mode.classList.add("eliminar-mode-add");
-    });
 
-*/
 select1_btn.addEventListener('change',function(){
     
     var opcion_seleccionada=this.options[select1_btn.selectedIndex];
@@ -47,16 +28,12 @@ select1_btn.addEventListener('change',function(){
         select2_btn.setAttribute("required","");
         select3_btn.classList.add("remove");
         select3_btn.removeAttribute("required","");
-        /*input_fecha.classList.add("remove");
-        input_fecha.removeAttribute("required","");*/
     
     }else if(opcion_seleccionada.value==='unico-fecha'){
         select2_btn.classList.add("remove");
         select2_btn.removeAttribute("required","");
         select3_btn.classList.remove("remove");
         select3_btn.setAttribute("required","");
-        /*input_fecha.classList.add("remove");
-        input_fecha.removeAttribute("required","");*/
     
     }else if(opcion_seleccionada.value==="rango-fecha"){
         
@@ -64,32 +41,17 @@ select1_btn.addEventListener('change',function(){
         select2_btn.removeAttribute("required","");
         select3_btn.classList.add("remove");
         select3_btn.removeAttribute("required","");
-        /*input_fecha.classList.remove("remove");
-        input_fecha.setAttribute("required","");*/
              
     }else{
         select2_btn.classList.add("remove");
         select2_btn.removeAttribute("required","");
         select3_btn.classList.add("remove");
         select3_btn.removeAttribute("required","");
-      /*  input_fecha.classList.add("remove");
-        input_fecha.removeAttribute("required","");*/
         
     }
      
 });
-/*select4_btn.addEventListener('change',function(){
-    
-    var opcion_seleccionada=this.options[select4_btn.selectedIndex];
-    if(opcion_seleccionada.value=='unico'){
-        select5_btn.classList.remove("remove");
-        select5_btn.setAttribute("required","");
-        
-    }else{
-        select5_btn.classList.add("remove");
-        select5_btn.removeAttribute("required","");
-    }
-});*/
+
 
 radio1_btn.addEventListener('click', function()  {
     
@@ -128,9 +90,7 @@ radio1_btn.addEventListener('click', function()  {
         band1=true;
     
     }
-    
-  /* radio1_btn.click();
-  */  
+ 
     
 });
 

@@ -45,9 +45,7 @@ radio1_btn.addEventListener('click', function()  {
         band1=true;
     
     }
-    
-  /* radio1_btn.click();
-  */  
+
     
 });
 

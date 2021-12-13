@@ -488,13 +488,9 @@ p{
     font-family: 'Vast Shadow';
     font-size: 25px;
 }
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"],
-input[type="number"],
-select{
-    font-size: 15.9px;
+input:not([type="date"]):not([type="button"]):not([type="submit"]):not([type="reset"]),select{
+    font-size: 19.05px;
+    font-family: 'Oswald';
 }
 @media(max-width:850px){
     h2{
@@ -529,12 +525,7 @@ select{
         font-family: 'Vast Shadow';
         font-size: 28px;
     }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="date"],
-    input[type="number"],
-    select{
+    input:not([type="date"]):not([type="button"]):not([type="submit"]):not([type="reset"]),select{
         font-size: 16.4px;
     }
     #enviar, #borrar{
@@ -555,7 +546,13 @@ select{
         padding-top: 0;
         overflow-y: auto;
     }
-    
+    .radios{
+        justify-content: center;
+    }
+    img{
+        width: 40px;
+        height: 40px;
+    }
     .sidebar a{
         line-height: 20px;
         padding-left: 0;
@@ -597,12 +594,7 @@ select{
         font-family: 'Vast Shadow';
         font-size: 18px;
     }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="date"],
-    input[type="number"],
-    select{
+    input:not([type="date"]):not([type="button"]):not([type="submit"]):not([type="reset"]),select{
         font-size: 14.5px;
     }
     #enviar, #borrar{
@@ -658,12 +650,7 @@ select{
         font-family: 'Vast Shadow';
         font-size: 15px;
     }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="date"],
-    input[type="number"],
-    select{
+    input:not([type="date"]):not([type="button"]):not([type="submit"]):not([type="reset"]),select{
         font-size: 12.56px;
     }
     #enviar, #borrar{
